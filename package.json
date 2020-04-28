@@ -1,0 +1,23 @@
+{
+  "name": "woo",
+  "version": "0.0.1",
+  "description": "Woo UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lil-C0der/Woo.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "Lil-C0der",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lil-C0der/Woo/issues"
+  },
+  "homepage": "https://github.com/Lil-C0der/Woo#readme"
+}
