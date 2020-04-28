@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Lil-C0der/Woo/issues"
   },
-  "homepage": "https://github.com/Lil-C0der/Woo#readme"
+  "homepage": "https://github.com/Lil-C0der/Woo#readme",
+  "dependencies": {
+    "vue": "^2.6.11"
+  }
 }
