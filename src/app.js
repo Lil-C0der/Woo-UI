@@ -7,4 +7,10 @@ Vue.component("woo-icon", Icon);
 
 const app = new Vue({
   el: "#app",
+  data: {
+    isLoading1: false,
+    isLoading2: false,
+    isLoading3: false,
+  },
+  methods: {},
 });

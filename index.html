@@ -40,19 +40,31 @@
   </head>
   <body>
     <div id="app">
-      <woo-button>按钮</woo-button>
-      <woo-button icon="woo-icon-download">
+      <woo-button @click.native="isLoading1=!isLoading1" :loading="isLoading1"
+        >按钮</woo-button
+      >
+
+      <woo-button
+        @click.native="isLoading2=!isLoading2"
+        :loading="isLoading2"
+        icon="woo-icon-thumbs-up"
+        icon-position="left"
+      >
         按钮
       </woo-button>
-      <woo-button icon="woo-icon-thumbs-up" icon-position="left">
+
+      <woo-button
+        @click="isLoading3=!isLoading3"
+        :loading="isLoading3"
+        icon="woo-icon-settings"
+        icon-position="right"
+      >
         按钮
       </woo-button>
-      <woo-button icon="woo-icon-settings" icon-position="right">
-        按钮
-      </woo-button>
-      <woo-icon name="woo-icon-left"></woo-icon>
+
+      <woo-icon name="woo-icon-thumbs-up"></woo-icon>
     </div>
   </body>
   <script src="./src/app.js"></script>
-  <script src="//at.alicdn.com/t/font_1789200_e6hmsk26qkf.js"></script>
+  <script src="//at.alicdn.com/t/font_1789200_64akljykkii.js"></script>
 </html>

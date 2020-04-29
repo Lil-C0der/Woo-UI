@@ -1,9 +1,14 @@
 <template>
-  <button class="woo-button" :class="`icon-${iconPosition}`">
+  <button
+    @click="$emit('click')"
+    class="woo-button"
+    :class="`icon-${iconPosition}`"
+  >
     <span class="content">
       <slot></slot>
     </span>
-    <woo-icon v-if="icon" :name="icon"></woo-icon>
+    <woo-icon v-show="loading" name="woo-icon-loading"></woo-icon>
+    <woo-icon v-show="!loading" v-if="icon" :name="icon"></woo-icon>
   </button>
 </template>
 
@@ -26,6 +31,10 @@ export default {
         return val === "left" || val === "right";
       },
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {},
   methods: {},
@@ -38,7 +47,7 @@ export default {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 0 1.21em;
+  padding: 0 1.14em;
   font-size: var(--font-size);
   height: var(--button-height);
   background-color: var(--button-bg);
