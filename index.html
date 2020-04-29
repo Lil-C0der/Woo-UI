@@ -40,12 +40,13 @@
   </head>
   <body>
     <div id="app">
-      <woo-button @click.native="isLoading1=!isLoading1" :loading="isLoading1"
+      <woo-button>按钮</woo-button>
+      <woo-button @click="isLoading1=!isLoading1" :loading="isLoading1"
         >按钮</woo-button
       >
 
       <woo-button
-        @click.native="isLoading2=!isLoading2"
+        @click="isLoading2=!isLoading2"
         :loading="isLoading2"
         icon="woo-icon-thumbs-up"
         icon-position="left"
@@ -62,6 +63,13 @@
         按钮
       </woo-button>
 
+      <woo-button-group>
+        <woo-button icon="woo-icon-left">上一页</woo-button>
+        <woo-button>按钮</woo-button>
+        <woo-button icon="woo-icon-right" icon-position="right">
+          下一页
+        </woo-button>
+      </woo-button-group>
       <woo-icon name="woo-icon-thumbs-up"></woo-icon>
     </div>
   </body>

@@ -1,9 +1,12 @@
 import Vue from "vue";
-import Button from "../Button.vue";
-import Icon from "../Icon.vue";
+
+import Button from "./Button.vue";
+import Icon from "./Icon.vue";
+import ButtonGroup from "./ButtonGroup.vue";
 
 Vue.component("woo-button", Button);
 Vue.component("woo-icon", Icon);
+Vue.component("woo-button-group", ButtonGroup);
 
 const app = new Vue({
   el: "#app",

@@ -57,7 +57,7 @@ export default {
   &:hover {
     background-color: var(--button-bg-hover);
     border-color: var(--boder-color-hover);
-    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.15);
   }
   &:active {
     background-color: var(--button-bg-active);
