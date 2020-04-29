@@ -1,11 +1,9 @@
 <template>
   <button class="woo-button" :class="`icon-${iconPosition}`">
-    <div class="content">
+    <span class="content">
       <slot></slot>
-    </div>
-    <svg v-if="icon" class="icon" aria-hidden="true">
-      <use :xlink:href="`#${icon}`"></use>
-    </svg>
+    </span>
+    <woo-icon v-if="icon" :name="icon"></woo-icon>
   </button>
 </template>
 
@@ -40,7 +38,7 @@ export default {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 0 1.07em;
+  padding: 0 1.21em;
   font-size: var(--font-size);
   height: var(--button-height);
   background-color: var(--button-bg);
@@ -59,7 +57,7 @@ export default {
   &:focus {
     outline: none;
   }
-  .icon {
+  .woo-icon {
     margin: 0 0.3em 0 0;
     order: 1;
   }
@@ -67,7 +65,7 @@ export default {
     order: 2;
   }
   &.icon-right {
-    .icon {
+    .woo-icon {
       margin: 0 0 0 0.3em;
       order: 2;
     }
