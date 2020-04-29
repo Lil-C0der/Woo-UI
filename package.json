@@ -21,6 +21,16 @@
   },
   "homepage": "https://github.com/Lil-C0der/Woo#readme",
   "dependencies": {
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.5",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
   }
 }

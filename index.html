@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Woo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #app {
+        margin: 10px 0 0 20px;
+      }
+      body {
+        font-size: var(--font-size);
+      }
+      :root {
+        --button-height: 32px;
+        --font-size: 14px;
+        --border-radius: 4px;
+        --button-bg: #f6f6f6;
+        --button-bg-hover: #f1f1f1;
+        --button-bg-active: #afafaf;
+        --color: #606266;
+        --color-active: #fefefe;
+        --boder-color: #dcdfe6;
+        --boder-color-hover: #c0c4cc;
+      }
+    </style>
+    <style>
+      .icon {
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <woo-button icon="woo-icon-download">
+        按钮
+      </woo-button>
+      <woo-button icon="woo-icon-thumbs-up" icon-position="left">
+        按钮
+      </woo-button>
+      <woo-button icon="woo-icon-settings" icon-position="right">
+        按钮
+      </woo-button>
+      <woo-button icon="woo-icon-down" icon-position="up">
+        按钮
+      </woo-button>
+    </div>
+  </body>
+  <script src="./src/app.js"></script>
+  <script src="//at.alicdn.com/t/font_1789200_e6hmsk26qkf.js"></script>
+</html>
