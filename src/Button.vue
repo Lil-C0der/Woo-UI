@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import WooIcon from "./Icon";
+
 export default {
   data() {
     return {};
@@ -36,7 +38,9 @@ export default {
       default: false,
     },
   },
-  components: {},
+  components: {
+    WooIcon,
+  },
   methods: {},
 };
 </script>

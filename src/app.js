@@ -55,8 +55,10 @@ const expect = chai.expect;
     },
   });
   testBtn.$mount();
+  const useEl = testBtn.$el.querySelectorAll("use");
   const svgEl = testBtn.$el.querySelectorAll("svg");
   expect(svgEl[0].style.display).to.eq("");
+  expect(useEl[0].getAttribute("xlink:href")).to.eq("#woo-icon-loading");
   expect(svgEl[1].style.display).to.eq("none");
   testBtn.$el.remove();
   testBtn.$destroy();
@@ -110,6 +112,6 @@ const expect = chai.expect;
   testBtn.$mount();
   let spy = chai.spy(() => {});
   testBtn.$on("click", spy);
-  const button = testBtn.$el.click();
+  testBtn.$el.click();
   expect(spy).has.been.called();
 }
