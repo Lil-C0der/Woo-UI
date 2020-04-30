@@ -42,7 +42,7 @@ module.exports = function(config) {
     autoWatch: true,
 
     // 测试启动的浏览器
-    browsers: ["Chrome"],
+    browsers: ["ChromeHeadless"],
 
     // 开启或禁用持续集成模式
     // 设置为true, Karma将打开浏览器，执行测试并最后退出
