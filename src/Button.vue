@@ -16,6 +16,7 @@
 import WooIcon from "./Icon";
 
 export default {
+  name: "woo-button",
   data() {
     return {};
   },

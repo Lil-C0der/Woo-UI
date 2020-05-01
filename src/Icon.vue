@@ -8,6 +8,7 @@
 import "./svg";
 
 export default {
+  name: "woo-icon",
   data() {
     return {};
   },
