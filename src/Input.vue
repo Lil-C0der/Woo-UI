@@ -5,7 +5,10 @@
       :value="value"
       :disabled="disabled"
       :readonly="readonly"
-      @change="emit('change')"
+      @change="$emit('change', $event)"
+      @input="$emit('input', $event)"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
     />
     <template v-if="error">
       <woo-icon name="woo-icon-error"></woo-icon>

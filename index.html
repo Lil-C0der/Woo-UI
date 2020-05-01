@@ -26,59 +26,69 @@
         --button-height: 32px;
         --font-size: 14px;
         --border-radius: 4px;
-        --button-bg: #f6f6f6;
+        --button-bg: #f5f5f5;
         --button-bg-hover: #f1f1f1;
         --button-bg-active: #d0d0d0;
         --color: #333;
         --color-active: #fefefe;
-        --boder-color: #dcdfe6;
+        --boder-color: #dedde2;
         --boder-color-hover: #c0c4cc;
       }
     </style>
     <style>
-      .icon {
-        width: 1em;
-        height: 1em;
-        fill: currentColor;
-        overflow: hidden;
+      .box {
+        margin: 10px 0 0 20px;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <woo-button>按钮</woo-button>
-      <woo-button @click="isLoading1=!isLoading1" :loading="isLoading1"
-        >按钮</woo-button
-      >
+      <div class="box">
+        <woo-input @change="inputChange" value="张三"></woo-input>
+        <woo-input value="李四" disabled></woo-input>
+        <woo-input value="只读" readonly></woo-input>
+        <woo-input
+          value="error"
+          error="重新输入!"
+          @change="inputChange"
+          @input="inputChange"
+        ></woo-input>
+      </div>
 
-      <woo-button
-        @click="isLoading2=!isLoading2"
-        :loading="isLoading2"
-        icon="woo-icon-thumbs-up"
-        icon-position="left"
-      >
-        按钮
-      </woo-button>
-
-      <woo-button
-        @click="isLoading3=!isLoading3"
-        :loading="isLoading3"
-        icon="woo-icon-settings"
-        icon-position="right"
-      >
-        按钮
-      </woo-button>
-
-      <woo-button-group>
-        <woo-button icon="woo-icon-left">上一页</woo-button>
+      <div class="box">
         <woo-button>按钮</woo-button>
-        <woo-button icon="woo-icon-right" icon-position="right">
-          下一页
+        <woo-button @click="isLoading1=!isLoading1" :loading="isLoading1"
+          >按钮</woo-button
+        >
+
+        <woo-button
+          @click="isLoading2=!isLoading2"
+          :loading="isLoading2"
+          icon="woo-icon-thumbs-up"
+          icon-position="left"
+        >
+          按钮
         </woo-button>
-      </woo-button-group>
-      <woo-icon name="woo-icon-thumbs-up"></woo-icon>
+
+        <woo-button
+          @click="isLoading3=!isLoading3"
+          :loading="isLoading3"
+          icon="woo-icon-settings"
+          icon-position="right"
+        >
+          按钮
+        </woo-button>
+
+        <woo-button-group>
+          <woo-button icon="woo-icon-left">上一页</woo-button>
+          <woo-button>按钮</woo-button>
+          <woo-button icon="woo-icon-right" icon-position="right">
+            下一页
+          </woo-button>
+        </woo-button-group>
+        <woo-icon name="woo-icon-thumbs-up"></woo-icon>
+      </div>
     </div>
   </body>
   <script src="./src/app.js"></script>
-  <!-- <script src="//at.alicdn.com/t/font_1789200_64akljykkii.js"></script> -->
 </html>
