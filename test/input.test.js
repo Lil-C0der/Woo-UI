@@ -70,7 +70,7 @@ describe("Input 组件", () => {
         });
         testIpt.$on(eventName, callback);
         inputEl.dispatchEvent(myEvt);
-        expect(callback).to.have.been.calledWith(testVal);
+        expect(callback).to.have.been.calledWith("testVal");
       });
       testIpt.$destroy();
     });
