@@ -16,10 +16,11 @@ const app = new Vue({
     isLoading1: false,
     isLoading2: false,
     isLoading3: false,
+    msg: "测试",
   },
   methods: {
     inputChange(e) {
-      console.log(e.target.value);
+      console.log(e);
     },
   },
 });

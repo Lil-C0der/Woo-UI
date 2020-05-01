@@ -2,13 +2,13 @@
   <div class="woo-input-wrapper" :class="{ error }">
     <input
       type="text"
-      :value="value"
       :disabled="disabled"
       :readonly="readonly"
-      @change="$emit('change', $event)"
-      @input="$emit('input', $event)"
-      @focus="$emit('focus', $event)"
-      @blur="$emit('blur', $event)"
+      :value="value"
+      @change="$emit('change', $event.target.value)"
+      @input="$emit('input', $event.target.value)"
+      @focus="$emit('focus', $event.target.value)"
+      @blur="$emit('blur', $event.target.value)"
     />
     <template v-if="error">
       <woo-icon name="woo-icon-error"></woo-icon>
@@ -25,7 +25,10 @@ import WooIcon from "./Icon";
 export default {
   name: "woo-input",
   data() {
-    return {};
+    return {
+      // modelVal: value,
+      modelVal: "",
+    };
   },
   props: {
     value: {
@@ -48,6 +51,9 @@ export default {
     WooIcon,
   },
   methods: {},
+  updated() {
+    // console.log(this.value);
+  },
 };
 </script>
 

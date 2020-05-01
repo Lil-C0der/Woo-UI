@@ -62,9 +62,15 @@ describe("Input 组件", () => {
       const callback = sinon.fake();
       ["change", "input", "focus", "blur"].forEach((eventName) => {
         let myEvt = new Event(eventName);
+        Object.defineProperty(myEvt, "target", {
+          value: { value: "testVal" },
+          enumerable: false,
+          configurable: false,
+          writable: false,
+        });
         testIpt.$on(eventName, callback);
         inputEl.dispatchEvent(myEvt);
-        expect(callback).to.have.been.calledWith(myEvt);
+        expect(callback).to.have.been.calledWith(myEvt.target.value);
       });
       testIpt.$destroy();
     });
