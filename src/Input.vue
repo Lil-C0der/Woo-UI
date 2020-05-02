@@ -9,12 +9,14 @@
       @change="handleChange"
       @focus="handleFocus"
       @blur="handleBlur"
+      @mouseenter="hovering = true"
+      @mouseleave="hovering = false"
     />
     <!-- TODO 清除输入框 -->
     <template v-if="showClear">
       <woo-icon
-        @click.native="clearInput"
-        v-show="value"
+        @click="clearInput"
+        v-show="clearVisible"
         name="woo-icon-clear"
       ></woo-icon>
     </template>
@@ -34,8 +36,9 @@ export default {
   name: "woo-input",
   data() {
     return {
-      // modelVal: value,
       modelVal: "",
+      hovering: false,
+      focused: false,
     };
   },
   props: {
@@ -70,9 +73,11 @@ export default {
       this.$emit("change", e.target.value);
     },
     handleFocus(e) {
+      this.focused = true;
       this.$emit("focus", e.target.value);
     },
     handleBlur(e) {
+      this.focused = false;
       this.$emit("blur", e.target.value);
     },
     clearInput() {
@@ -86,7 +91,12 @@ export default {
     showClear() {
       return this.clearable && !this.readonly && !this.disabled;
     },
+    clearVisible() {
+      return this.value && (this.hovering || this.focused);
+      // return true;
+    },
   },
+  mounted() {},
 };
 </script>
 
@@ -102,11 +112,17 @@ export default {
   $deep-red: rgb(192, 41, 85);
   $bg-disabled: #ebebeb;
   display: inline-flex;
+  position: relative;
   align-items: center;
   font-size: $font-size;
   > .woo-icon-clear {
-    position: relative;
-    left: -2em;
+    position: absolute;
+    right: 1em;
+    color: $border-color;
+    &:hover {
+      cursor: default;
+      color: $border-color-hover;
+    }
   }
   > :not(:last-child) {
     margin-right: 0.33em;

@@ -44,10 +44,9 @@
   <body>
     <div id="app">
       <div class="box">
-        <woo-input v-model="msg"></woo-input>
         <woo-input clearable v-model="msg"></woo-input>
         <span>{{msg}}</span>
-        <woo-input @input="inputChange" :value="msg2"></woo-input>
+        <woo-input clearable :value="msg2"></woo-input>
         <woo-input value="李四" disabled></woo-input>
         <woo-input value="只读" readonly></woo-input>
         <woo-input

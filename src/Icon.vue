@@ -1,5 +1,10 @@
 <template>
-  <svg class="woo-icon" :class="name" aria-hidden="true">
+  <svg
+    @click="$emit('click')"
+    class="woo-icon"
+    :class="name"
+    aria-hidden="true"
+  >
     <use :xlink:href="`#${name}`"></use>
   </svg>
 </template>
