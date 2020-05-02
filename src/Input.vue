@@ -5,11 +5,19 @@
       :disabled="disabled"
       :readonly="readonly"
       :value="value"
-      @change="$emit('change', $event.target.value)"
-      @input="$emit('input', $event.target.value)"
-      @focus="$emit('focus', $event.target.value)"
-      @blur="$emit('blur', $event.target.value)"
+      @input="handleInput"
+      @change="handleChange"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
+    <!-- TODO 清除输入框 -->
+    <template v-if="showClear">
+      <woo-icon
+        @click.native="clearInput"
+        v-show="value"
+        name="woo-icon-clear"
+      ></woo-icon>
+    </template>
     <template v-if="error">
       <woo-icon name="woo-icon-error"></woo-icon>
       <span class="message">
@@ -31,6 +39,10 @@ export default {
     };
   },
   props: {
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
     value: {
       type: String,
       default: "",
@@ -50,9 +62,30 @@ export default {
   components: {
     WooIcon,
   },
-  methods: {},
-  updated() {
-    // console.log(this.value);
+  methods: {
+    handleInput(e) {
+      this.$emit("input", e.target.value);
+    },
+    handleChange(e) {
+      this.$emit("change", e.target.value);
+    },
+    handleFocus(e) {
+      this.$emit("focus", e.target.value);
+    },
+    handleBlur(e) {
+      this.$emit("blur", e.target.value);
+    },
+    clearInput() {
+      this.$emit("input", "");
+      this.$emit("change", "");
+      this.$emit("clear");
+      console.log("got there");
+    },
+  },
+  computed: {
+    showClear() {
+      return this.clearable && !this.readonly && !this.disabled;
+    },
   },
 };
 </script>
@@ -71,6 +104,10 @@ export default {
   display: inline-flex;
   align-items: center;
   font-size: $font-size;
+  > .woo-icon-clear {
+    position: relative;
+    left: -2em;
+  }
   > :not(:last-child) {
     margin-right: 0.33em;
   }

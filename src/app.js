@@ -17,10 +17,12 @@ const app = new Vue({
     isLoading2: false,
     isLoading3: false,
     msg: "测试",
+    msg2: "张三",
   },
   methods: {
-    inputChange(e) {
-      console.log(e);
+    inputChange(value) {
+      console.log(value);
+      this.msg2 = value;
     },
   },
 });
