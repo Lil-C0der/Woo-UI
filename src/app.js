@@ -4,11 +4,15 @@ import Button from "./Button.vue";
 import Icon from "./Icon.vue";
 import ButtonGroup from "./ButtonGroup.vue";
 import Input from "./Input.vue";
+import Row from "./Row.vue";
+import Col from "./Col.vue";
 
 Vue.component("woo-button", Button);
 Vue.component("woo-icon", Icon);
 Vue.component("woo-button-group", ButtonGroup);
 Vue.component("woo-input", Input);
+Vue.component("woo-row", Row);
+Vue.component("woo-col", Col);
 
 const app = new Vue({
   el: "#app",

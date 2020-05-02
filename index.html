@@ -43,6 +43,31 @@
   </head>
   <body>
     <div id="app">
+      <woo-row :gutter="20">
+        <woo-col :span="6"></woo-col>
+        <woo-col :span="18"></woo-col>
+      </woo-row>
+      <woo-row :gutter="20">
+        <woo-col :span="4"></woo-col>
+        <woo-col :span="8"></woo-col>
+      </woo-row>
+      <woo-row :gutter="20">
+        <woo-col :span="4"></woo-col>
+        <woo-col :span="4"></woo-col>
+        <woo-col :span="16"></woo-col>
+      </woo-row>
+      <woo-row :gutter="20">
+        <woo-col :span="2"></woo-col>
+        <woo-col offset="2" :span="18"></woo-col>
+      </woo-row>
+      <woo-row :gutter="20">
+        <woo-col :span="4"></woo-col>
+        <woo-col :span="6"></woo-col>
+        <woo-col :span="8"></woo-col>
+      </woo-row>
+
+      <hr />
+
       <div class="box">
         <woo-input clearable v-model="msg"></woo-input>
         <span>{{msg}}</span>
