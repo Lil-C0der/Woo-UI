@@ -84,7 +84,6 @@ export default {
       this.$emit("input", "");
       this.$emit("change", "");
       this.$emit("clear");
-      console.log("got there");
     },
   },
   computed: {

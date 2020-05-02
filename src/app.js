@@ -25,7 +25,6 @@ const app = new Vue({
   },
   methods: {
     inputChange(value) {
-      console.log(value);
       this.msg2 = value;
     },
   },

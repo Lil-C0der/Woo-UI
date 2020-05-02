@@ -1,10 +1,6 @@
 <template>
-  <div
-    class="woo-col"
-    :class="[span && `woo-col-${span}`, offset && `woo-col-offset-${offset}`]"
-  >
-    <!-- <slot></slot> -->
-    <div></div>
+  <div class="woo-col" :class="colClass">
+    <slot></slot>
   </div>
 </template>
 
@@ -14,6 +10,7 @@ export default {
   data() {
     return {};
   },
+  computed: {},
   props: {
     span: {
       type: [Number, String],
@@ -25,14 +22,18 @@ export default {
   },
   components: {},
   methods: {},
+  computed: {
+    colClass() {
+      return [`woo-col-${this.span}`, `woo-col-offset-${this.offset}`];
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .woo-col {
-  //   width: 50%;
   height: 100px;
-  //   border: 1px solid pink;
+  width: 100%;
   $class-prefix: "woo-col-";
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
@@ -44,12 +45,6 @@ export default {
     &.#{$class-prefix}#{$n} {
       margin-left: ($n / 24) * 100%;
     }
-  }
-  // TODO 测试用
-  div {
-    border: 1px solid #999;
-    width: 100%;
-    height: 100%;
   }
 }
 </style>

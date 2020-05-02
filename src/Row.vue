@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="woo-row"
-    :style="{ marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px' }"
-  >
+  <div class="woo-row" :style="rowStyle">
     <slot></slot>
   </div>
 </template>
@@ -20,7 +17,14 @@ export default {
   },
   components: {},
   methods: {},
-
+  computed: {
+    rowStyle() {
+      return {
+        marginLeft: -this.gutter / 2 + "px",
+        marginRight: -this.gutter / 2 + "px",
+      };
+    },
+  },
   mounted() {
     if (this.gutter) {
       this.$children.forEach((n) => {
