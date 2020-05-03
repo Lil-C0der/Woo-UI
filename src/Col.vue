@@ -55,26 +55,26 @@ export default {
     },
   },
   components: {},
-  methods: {},
+  methods: {
+    createClass(obj, str) {
+      let arr = [];
+      obj?.span && arr.push(`woo-col-${str}${obj.span}`);
+      obj?.offset && arr.push(`woo-col-${str}offset-${obj.offset}`);
+      return arr;
+    },
+  },
   computed: {
     colClass() {
-      // const { span, offset, xs, sm, md, lg, xl } = this;
+      const { span, offset, xs, sm, md, lg, xl, xxl, createClass } = this;
       return [
-        this.span && `woo-col-${this.span}`,
-        this.offset && `woo-col-offset-${this.offset}`,
+        ...createClass({ span, offset }, ""),
         // 响应式
-        this?.xs?.span && `woo-col-xs-${this?.xs?.span}`,
-        this?.xs?.offset && `woo-col-xs-offset-${this?.xs?.offset}`,
-        this?.sm?.span && `woo-col-sm-${this?.sm?.span}`,
-        this?.sm?.offset && `woo-col-sm-offset-${this?.sm?.offset}`,
-        this?.md?.span && `woo-col-md-${this?.md?.span}`,
-        this?.md?.offset && `woo-col-md-offset-${this?.md?.offset}`,
-        this?.lg?.span && `woo-col-lg-${this?.lg?.span}`,
-        this?.lg?.offset && `woo-col-lg-offset-${this?.lg?.offset}`,
-        this?.xl?.span && `woo-col-xl-${this?.xl?.span}`,
-        this?.xl?.offset && `woo-col-xl-offset-${this?.xl?.offset}`,
-        this?.xxl?.span && `woo-col-xxl-${this?.xxl?.span}`,
-        this?.xxl?.offset && `woo-col-xxl-offset-${this?.xxl?.offset}`,
+        ...createClass(xs, "xs-"),
+        ...createClass(sm, "sm-"),
+        ...createClass(md, "md-"),
+        ...createClass(lg, "lg-"),
+        ...createClass(xl, "xl-"),
+        ...createClass(xxl, "xxl-"),
       ];
     },
   },
