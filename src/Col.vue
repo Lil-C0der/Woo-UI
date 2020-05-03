@@ -48,6 +48,11 @@ export default {
       default: () => {},
       validator,
     },
+    xxl: {
+      type: Object,
+      default: () => {},
+      validator,
+    },
   },
   components: {},
   methods: {},
@@ -68,6 +73,8 @@ export default {
         this?.lg?.offset && `woo-col-lg-offset-${this?.lg?.offset}`,
         this?.xl?.span && `woo-col-xl-${this?.xl?.span}`,
         this?.xl?.offset && `woo-col-xl-offset-${this?.xl?.offset}`,
+        this?.xxl?.span && `woo-col-xxl-${this?.xxl?.span}`,
+        this?.xxl?.offset && `woo-col-xxl-offset-${this?.xxl?.offset}`,
       ];
     },
   },
@@ -92,7 +99,7 @@ export default {
     }
   }
   // 响应式
-  // xs 竖屏设备
+  // 超小屏幕 例如手机竖屏
   @media (max-width: 575px) {
     $class-prefix: "woo-col-xs-";
     @for $n from 1 through 24 {
@@ -107,7 +114,7 @@ export default {
       }
     }
   }
-  // 小屏幕 横屏设备
+  // 小屏幕 如手机横屏
   @media (min-width: 576px) {
     $class-prefix: "woo-col-sm-";
     @for $n from 1 through 24 {
@@ -161,6 +168,21 @@ export default {
       }
     }
     $class-prefix: "woo-col-xl-offset-";
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+  // 宽屏
+  @media (min-width: 1600) {
+    $class-prefix: "woo-col-xxl-";
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: "woo-col-xxl-offset-";
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
         margin-left: ($n / 24) * 100%;
