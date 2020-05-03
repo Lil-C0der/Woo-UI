@@ -24,7 +24,10 @@ export default {
   methods: {},
   computed: {
     colClass() {
-      return [`woo-col-${this.span}`, `woo-col-offset-${this.offset}`];
+      return [
+        this.span && `woo-col-${this.span}`,
+        this.offset && `woo-col-offset-${this.offset}`,
+      ];
     },
   },
 };
@@ -33,7 +36,6 @@ export default {
 <style lang="scss" scoped>
 .woo-col {
   height: 100px;
-  width: 100%;
   $class-prefix: "woo-col-";
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {

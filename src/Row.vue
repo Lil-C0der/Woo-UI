@@ -1,5 +1,5 @@
 <template>
-  <div class="woo-row" :style="rowStyle">
+  <div class="woo-row" :style="rowStyle" :class="rowClass">
     <slot></slot>
   </div>
 </template>
@@ -14,6 +14,12 @@ export default {
     gutter: {
       type: [String, Number],
     },
+    align: {
+      type: String,
+      validator: function(val) {
+        return val === "right" || val === "left" || val === "center";
+      },
+    },
   },
   components: {},
   methods: {},
@@ -23,6 +29,9 @@ export default {
         marginLeft: -this.gutter / 2 + "px",
         marginRight: -this.gutter / 2 + "px",
       };
+    },
+    rowClass() {
+      return this.align && `align-${this.align}`;
     },
   },
   mounted() {
@@ -39,5 +48,14 @@ export default {
 <style lang="scss" scoped>
 .woo-row {
   display: flex;
+  &.align-left {
+    justify-content: flex-start;
+  }
+  &.align-right {
+    justify-content: flex-end;
+  }
+  &.align-center {
+    justify-content: center;
+  }
 }
 </style>
