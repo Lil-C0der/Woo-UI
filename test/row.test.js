@@ -21,15 +21,14 @@ describe("Row组件", () => {
     const vm = new Vue({
       el: div,
     });
-    const rowEl = document.querySelector(".woo-row");
-    const colEl = document.querySelector(".woo-col");
+    const rowEl = vm.$el.querySelector(".woo-row");
+    const colEl = vm.$el.querySelector(".woo-col");
     const { marginLeft, marginRight } = window.getComputedStyle(rowEl);
     const { paddingLeft, paddingRight } = window.getComputedStyle(colEl);
     expect(marginLeft).to.eq("-10px");
     expect(marginRight).to.eq("-10px");
     expect(paddingLeft).to.eq("10px");
     expect(paddingRight).to.eq("10px");
-    vm.$destroy();
   });
   it("可以设置 align", () => {
     const div = document.createElement("div");
