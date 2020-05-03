@@ -40,35 +40,85 @@
         margin: 10px 0 0 20px;
       }
     </style>
+    <style>
+      .test {
+        width: 100%;
+        background-color: green;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
       <woo-row :gutter="20">
-        <woo-col :span="6">1</woo-col>
-        <woo-col :span="18">2</woo-col>
-      </woo-row>
-      <woo-row>
-        <woo-col>1</woo-col>
-        <woo-col>2</woo-col>
-        <woo-col>3</woo-col>
-      </woo-row>
-      <woo-row :gutter="20">
-        <woo-col :span="4">4</woo-col>
-        <woo-col :span="8">8</woo-col>
-      </woo-row>
-      <woo-row :gutter="20">
-        <woo-col :span="4">4</woo-col>
-        <woo-col :span="4">4</woo-col>
-        <woo-col :span="16">16</woo-col>
+        <woo-col :span="6">
+          <div class="test">
+            1
+          </div>
+        </woo-col>
+        <woo-col :span="18">
+          <div class="test">
+            2
+          </div>
+        </woo-col>
       </woo-row>
       <woo-row :gutter="20">
-        <woo-col :span="2">2</woo-col>
-        <woo-col offset="2" :span="18">18</woo-col>
+        <woo-col>
+          <div class="test">
+            1
+          </div>
+        </woo-col>
+        <woo-col>
+          <div class="test">
+            2
+          </div>
+        </woo-col>
+        <woo-col>
+          <div class="test">
+            3
+          </div>
+        </woo-col>
       </woo-row>
       <woo-row :gutter="20">
-        <woo-col :span="4">4</woo-col>
-        <woo-col :span="6">6</woo-col>
-        <woo-col :span="8">8</woo-col>
+        <woo-col :span="4">
+          <div class="test">
+            4
+          </div>
+        </woo-col>
+        <woo-col :span="8">
+          <div class="test">
+            8
+          </div>
+        </woo-col>
+      </woo-row>
+      <woo-row :gutter="20">
+        <woo-col :span="4">
+          <div class="test">
+            4
+          </div>
+        </woo-col>
+        <woo-col :span="4">
+          <div class="test">
+            4
+          </div>
+        </woo-col>
+        <woo-col :span="16">
+          <div class="test">
+            16
+          </div>
+        </woo-col>
+      </woo-row>
+      <woo-row :gutter="20">
+        <woo-col :span="2">
+          <div class="test">
+            2
+          </div>
+        </woo-col>
+        <woo-col offset="2" :span="18">
+          <div class="test">
+            18
+          </div>
+        </woo-col>
       </woo-row>
 
       <hr />

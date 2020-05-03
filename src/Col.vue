@@ -14,6 +14,7 @@ export default {
   props: {
     span: {
       type: [Number, String],
+      default: 24,
     },
     offset: {
       type: [Number, String],
@@ -36,6 +37,7 @@ export default {
 <style lang="scss" scoped>
 .woo-col {
   height: 100px;
+  border: 1px solid red;
   $class-prefix: "woo-col-";
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
