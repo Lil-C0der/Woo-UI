@@ -50,77 +50,119 @@
   </head>
   <body>
     <div id="app">
-      <woo-row :gutter="20">
-        <woo-col :span="6">
-          <div class="test">
-            1
-          </div>
-        </woo-col>
-        <woo-col :span="18">
-          <div class="test">
-            2
-          </div>
-        </woo-col>
-      </woo-row>
-      <woo-row :gutter="20">
-        <woo-col>
-          <div class="test">
-            1
-          </div>
-        </woo-col>
-        <woo-col>
-          <div class="test">
-            2
-          </div>
-        </woo-col>
-        <woo-col>
-          <div class="test">
-            3
-          </div>
-        </woo-col>
-      </woo-row>
-      <woo-row :gutter="20">
-        <woo-col :span="4">
-          <div class="test">
-            4
-          </div>
-        </woo-col>
-        <woo-col :span="8">
-          <div class="test">
-            8
-          </div>
-        </woo-col>
-      </woo-row>
-      <woo-row :gutter="20">
-        <woo-col :span="4">
-          <div class="test">
-            4
-          </div>
-        </woo-col>
-        <woo-col :span="4">
-          <div class="test">
-            4
-          </div>
-        </woo-col>
-        <woo-col :span="16">
-          <div class="test">
-            16
-          </div>
-        </woo-col>
-      </woo-row>
-      <woo-row :gutter="20">
-        <woo-col :span="2">
-          <div class="test">
-            2
-          </div>
-        </woo-col>
-        <woo-col offset="2" :span="18">
-          <div class="test">
-            18
-          </div>
-        </woo-col>
-      </woo-row>
+      <!-- <div class="box">
+        <woo-row :gutter="20">
+          <woo-col :span="6">
+            <div class="test">
+              1
+            </div>
+          </woo-col>
+          <woo-col :span="18">
+            <div class="test">
+              2
+            </div>
+          </woo-col>
+        </woo-row>
+        <woo-row :gutter="20">
+          <woo-col>
+            <div class="test">
+              1
+            </div>
+          </woo-col>
+          <woo-col>
+            <div class="test">
+              2
+            </div>
+          </woo-col>
+          <woo-col>
+            <div class="test">
+              3
+            </div>
+          </woo-col>
+        </woo-row>
+        <woo-row :gutter="20">
+          <woo-col :span="4">
+            <div class="test">
+              4
+            </div>
+          </woo-col>
+          <woo-col :span="8">
+            <div class="test">
+              8
+            </div>
+          </woo-col>
+        </woo-row>
+        <woo-row :gutter="20">
+          <woo-col :span="4">
+            <div class="test">
+              4
+            </div>
+          </woo-col>
+          <woo-col :span="4">
+            <div class="test">
+              4
+            </div>
+          </woo-col>
+          <woo-col :span="16">
+            <div class="test">
+              16
+            </div>
+          </woo-col>
+        </woo-row>
+        <woo-row :gutter="20">
+          <woo-col :span="2">
+            <div class="test">
+              2
+            </div>
+          </woo-col>
+          <woo-col offset="2" :span="18">
+            <div class="test">
+              18
+            </div>
+          </woo-col>
+        </woo-row>
+      </div> -->
 
+      <div class="box">
+        <woo-row :gutter="20">
+          <woo-col
+            :span="2"
+            :xs="{span:24}"
+            :sm="{span:8}"
+            :md="{span:4}"
+            :lg="{span:2}"
+            :xl="{span:1}"
+          >
+            <div class="test">
+              1
+            </div>
+          </woo-col>
+          <woo-col
+            :span="18"
+            :xs="{span:24}"
+            :sm="{span:16}"
+            :md="{span:20}"
+            :lg="{span:22}"
+            :xl="{span:23}"
+          >
+            <div class="test">
+              2
+            </div>
+          </woo-col>
+        </woo-row>
+        <woo-row :gutter="20">
+          <woo-col>
+            <div class="test">
+              1
+            </div>
+          </woo-col>
+          <woo-col>
+            <div class="test">
+              2
+            </div>
+          </woo-col>
+        </woo-row>
+      </div>
       <hr />
 
       <div class="box">

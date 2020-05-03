@@ -12,7 +12,6 @@
       @mouseenter="hovering = true"
       @mouseleave="hovering = false"
     />
-    <!-- TODO 清除输入框 -->
     <template v-if="showClear">
       <woo-icon
         @click="clearInput"
