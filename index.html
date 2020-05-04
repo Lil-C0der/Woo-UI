@@ -17,7 +17,7 @@
         box-sizing: border-box;
       }
       #app {
-        margin: 10px 0 0 20px;
+        /* margin: 10px 0 0 20px; */
       }
       body {
         font-size: var(--font-size);
@@ -35,229 +35,40 @@
         --boder-color-hover: #c0c4cc;
       }
     </style>
-    <style>
-      .box {
-        margin: 10px 0 0 20px;
-      }
-    </style>
+
     <style>
       .demo {
-        width: 100%;
-        background-color: green;
-        height: 100%;
+        border: 1px solid green;
+        min-height: 50px;
+        text-align: center;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <!-- <div class="box">
-        <woo-row :gutter="20">
-          <woo-col :span="6">
-            <div class="demo">
-              1
-            </div>
-          </woo-col>
-          <woo-col >
-            <div class="demo">
-              2
-            </div>
-          </woo-col>
-        </woo-row>
-        <woo-row :gutter="20">
-          <woo-col>
-            <div class="demo">
-              1
-            </div>
-          </woo-col>
-          <woo-col>
-            <div class="demo">
-              2
-            </div>
-          </woo-col>
-          <woo-col>
-            <div class="demo">
-              3
-            </div>
-          </woo-col>
-        </woo-row>
-        <woo-row :gutter="20">
-          <woo-col :span="4">
-            <div class="demo">
-              4
-            </div>
-          </woo-col>
-          <woo-col :span="8">
-            <div class="demo">
-              8
-            </div>
-          </woo-col>
-        </woo-row>
-        <woo-row :gutter="20">
-          <woo-col :span="4">
-            <div class="demo">
-              4
-            </div>
-          </woo-col>
-          <woo-col :span="4">
-            <div class="demo">
-              4
-            </div>
-          </woo-col>
-          <woo-col :span="16">
-            <div class="demo">
-              16
-            </div>
-          </woo-col>
-        </woo-row>
-        <woo-row :gutter="20">
-          <woo-col :span="2">
-            <div class="demo">
-              2
-            </div>
-          </woo-col>
-          <woo-col offset="2" >
-            <div class="demo">
-              18
-            </div>
-          </woo-col>
-        </woo-row>
-      </div> -->
+      <!-- <woo-layout style="height: 100vh;">
+        <woo-header class="demo">Header</woo-header>
+        <woo-content class="demo">Content</woo-content>
+        <woo-footer class="demo">Footer</woo-footer>
+      </woo-layout> -->
 
-      <!-- <div class="box">
-        <woo-row :gutter="20">
-          <woo-col
-            :span="24"
-            :sm="{span:12}"
-            :md="{span:8}"
-            :lg="{span:6}"
-            :xl="{span:4}"
-          >
-            <div class="demo">
-              1
-            </div>
-          </woo-col>
-          <woo-col
-            :span="24"
-            :sm="{span:12}"
-            :md="{span:8}"
-            :lg="{span:6}"
-            :xl="{span:4}"
-          >
-            <div class="demo">
-              2
-            </div>
-          </woo-col>
-          <woo-col
-            :span="24"
-            :sm="{span:12}"
-            :md="{span:8}"
-            :lg="{span:6}"
-            :xl="{span:4}"
-          >
-            <div class="demo">
-              3
-            </div>
-          </woo-col>
-          <woo-col
-            :span="24"
-            :sm="{span:12}"
-            :md="{span:8}"
-            :lg="{span:6}"
-            :xl="{span:4}"
-          >
-            <div class="demo">
-              4
-            </div>
-          </woo-col>
-          <woo-col
-            :span="24"
-            :sm="{span:12}"
-            :md="{span:8}"
-            :lg="{span:6}"
-            :xl="{span:4}"
-          >
-            <div class="demo">
-              5
-            </div>
-          </woo-col>
-          <woo-col
-            :span="24"
-            :sm="{span:12}"
-            :md="{span:8}"
-            :lg="{span:6}"
-            :xl="{span:4}"
-          >
-            <div class="demo">
-              6
-            </div>
-          </woo-col>
-        </woo-row>
-      </div> -->
+      <!-- <woo-layout style="height: 100vh;">
+        <woo-header class="demo">Header</woo-header>
+        <woo-layout style="height: 100vh;">
+          <woo-sider class="demo" style="width: 200px;">Sider</woo-sider>
+          <woo-content class="demo">Content</woo-content>
+        </woo-layout>
+        <woo-footer class="demo">Footer</woo-footer>
+      </woo-layout> -->
 
-      <!-- <div class="box">
-        <woo-row>
-          <woo-col span="23" offset="1" :lg="{span:12,offset:12}">
-            <div class="test">
-              0
-            </div>
-          </woo-col>
-        </woo-row>
-      </div> -->
-
-      <woo-row :gutter="20">
-        <woo-col></woo-col>
-      </woo-row>
-
-      <!-- <woo-col :span="24"></woo-col> -->
-      <hr />
-
-      <div class="box">
-        <woo-input clearable v-model="msg"></woo-input>
-        <span>{{msg}}</span>
-        <woo-input clearable :value="msg2"></woo-input>
-        <woo-input value="李四" disabled></woo-input>
-        <woo-input value="只读" readonly></woo-input>
-        <woo-input
-          value="error"
-          error="重新输入!"
-          @change="inputChange"
-          @input="inputChange"
-        ></woo-input>
-      </div>
-
-      <div class="box">
-        <woo-button>按钮</woo-button>
-        <woo-button @click="isLoading1=!isLoading1" :loading="isLoading1"
-          >按钮</woo-button
-        >
-
-        <woo-button
-          @click="isLoading2=!isLoading2"
-          :loading="isLoading2"
-          icon="woo-icon-thumbs-up"
-          icon-position="left"
-        >
-          按钮
-        </woo-button>
-
-        <woo-button
-          @click="isLoading3=!isLoading3"
-          :loading="isLoading3"
-          icon="woo-icon-settings"
-          icon-position="right"
-        >
-          按钮
-        </woo-button>
-
-        <woo-button-group>
-          <woo-button icon="woo-icon-left">上一页</woo-button>
-          <woo-button>按钮</woo-button>
-          <woo-button icon="woo-icon-right" icon-position="right">
-            下一页
-          </woo-button>
-        </woo-button-group>
-        <woo-icon name="woo-icon-thumbs-up"></woo-icon>
-      </div>
+      <woo-layout style="height: 100vh;">
+        <woo-sider class="demo" style="width: 200px;">Sider</woo-sider>
+        <woo-layout style="height: 100vh;">
+          <woo-header class="demo">Header</woo-header>
+          <woo-content class="demo">Content</woo-content>
+          <woo-footer class="demo">Footer</woo-footer>
+        </woo-layout>
+      </woo-layout>
     </div>
   </body>
   <script src="./src/app.js"></script>
