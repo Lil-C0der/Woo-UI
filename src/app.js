@@ -30,12 +30,7 @@ const app = new Vue({
   data: {
     isCollapsed: false,
   },
-  methods: {
-    // handleCollapsed() {
-    //   // console.log(val);
-    //   console.log(this.isCollapsed);
-    // },
-  },
+  methods: {},
   watch: {
     isCollapsed(val) {
       console.log(val);

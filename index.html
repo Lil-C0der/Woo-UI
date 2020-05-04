@@ -35,38 +35,14 @@
         --boder-color-hover: #c0c4cc;
       }
     </style>
-
-    <style>
-      .woo-layout {
-        font-size: 22px;
-        color: #fff;
-        text-align: center;
-      }
-      .woo-sider {
-        background-color: #8895b1;
-      }
-      .woo-header {
-        background-color: #bcc2d7;
-        line-height: 64px;
-      }
-      .woo-content {
-        background-color: #194568;
-        line-height: 120px;
-      }
-      .woo-footer {
-        background-color: #546c8c;
-        line-height: 1.5;
-      }
-    </style>
   </head>
   <body>
     <div id="app">
       <woo-layout style="height: 100vh;">
         <woo-sider
           v-model="isCollapsed"
-          default-collapsed
           collapsible
-          collapsed-width="0"
+          collapsed-width="100"
           width="200"
           >Sider</woo-sider
         >

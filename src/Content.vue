@@ -18,5 +18,7 @@ export default {
 <style lang="scss" scoped>
 .woo-content {
   flex: 1;
+  background-color: #194568;
+  line-height: 120px;
 }
 </style>

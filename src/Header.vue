@@ -1,5 +1,5 @@
 <template>
-  <header class="woo-header">
+  <header class="woo-header" :style="headerStyle">
     <slot></slot>
   </header>
 </template>
@@ -11,6 +11,17 @@ export default {
     return {};
   },
   components: {},
+  props: {
+    height: {
+      type: [String, Number],
+      default: "64",
+    },
+  },
+  computed: {
+    headerStyle() {
+      return { height: this.height + "px", lineHeight: this.height + "px" };
+    },
+  },
   methods: {},
 };
 </script>
@@ -18,5 +29,6 @@ export default {
 <style lang="scss" scoped>
 header {
   width: 100%;
+  background-color: #bcc2d7;
 }
 </style>

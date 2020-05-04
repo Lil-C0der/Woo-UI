@@ -45,9 +45,11 @@ export default {
       type: [String, Number],
       default: "80",
     },
+    // 当前收起状态(v-model)
     collapsed: {
       type: Boolean,
     },
+    // 是否默认收起
     defaultCollapsed: {
       type: Boolean,
       default: false,
@@ -86,14 +88,12 @@ export default {
       return (reverseArrow && !isCollapsed) || isCollapsed;
     },
   },
-  mounted() {
-    console.log(this.$options.data.isCollapsed);
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .woo-sider {
+  background-color: #8895b1;
   transition: all 0.3s;
   .sider-trigger {
     position: fixed;

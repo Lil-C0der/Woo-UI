@@ -30,6 +30,9 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
   &.horizontal-layout {
     flex-direction: row;
   }

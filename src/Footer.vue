@@ -1,5 +1,5 @@
 <template>
-  <footer class="woo-footer">
+  <footer class="woo-footer" :style="footerStyle">
     <slot></slot>
   </footer>
 </template>
@@ -10,9 +10,23 @@ export default {
   data() {
     return {};
   },
-  components: {},
+  props: {
+    height: {
+      type: [String, Number],
+      default: "64",
+    },
+  },
+  computed: {
+    footerStyle() {
+      return { height: this.height + "px", lineHeight: this.height + "px" };
+    },
+  },
   methods: {},
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.woo-footer {
+  background-color: #546c8c;
+}
+</style>
