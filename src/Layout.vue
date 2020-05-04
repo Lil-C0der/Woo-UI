@@ -27,7 +27,6 @@ export default {
 
 <style lang="scss" scoped>
 .woo-layout {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   flex: 1;

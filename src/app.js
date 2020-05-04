@@ -28,15 +28,17 @@ Vue.component("woo-sider", Sider);
 const app = new Vue({
   el: "#app",
   data: {
-    isLoading1: false,
-    isLoading2: false,
-    isLoading3: false,
-    msg: "测试",
-    msg2: "张三",
+    isCollapsed: false,
   },
   methods: {
-    inputChange(value) {
-      this.msg2 = value;
+    // handleCollapsed() {
+    //   // console.log(val);
+    //   console.log(this.isCollapsed);
+    // },
+  },
+  watch: {
+    isCollapsed(val) {
+      console.log(val);
     },
   },
 });

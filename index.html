@@ -37,36 +37,43 @@
     </style>
 
     <style>
-      .demo {
-        border: 1px solid green;
-        min-height: 50px;
+      .woo-layout {
+        font-size: 22px;
+        color: #fff;
         text-align: center;
+      }
+      .woo-sider {
+        background-color: #8895b1;
+      }
+      .woo-header {
+        background-color: #bcc2d7;
+        line-height: 64px;
+      }
+      .woo-content {
+        background-color: #194568;
+        line-height: 120px;
+      }
+      .woo-footer {
+        background-color: #546c8c;
+        line-height: 1.5;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <!-- <woo-layout style="height: 100vh;">
-        <woo-header class="demo">Header</woo-header>
-        <woo-content class="demo">Content</woo-content>
-        <woo-footer class="demo">Footer</woo-footer>
-      </woo-layout> -->
-
-      <!-- <woo-layout style="height: 100vh;">
-        <woo-header class="demo">Header</woo-header>
-        <woo-layout style="height: 100vh;">
-          <woo-sider class="demo" style="width: 200px;">Sider</woo-sider>
-          <woo-content class="demo">Content</woo-content>
-        </woo-layout>
-        <woo-footer class="demo">Footer</woo-footer>
-      </woo-layout> -->
-
       <woo-layout style="height: 100vh;">
-        <woo-sider class="demo" style="width: 200px;">Sider</woo-sider>
+        <woo-sider
+          v-model="isCollapsed"
+          default-collapsed
+          collapsible
+          collapsed-width="0"
+          width="200"
+          >Sider</woo-sider
+        >
         <woo-layout style="height: 100vh;">
-          <woo-header class="demo">Header</woo-header>
-          <woo-content class="demo">Content</woo-content>
-          <woo-footer class="demo">Footer</woo-footer>
+          <woo-header>Header</woo-header>
+          <woo-content>Content</woo-content>
+          <woo-footer>Footer</woo-footer>
         </woo-layout>
       </woo-layout>
     </div>
