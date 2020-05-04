@@ -5,12 +5,12 @@
   overflow: hidden;
 }
 @keyframes spin-data-v-b6a078 {
-0% {
+  0% {
     transform: rotate(0);
-}
-100% {
+  }
+  100% {
     transform: rotate(360deg);
-}
+  }
 }
 .woo-icon-loading[data-v-b6a078] {
   animation: spin-data-v-b6a078 0.8s linear infinite;
@@ -25,12 +25,12 @@
   height: var(--button-height);
   background-color: var(--button-bg);
   color: var(--color);
-  border: 1px solid var(--boder-color);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
 }
 .woo-button[data-v-46b835]:hover {
   background-color: var(--button-bg-hover);
-  border-color: var(--boder-color-hover);
+  border-color: var(--border-color-hover);
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.15);
 }
 .woo-button[data-v-46b835]:active {

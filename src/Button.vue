@@ -57,11 +57,11 @@ export default {
   height: var(--button-height);
   background-color: var(--button-bg);
   color: var(--color);
-  border: 1px solid var(--boder-color);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   &:hover {
     background-color: var(--button-bg-hover);
-    border-color: var(--boder-color-hover);
+    border-color: var(--border-color-hover);
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.15);
   }
   &:active {
