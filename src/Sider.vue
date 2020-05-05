@@ -65,9 +65,9 @@ export default {
   },
   methods: {
     handleTriggerClick() {
-      this.currentWidth = this.newWidth;
       this.isCollapsed = !this.isCollapsed;
       this.$emit("collapse", this.isCollapsed);
+      this.currentWidth = this.newWidth;
     },
     handleChange() {},
   },
@@ -76,8 +76,8 @@ export default {
       return { width: this.currentWidth + "px" };
     },
     newWidth() {
-      if (this.isCollapsed) return this.width;
-      else return this.collapsedWidth;
+      if (this.isCollapsed) return this.collapsedWidth;
+      else return this.width;
     },
     showLeftArrow() {
       const { reverseArrow, isCollapsed } = this;
@@ -86,6 +86,12 @@ export default {
     showRightArrow() {
       const { reverseArrow, isCollapsed } = this;
       return (reverseArrow && !isCollapsed) || isCollapsed;
+    },
+  },
+  watch: {
+    collapsed: function(val) {
+      this.isCollapsed = val;
+      this.currentWidth = this.newWidth;
     },
   },
 };
