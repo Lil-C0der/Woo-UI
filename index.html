@@ -44,11 +44,15 @@
           collapsible
           collapsed-width="100"
           width="200"
-          >Sider</woo-sider
-        >
+          >Sider
+        </woo-sider>
         <woo-layout style="height: 100vh;">
           <woo-header>Header</woo-header>
-          <woo-content>Content</woo-content>
+
+          <woo-content>
+            <h1>Content</h1>
+            <woo-button @click="handleClick">click it!!</woo-button>
+          </woo-content>
           <woo-footer>Footer</woo-footer>
         </woo-layout>
       </woo-layout>

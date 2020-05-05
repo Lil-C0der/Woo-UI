@@ -91,7 +91,6 @@ export default {
     },
     clearVisible() {
       return this.value && (this.hovering || this.focused);
-      // return true;
     },
   },
   mounted() {},
