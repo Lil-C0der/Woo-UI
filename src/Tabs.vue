@@ -18,7 +18,7 @@ export default {
   },
   model: {
     prop: "activeName",
-    event: "tab-click",
+    event: "change",
   },
   props: {
     activeName: {
@@ -46,12 +46,13 @@ export default {
   created() {
     this.eventBus.$on("itemClick", (name) => {
       this.currentName = name;
-      console.log("tab" + this.currentName);
+      this.$emit("tab-click", name);
+      console.log("tabs got " + this.currentName);
     });
   },
   watch: {
     currentName: function(newVal) {
-      this.$emit("tab-click", newVal);
+      this.$emit("change", newVal);
     },
   },
 };
