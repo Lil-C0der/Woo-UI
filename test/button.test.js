@@ -11,8 +11,8 @@ describe("Button组件", () => {
     expect(Button).to.exist;
   });
   it("可以设置icon", () => {
-    const Contructor = Vue.extend(Button);
-    const testBtn = new Contructor({
+    const Constructor = Vue.extend(Button);
+    const testBtn = new Constructor({
       propsData: {
         icon: "woo-icon-download",
       },
@@ -31,8 +31,8 @@ describe("Button组件", () => {
     testBtn.$destroy();
   });
   it("可以设置loading", () => {
-    const Contructor = Vue.extend(Button);
-    const testBtn = new Contructor({
+    const Constructor = Vue.extend(Button);
+    const testBtn = new Constructor({
       propsData: {
         icon: "woo-icon-download",
         loading: true,
@@ -48,8 +48,8 @@ describe("Button组件", () => {
     testBtn.$destroy();
   });
   it("默认的order为1", () => {
-    const Contructor = Vue.extend(Button);
-    const testBtn = new Contructor({
+    const Constructor = Vue.extend(Button);
+    const testBtn = new Constructor({
       propsData: {
         icon: "woo-icon-download",
       },
@@ -65,8 +65,8 @@ describe("Button组件", () => {
     testBtn.$destroy();
   });
   it("设置iconPosition可以改变order", () => {
-    const Contructor = Vue.extend(Button);
-    const testBtn = new Contructor({
+    const Constructor = Vue.extend(Button);
+    const testBtn = new Constructor({
       propsData: {
         icon: "woo-icon-download",
         iconPosition: "right",
@@ -82,8 +82,8 @@ describe("Button组件", () => {
     testBtn.$destroy();
   });
   it("点击button触发click事件", () => {
-    const Contructor = Vue.extend(Button);
-    const testBtn = new Contructor({
+    const Constructor = Vue.extend(Button);
+    const testBtn = new Constructor({
       propsData: {
         icon: "woo-icon-download",
         iconPosition: "right",
