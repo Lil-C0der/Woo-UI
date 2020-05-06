@@ -38,19 +38,19 @@ const app = new Vue({
   methods: {
     handleClick() {
       this.msg = "321";
-      this.isCollapsed = !this.isCollapsed;
+      // this.isCollapsed = !this.isCollapsed;
       this.$toast("toast!!", {
         closable: true,
-        // autoClose: false,
+        autoClose: false,
         closeOption: {
           text: "关闭",
           callback: (toast) => {
             console.log(toast);
           },
         },
-        position: "top",
+        // position: "top",
         // position: "bottom",
-        // position: "middle",
+        position: "middle",
       });
     },
   },
