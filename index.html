@@ -44,7 +44,9 @@
           <woo-header>Header</woo-header>
 
           <woo-content>
-            <woo-tabs v-model="tabIndex">
+            <woo-button @click="toggleTab">toggle</woo-button>
+
+            <woo-tabs v-model="tabName">
               <woo-tabs-head>
                 <woo-tabs-item name="1st" disabled>
                   1

@@ -43,7 +43,11 @@ Vue.use(WooPlugin);
 const app = new Vue({
   el: "#app",
   data: {
-    tabIndex: "2nd",
+    tabName: "2nd",
   },
-  methods: {},
+  methods: {
+    toggleTab() {
+      this.tabName = "3rd";
+    },
+  },
 });

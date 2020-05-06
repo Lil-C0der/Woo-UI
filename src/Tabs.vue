@@ -1,6 +1,7 @@
 <template>
   <div class="woo-tabs">
     <slot></slot>
+    <!-- {{ currentName }} -->
   </div>
 </template>
 
@@ -15,10 +16,10 @@ export default {
       eventBus: new Vue(),
     };
   },
-  // model: {
-  //   value: "activeName",
-  //    event:'itemClick'
-  // },
+  model: {
+    prop: "activeName",
+    event: "tab-click",
+  },
   props: {
     activeName: {
       type: String,
@@ -47,6 +48,11 @@ export default {
       this.currentName = name;
       console.log("tab" + this.currentName);
     });
+  },
+  watch: {
+    currentName: function(newVal) {
+      this.$emit("tab-click", newVal);
+    },
   },
 };
 </script>
