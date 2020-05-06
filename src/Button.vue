@@ -7,8 +7,8 @@
     <span class="content">
       <slot></slot>
     </span>
-    <woo-icon v-show="loading" name="woo-icon-loading"></woo-icon>
-    <woo-icon v-show="!loading" v-if="icon" :name="icon"></woo-icon>
+    <woo-icon v-show="loading" name="loading"></woo-icon>
+    <woo-icon v-show="!loading" v-if="iconName" :name="iconName"></woo-icon>
   </button>
 </template>
 
@@ -21,7 +21,7 @@ export default {
     return {};
   },
   props: {
-    icon: {
+    iconName: {
       type: String,
       default: null,
     },

@@ -16,11 +16,11 @@
       <woo-icon
         @click="clearInput"
         v-show="clearVisible"
-        name="woo-icon-clear"
+        name="clear"
       ></woo-icon>
     </template>
     <template v-if="error">
-      <woo-icon name="woo-icon-error"></woo-icon>
+      <woo-icon name="error"></woo-icon>
       <span class="message">
         {{ error }}
       </span>

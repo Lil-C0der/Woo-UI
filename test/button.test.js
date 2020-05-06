@@ -10,11 +10,11 @@ describe("Button组件", () => {
     // 断言 Chai引入
     expect(Button).to.exist;
   });
-  it("可以设置icon", () => {
+  it("可以设置iconName", () => {
     const Constructor = Vue.extend(Button);
     const testBtn = new Constructor({
       propsData: {
-        icon: "woo-icon-download",
+        iconName: "download",
       },
     });
     testBtn.$mount();
@@ -34,7 +34,7 @@ describe("Button组件", () => {
     const Constructor = Vue.extend(Button);
     const testBtn = new Constructor({
       propsData: {
-        icon: "woo-icon-download",
+        iconName: "download",
         loading: true,
       },
     });
@@ -51,7 +51,7 @@ describe("Button组件", () => {
     const Constructor = Vue.extend(Button);
     const testBtn = new Constructor({
       propsData: {
-        icon: "woo-icon-download",
+        iconName: "download",
       },
     });
     const div = document.createElement("div");
