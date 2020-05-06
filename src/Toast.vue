@@ -10,7 +10,7 @@
         <slot></slot>
       </span>
     </div>
-    <div v-if="closable" class="toast-close-text" @click="handleCloseClick">
+    <div v-if="closable" class="toast-close-button" @click="handleCloseClick">
       <span>
         {{ closeOption.text }}
       </span>
@@ -175,7 +175,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     align-items: center;
     padding: 8px 16px;
   }
-  .toast-close-text {
+  .toast-close-button {
     flex-shrink: 0;
     padding: 0 16px;
     display: flex;

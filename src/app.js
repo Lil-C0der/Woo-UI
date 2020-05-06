@@ -39,7 +39,7 @@ const app = new Vue({
     handleClick1() {
       this.$toast("top", {
         closable: true,
-        autoClose: false,
+        delay: 2000,
         position: "top",
         offset: "100px",
       });
@@ -47,14 +47,12 @@ const app = new Vue({
     handleClick2() {
       this.$toast("middle", {
         closable: true,
-        autoClose: false,
         position: "middle",
       });
     },
     handleClick3() {
       this.$toast("bottom", {
         closable: true,
-        autoClose: false,
         position: "bottom",
         offset: "100px",
       });

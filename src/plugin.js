@@ -8,7 +8,7 @@ function createToast(Vue, msg, propsData, closedCallback) {
   toast.$slots.default = msg;
   toast.$mount(document.createElement("div"));
   document.body.appendChild(toast.$el);
-  toast.$on("beforeClose", closedCallback);
+  toast.$on("beforeDestroyToast", closedCallback);
   return toast;
 }
 
