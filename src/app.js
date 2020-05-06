@@ -39,20 +39,19 @@ const app = new Vue({
     handleClick() {
       this.msg = "321";
       this.isCollapsed = !this.isCollapsed;
-      this.$toast(
-        // "<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h2 >",
-        // "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "toast!!",
-        {
-          // dangerouslyUseHTMLString: true,
-          closeOption: {
-            text: "关闭",
-            callback: (toast) => {
-              console.log(toast);
-            },
+      this.$toast("toast!!", {
+        closable: true,
+        // autoClose: false,
+        closeOption: {
+          text: "关闭",
+          callback: (toast) => {
+            console.log(toast);
           },
-        }
-      );
+        },
+        position: "top",
+        // position: "bottom",
+        // position: "middle",
+      });
     },
   },
 });

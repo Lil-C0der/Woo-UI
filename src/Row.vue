@@ -17,7 +17,7 @@ export default {
     align: {
       type: String,
       validator: function(val) {
-        return val === "right" || val === "left" || val === "center";
+        return ["left", "right", "center"].indexOf(val) !== -1;
       },
     },
   },

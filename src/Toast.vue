@@ -10,7 +10,7 @@
         <slot></slot>
       </span>
     </div>
-    <div class="toast-close-text" @click="handleCloseClick">
+    <div v-if="closable" class="toast-close-text" @click="handleCloseClick">
       <span>
         {{ closeOption.text }}
       </span>
@@ -23,10 +23,14 @@ export default {
   name: "Toast",
   data() {
     return {
-      msg: "",
+      timer: null,
     };
   },
   props: {
+    closable: {
+      type: Boolean,
+      default: false,
+    },
     dangerouslyUseHTMLString: {
       type: Boolean,
       default: false,
@@ -51,50 +55,80 @@ export default {
         };
       },
     },
-    top: {
+    offset: {
       type: String,
-      default: "24px",
+      default: "16px",
+    },
+    position: {
+      type: String,
+      default: "top",
+      validator(val) {
+        return ["top", "bottom", "middle"].indexOf(val) !== -1;
+      },
     },
   },
   computed: {
     toastStyle() {
-      return {
-        top: this.top,
-      };
+      if (["top", "bottom"].indexOf(this.position) !== -1) {
+        return {
+          [this.position]: this.offset,
+        };
+      } else
+        return {
+          // middle
+          top: "50%",
+          transform: "translateY(-50%)",
+        };
     },
   },
   methods: {
     close() {
+      // 关闭时执行回调函数
+      if (typeof this.closeOption.callback === "function") {
+        this.closeOption?.callback(this); // this 即为当前的 toast 实例
+      }
       this.$el.remove();
+      this.$emit("beforeClose");
       this.$destroy();
     },
     handleCloseClick() {
       this.close();
-      if (typeof this.closeOption.callback === "function") {
-        this.closeOption?.callback(this); // this即为当前的toast实例
-      }
     },
     execAutoClose() {
-      if (this.autoClose) {
-        setTimeout(() => {
-          this.close();
-        }, this.delay);
-      }
+      this.timer = setTimeout(() => {
+        this.close();
+      }, this.delay);
     },
   },
   mounted() {
-    this.execAutoClose();
+    if (this.autoClose) {
+      this.execAutoClose();
+      this.$once("hook:beforeDestroy", () => {
+        clearTimeout(this.timer);
+      });
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 $font-size: 14px;
 $toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 .woo-toast {
   font-size: $font-size;
   min-height: $toast-min-height;
+  animation: fade-in 0.6s;
+  transition: all 0.6s;
   line-height: 1.5;
   display: flex;
   justify-content: center;
