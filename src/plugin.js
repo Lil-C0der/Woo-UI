@@ -20,7 +20,7 @@ export default {
       currentToast && currentToast.close();
       currentToast = createToast(Vue, msg, toastOptions, () => {
         // 正常关闭时置空
-        currentToast = null;
+        // currentToast = null;
       });
     };
   },

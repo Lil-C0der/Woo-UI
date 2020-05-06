@@ -36,21 +36,27 @@ const app = new Vue({
     isCollapsed: false,
   },
   methods: {
-    handleClick() {
-      this.msg = "321";
-      this.isCollapsed = !this.isCollapsed;
-      this.$toast("toast!!", {
+    handleClick1() {
+      this.$toast("top", {
         closable: true,
-        // autoClose: false,
-        closeOption: {
-          text: "关闭",
-          callback: (toast) => {
-            console.log(toast);
-          },
-        },
+        autoClose: false,
         position: "top",
-        // position: "bottom",
-        // position: "middle",
+        offset: "100px",
+      });
+    },
+    handleClick2() {
+      this.$toast("middle", {
+        closable: true,
+        autoClose: false,
+        position: "middle",
+      });
+    },
+    handleClick3() {
+      this.$toast("bottom", {
+        closable: true,
+        autoClose: false,
+        position: "bottom",
+        offset: "100px",
       });
     },
   },

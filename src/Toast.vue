@@ -1,5 +1,5 @@
 <template>
-  <div class="woo-toast" :style="toastStyle">
+  <div class="woo-toast" :style="toastStyle" :class="toastClass">
     <div
       class="woo-toast-text"
       v-if="dangerouslyUseHTMLString"
@@ -77,8 +77,13 @@ export default {
         return {
           // middle
           top: "50%",
-          transform: "translateY(-50%)",
+          transform: "translate(-50%, -50%)",
         };
+    },
+    toastClass() {
+      if (["top", "bottom"].indexOf(this.position) !== -1) {
+        return `${this.position}-toast`;
+      } else return "fade-in";
     },
   },
   methods: {
@@ -120,6 +125,26 @@ export default {
     opacity: 1;
   }
 }
+@keyframes top-slide-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes bottom-slide-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
 
 $font-size: 14px;
 $toast-min-height: 40px;
@@ -127,7 +152,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 .woo-toast {
   font-size: $font-size;
   min-height: $toast-min-height;
-  animation: fade-in 0.6s;
   transition: all 0.6s;
   line-height: 1.5;
   display: flex;
@@ -140,6 +164,15 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   background-color: $toast-bg;
   box-shadow: 0 0 3px 0 rgba($color: #000000, $alpha: 0.5);
   z-index: 999;
+  &.top-toast {
+    animation: top-slide-in 0.6s;
+  }
+  &.bottom-toast {
+    animation: bottom-slide-in 0.6s;
+  }
+  &.fade-in {
+    animation: fade-in 0.6s;
+  }
   .woo-toast-text {
     display: flex;
     justify-content: center;
