@@ -12,6 +12,11 @@ import Header from "./Header.vue";
 import Footer from "./Footer.vue";
 import Sider from "./Sider.vue";
 import Toast from "./Toast.vue";
+import Tabs from "./Tabs.vue";
+import TabsHead from "./TabsHead.vue";
+import TabsItem from "./TabsItem.vue";
+import TabsPane from "./TabsPane.vue";
+import TabsBody from "./TabsBody.vue";
 
 import WooPlugin from "./plugin";
 
@@ -27,35 +32,18 @@ Vue.component("woo-content", Content);
 Vue.component("woo-footer", Footer);
 Vue.component("woo-sider", Sider);
 Vue.component("woo-toast", Toast);
+Vue.component("woo-tabs", Tabs);
+Vue.component("woo-tabs-head", TabsHead);
+Vue.component("woo-tabs-item", TabsItem);
+Vue.component("woo-tabs-pane", TabsPane);
+Vue.component("woo-tabs-body", TabsBody);
 
 Vue.use(WooPlugin);
 
 const app = new Vue({
   el: "#app",
   data: {
-    isCollapsed: false,
+    tabIndex: "2nd",
   },
-  methods: {
-    handleClick1() {
-      this.$toast("top", {
-        closable: true,
-        delay: 2000,
-        position: "top",
-        offset: "100px",
-      });
-    },
-    handleClick2() {
-      this.$toast("middle", {
-        closable: true,
-        position: "middle",
-      });
-    },
-    handleClick3() {
-      this.$toast("bottom", {
-        closable: true,
-        position: "bottom",
-        offset: "100px",
-      });
-    },
-  },
+  methods: {},
 });

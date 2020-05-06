@@ -69,7 +69,6 @@ export default {
       this.$emit("collapse", this.isCollapsed);
       this.currentWidth = this.newWidth;
     },
-    handleChange() {},
   },
   computed: {
     siderStyle() {

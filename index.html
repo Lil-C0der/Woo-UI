@@ -39,22 +39,31 @@
   <body>
     <div id="app">
       <woo-layout style="height: 100vh;">
-        <woo-sider
-          v-model="isCollapsed"
-          collapsible
-          collapsed-width="100"
-          width="200"
-          >Sider
-        </woo-sider>
+        <woo-sider>Sider </woo-sider>
         <woo-layout style="height: 100vh;">
           <woo-header>Header</woo-header>
 
           <woo-content>
-            <h1>Content</h1>
-            <woo-button @click="handleClick1">top</woo-button>
-            <woo-button @click="handleClick2">middle</woo-button>
-            <woo-button @click="handleClick3">bottom</woo-button>
+            <woo-tabs v-model="tabIndex">
+              <woo-tabs-head>
+                <woo-tabs-item name="1st" disabled>
+                  1
+                  <woo-icon name="settings"></woo-icon>
+                </woo-tabs-item>
+                <woo-tabs-item name="2nd">2</woo-tabs-item>
+                <woo-tabs-item name="3rd">3</woo-tabs-item>
+                <template slot="extraActions">
+                  <woo-button>Extra Actions</woo-button>
+                </template>
+              </woo-tabs-head>
+              <woo-tabs-body>
+                <woo-tabs-pane name="1st">A</woo-tabs-pane>
+                <woo-tabs-pane name="2nd">B</woo-tabs-pane>
+                <woo-tabs-pane name="3rd">C</woo-tabs-pane>
+              </woo-tabs-body>
+            </woo-tabs>
           </woo-content>
+
           <woo-footer>Footer</woo-footer>
         </woo-layout>
       </woo-layout>
