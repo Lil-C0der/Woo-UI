@@ -35,11 +35,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    autoClose: {
-      type: Boolean,
-      default: true,
-    },
-    // 关闭的延时
+    // 关闭的延时 为0时则不会自动关闭
     delay: {
       type: Number,
       default: 3000,
@@ -93,7 +89,7 @@ export default {
         this.closeOption?.callback(this); // this 即为当前的 toast 实例
       }
       this.$el.remove();
-      this.$emit("beforeClose");
+      this.$emit("beforeDestroyToast");
       this.$destroy();
     },
     handleCloseClick() {
@@ -106,7 +102,7 @@ export default {
     },
   },
   mounted() {
-    if (this.autoClose) {
+    if (this.delay) {
       this.execAutoClose();
       this.$once("hook:beforeDestroy", () => {
         clearTimeout(this.timer);
