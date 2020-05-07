@@ -6,6 +6,7 @@
     :data-name="name"
   >
     <slot></slot>
+    <slot name="name"></slot>
   </div>
 </template>
 
@@ -65,6 +66,9 @@ $bg-disabled: #ebebeb;
   margin-bottom: -1px;
   font-size: 16px;
   cursor: pointer;
+  .woo-icon {
+    vertical-align: middle;
+  }
   &:hover {
     color: $active-color;
   }

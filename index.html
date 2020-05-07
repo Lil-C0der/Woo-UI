@@ -53,8 +53,12 @@
             >
               <woo-tabs-head>
                 <woo-tabs-item name="1st">
-                  1
-                  <woo-icon name="settings"></woo-icon>
+                  <template v-slot:name>
+                    <span>
+                      <woo-icon name="settings"></woo-icon>
+                      1
+                    </span>
+                  </template>
                 </woo-tabs-item>
                 <woo-tabs-item name="2nd">2</woo-tabs-item>
                 <woo-tabs-item name="3rd" disabled>3</woo-tabs-item>
