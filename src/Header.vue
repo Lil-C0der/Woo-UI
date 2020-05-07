@@ -30,5 +30,6 @@ export default {
 header {
   width: 100%;
   background-color: #bcc2d7;
+  padding: 0 20px;
 }
 </style>

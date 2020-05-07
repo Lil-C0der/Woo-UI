@@ -19,5 +19,7 @@ export default {
 .woo-content {
   flex: 1;
   background-color: #fefefe;
+  color: #333;
+  padding: 20px;
 }
 </style>
