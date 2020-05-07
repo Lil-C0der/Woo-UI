@@ -101,8 +101,10 @@ export default {
 .woo-input-wrapper {
   $height: 32px;
   $color: #333;
+  $disabled-color: #a0a0a0;
   $border-color: #dedde2;
   $border-color-hover: #c0c4cc;
+  $border-color-disabled: #c3c3c3;
   $border-radius: 4px;
   $font-size: 12px;
   $red: #de426b;
@@ -142,8 +144,8 @@ export default {
     }
     &[disabled],
     &[readonly] {
-      color: #a0a0a0;
-      border-color: #c3c3c3;
+      color: $disabled-color;
+      border-color: $border-color-disabled;
       background-color: $bg-disabled;
       cursor: not-allowed;
     }
