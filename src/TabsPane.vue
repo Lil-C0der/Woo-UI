@@ -32,7 +32,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pane-active {
-  color: green;
+.woo-tabs-pane {
+  padding: 16px;
+  &.pane-active {
+    color: green;
+  }
 }
 </style>

@@ -11,8 +11,9 @@ export default {
   name: "woo-tabs",
   data() {
     return {
-      activeNameCopy: null,
       eventBus: new Vue(),
+      activeNameCopy: this.activeName,
+      activeItemInstance: null,
     };
   },
   model: {
@@ -28,34 +29,66 @@ export default {
       default: false,
     },
   },
-  methods: {},
+  methods: {
+    // 初始化被选中的tabItem
+    initTabItem() {
+      const tabsHead = this.$children.find(
+        (vm) => vm.$options.name === "woo-tabs-head"
+      );
+      this.activeItemInstance = tabsHead.$children.find(
+        (child) => child.name === this.activeName
+      );
+      if (this.activeItemInstance) {
+        this.eventBus.$emit(
+          "tabChange",
+          this.activeNameCopy,
+          this.activeItemInstance
+        );
+      }
+    },
+  },
   provide() {
     return {
       eventBus: this.eventBus,
     };
   },
-
   mounted() {
-    this.eventBus.$on("itemClick", (name) => {
+    this.initTabItem();
+    // 监听item点击事件
+    this.eventBus.$on("itemClick", (name, itemInstance) => {
+      // 同步
       this.activeNameCopy = name;
-      // tab 被点击的回调函数
+      this.activeItemInstance = itemInstance;
+      // tab-items 被点击的回调函数
       this.$emit("tab-click", name);
     });
   },
   watch: {
     // props
-    activeName: function(val) {
-      this.activeNameCopy = val;
+    activeName: {
+      handler: function(val) {
+        this.activeNameCopy = val;
+      },
     },
-    // props的副本
-    activeNameCopy: function(newVal) {
-      // 发送事件 TabsItem组件监听
-      this.eventBus.$emit("tabChange", this.activeNameCopy);
-      // 双向绑定事件 切换面板的回调函数
-      this.$emit("change", newVal);
+    // props 的副本
+    activeNameCopy: {
+      handler: function(newVal) {
+        // 发送 tabChange 事件 TabsItem 组件监听
+        this.eventBus.$emit(
+          "tabChange",
+          this.activeNameCopy,
+          this.activeItemInstance
+        );
+        // 双向绑定事件 切换面板的回调函数
+        this.$emit("change", newVal);
+      },
     },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.woo-tabs {
+  color: rgba(255, 255, 255, 0.65);
+}
+</style>

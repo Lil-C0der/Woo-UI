@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.eventBus.$emit("itemClick", this.name);
+      this.eventBus.$emit("itemClick", this.name, this);
     },
   },
   mounted() {
@@ -41,15 +41,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$active-color: #8c8baa;
 .woo-tabs-item {
   padding: 0 2em;
   margin-right: 1em;
-  height: 40px;
-  line-height: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -1px;
   font-size: 16px;
-  background-color: navy;
+  cursor: pointer;
+  &:hover {
+    color: $active-color;
+  }
   &.item-active {
-    border-bottom: 2px solid #eff1fe;
+    color: $active-color;
   }
 }
 </style>
