@@ -49,6 +49,7 @@ export default {
 .woo-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   &.align-left {
     justify-content: flex-start;
   }

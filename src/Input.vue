@@ -46,7 +46,7 @@ export default {
       default: false,
     },
     value: {
-      type: String,
+      type: [String, Number],
       default: "",
     },
     disabled: {
@@ -113,6 +113,8 @@ export default {
   display: inline-flex;
   position: relative;
   align-items: center;
+  width: 100%;
+  flex-shrink: 0;
   font-size: $font-size;
   > .woo-icon-clear {
     position: absolute;
@@ -135,6 +137,7 @@ export default {
     border: 1px solid $border-color;
     border-radius: $border-radius;
     color: $color;
+    flex: 1;
     &:hover {
       border-color: $border-color-hover;
     }

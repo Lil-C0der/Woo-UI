@@ -83,8 +83,10 @@ export default {
 
 <style lang="scss" scoped>
 .woo-col {
-  height: 100px;
-  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
   $class-prefix: "woo-col-";
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
