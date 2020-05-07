@@ -3,6 +3,9 @@ import Toast from "../src/Toast";
 
 const expect = chai.expect;
 
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+
 describe("Toast组件", () => {
   it("存在", () => {
     expect(Toast).to.exist;

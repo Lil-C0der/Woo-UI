@@ -43,7 +43,8 @@
         <woo-layout style="height: 100vh;">
           <woo-header>Header</woo-header>
 
-          <woo-content>
+          <woo-content style="padding: 20px;">
+            <woo-input></woo-input>
             <woo-button @click="toggleTab">toggle</woo-button>
             <woo-tabs
               v-model="tabName"
@@ -51,12 +52,13 @@
               @change="tabChange"
             >
               <woo-tabs-head>
-                <woo-tabs-item name="1st" disabled>
+                <woo-tabs-item name="1st">
                   1
                   <woo-icon name="settings"></woo-icon>
                 </woo-tabs-item>
                 <woo-tabs-item name="2nd">2</woo-tabs-item>
-                <woo-tabs-item name="3rd">3</woo-tabs-item>
+                <woo-tabs-item name="3rd" disabled>3</woo-tabs-item>
+                <woo-tabs-item name="4th">4</woo-tabs-item>
                 <template v-slot:extra-actions>
                   <woo-button>Extra Actions</woo-button>
                 </template>
@@ -65,6 +67,7 @@
                 <woo-tabs-pane name="1st">A</woo-tabs-pane>
                 <woo-tabs-pane name="2nd">B</woo-tabs-pane>
                 <woo-tabs-pane name="3rd">C</woo-tabs-pane>
+                <woo-tabs-pane name="4th">D</woo-tabs-pane>
               </woo-tabs-body>
             </woo-tabs>
           </woo-content>

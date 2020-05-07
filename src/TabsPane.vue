@@ -3,6 +3,7 @@
     class="woo-tabs-pane"
     v-show="isActive"
     :class="{ 'pane-active': isActive }"
+    :data-name="name"
   >
     <slot></slot>
   </div>
@@ -35,7 +36,7 @@ export default {
 .woo-tabs-pane {
   padding: 16px;
   &.pane-active {
-    color: green;
+    color: #194568;
   }
 }
 </style>

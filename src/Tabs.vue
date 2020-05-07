@@ -24,6 +24,7 @@ export default {
     activeName: {
       type: String,
     },
+    // TODO 垂直Tabs
     isVertical: {
       type: Boolean,
       default: false,
@@ -36,9 +37,9 @@ export default {
         (vm) => vm.$options.name === "woo-tabs-head"
       );
       this.activeItemInstance = tabsHead.$children.find(
-        (child) => child.name === this.activeName
+        (child) => child.name === this.activeName && !child.disabled
       );
-      if (this.activeItemInstance) {
+      if (this.activeItemInstance && !this.activeItemInstance.disabled) {
         this.eventBus.$emit(
           "tabChange",
           this.activeNameCopy,
@@ -53,6 +54,11 @@ export default {
     };
   },
   mounted() {
+    if (!this.$children.length) {
+      throw new Error(
+        "Component tabs's child components should be tabs-head and tabs-body"
+      );
+    }
     this.initTabItem();
     // 监听item点击事件
     this.eventBus.$on("itemClick", (name, itemInstance) => {
@@ -89,6 +95,6 @@ export default {
 
 <style lang="scss" scoped>
 .woo-tabs {
-  color: rgba(255, 255, 255, 0.65);
+  color: #194568;
 }
 </style>

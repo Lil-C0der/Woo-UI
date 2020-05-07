@@ -44,17 +44,20 @@ const app = new Vue({
   el: "#app",
   data: {
     tabName: "2nd",
-    // tabName: "4th",
+    // tabName: "3rd",
   },
   methods: {
     toggleTab() {
       this.tabName = "3rd";
     },
-    tabClick(v) {
-      // console.log(v);
+    tabClick(newName) {
+      console.log(newName);
+      this.$nextTick(() => {
+        console.log(this.tabName);
+      });
     },
-    tabChange(v) {
-      // console.log(v);
+    tabChange(newName) {
+      // console.log(newName);
     },
   },
 });

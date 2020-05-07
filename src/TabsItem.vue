@@ -1,8 +1,9 @@
 <template>
   <div
     class="woo-tabs-item"
-    :class="{ 'item-active': isActive }"
+    :class="itemClass"
     @click="handleClick"
+    :data-name="name"
   >
     <slot></slot>
   </div>
@@ -29,11 +30,20 @@ export default {
   },
   methods: {
     handleClick() {
-      this.eventBus.$emit("itemClick", this.name, this);
+      if (this.disabled) {
+        return;
+      }
+      this.eventBus?.$emit("itemClick", this.name, this);
+      this.$emit("click", this.name);
+    },
+  },
+  computed: {
+    itemClass() {
+      return { "item-active": this.isActive, "item-disabled": this.disabled };
     },
   },
   mounted() {
-    this.eventBus.$on(["itemClick", "tabChange"], (name) => {
+    this.eventBus?.$on(["itemClick", "tabChange"], (name) => {
       this.isActive = this.name === name;
     });
   },
@@ -42,6 +52,9 @@ export default {
 
 <style lang="scss" scoped>
 $active-color: #8c8baa;
+$disabled-color: #a0a0a0;
+$bg-disabled: #ebebeb;
+
 .woo-tabs-item {
   padding: 0 2em;
   margin-right: 1em;
@@ -56,7 +69,12 @@ $active-color: #8c8baa;
     color: $active-color;
   }
   &.item-active {
+    font-weight: bold;
     color: $active-color;
+  }
+  &.item-disabled {
+    color: $disabled-color;
+    cursor: not-allowed;
   }
 }
 </style>

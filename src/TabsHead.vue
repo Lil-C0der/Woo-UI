@@ -1,7 +1,11 @@
 <template>
   <div class="woo-tabs-head">
     <slot></slot>
-    <div class="woo-tabs-slide-bar" :style="slideBarStyle"></div>
+    <div
+      class="woo-tabs-slide-bar"
+      v-show="getStyle"
+      :style="slideBarStyle"
+    ></div>
     <div class="extra-actions-wrapper">
       <slot name="extra-actions"></slot>
     </div>
@@ -16,17 +20,21 @@ export default {
     return {
       slideBarWidth: null,
       slideBarOffsetLeft: null,
+      getStyle: false,
     };
   },
   methods: {
     // 初始化SlideBar的位置
-    initSlideBarPosition() {
+    getSlideBarPosition() {
       this.eventBus.$on("tabChange", (name, itemInstance) => {
-        console.log(name);
-        this.slideBarOffsetLeft = itemInstance?.$el?.offsetLeft;
-        this.slideBarWidth =
-          itemInstance && window.getComputedStyle(itemInstance.$el).width;
+        if (!itemInstance.disabled) {
+          this.slideBarOffsetLeft = itemInstance?.$el?.offsetLeft;
+          this.slideBarWidth =
+            itemInstance && window.getComputedStyle(itemInstance.$el).width;
+        }
       });
+      // 在页面上显示 SlideBar
+      this.getStyle = true;
     },
   },
   computed: {
@@ -38,7 +46,7 @@ export default {
     },
   },
   mounted() {
-    this.initSlideBarPosition();
+    this.getSlideBarPosition();
   },
 };
 </script>
@@ -51,7 +59,6 @@ $bar-bg-color: #8c8baa;
   justify-content: flex-start;
   align-items: center;
   height: $tab-height;
-  border: 1px solid red;
   border-bottom: 1px solid #dedde2;
   position: relative;
   .woo-tabs-slide-bar {
