@@ -32,7 +32,6 @@ export default {
   flex: 1;
   font-size: 22px;
   color: #fff;
-  text-align: center;
   &.horizontal-layout {
     flex-direction: row;
   }
