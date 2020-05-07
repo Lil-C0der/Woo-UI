@@ -16,9 +16,10 @@ export default {
     for (const node of this.$el.children) {
       const elName = node.nodeName;
       if (elName.toLowerCase() !== "button") {
-        console.warn(
-          `woo-button-group's child must be "woo-button", but there's a ${elName}. It may cause CSS promblem`
-        );
+        console &&
+          console?.warn(
+            `woo-button-group's child must be "woo-button", but there's a ${elName}. It may cause CSS promblem`
+          );
       }
     }
   },
