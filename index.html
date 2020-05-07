@@ -45,8 +45,11 @@
 
           <woo-content>
             <woo-button @click="toggleTab">toggle</woo-button>
-
-            <woo-tabs v-model="tabName">
+            <woo-tabs
+              v-model="tabName"
+              @tab-click="tabClick"
+              @change="tabChange"
+            >
               <woo-tabs-head>
                 <woo-tabs-item name="1st" disabled>
                   1
@@ -54,7 +57,7 @@
                 </woo-tabs-item>
                 <woo-tabs-item name="2nd">2</woo-tabs-item>
                 <woo-tabs-item name="3rd">3</woo-tabs-item>
-                <template slot="extraActions">
+                <template v-slot:extra-actions>
                   <woo-button>Extra Actions</woo-button>
                 </template>
               </woo-tabs-head>

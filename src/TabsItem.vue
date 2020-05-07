@@ -1,7 +1,7 @@
 <template>
   <div
     class="woo-tabs-item"
-    :class="name === currentName ? 'seleted-item' : ''"
+    :class="{ 'item-active': isActive }"
     @click="handleClick"
   >
     <slot></slot>
@@ -11,18 +11,16 @@
 <script>
 export default {
   name: "woo-tabs-item",
-  inject: ["eventBus", "currentName"],
+  inject: ["eventBus"],
   data() {
-    return {};
+    return {
+      isActive: null,
+    };
   },
   props: {
     name: {
       type: String,
       required: true,
-    },
-    isActive: {
-      type: Boolean,
-      default: false,
     },
     disabled: {
       type: Boolean,
@@ -31,14 +29,12 @@ export default {
   },
   methods: {
     handleClick() {
-      // this.eventBus.$emit("update:seleted", this.name);
       this.eventBus.$emit("itemClick", this.name);
-      console.log("name" + this.name);
     },
   },
-  created() {
-    this.eventBus.$on("itemClick", (name) => {
-      console.log(name);
+  mounted() {
+    this.eventBus.$on(["itemClick", "tabChange"], (name) => {
+      this.isActive = this.name === name;
     });
   },
 };
@@ -46,12 +42,14 @@ export default {
 
 <style lang="scss" scoped>
 .woo-tabs-item {
-  float: left;
-  padding: 0 10px;
-  margin: 4px;
+  padding: 0 2em;
+  margin-right: 1em;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
   background-color: navy;
-  .selected-item {
-    color: green;
+  &.item-active {
+    border-bottom: 2px solid #eff1fe;
   }
 }
 </style>

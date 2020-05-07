@@ -49,5 +49,11 @@ const app = new Vue({
     toggleTab() {
       this.tabName = "3rd";
     },
+    tabClick(v) {
+      console.log("app " + v);
+    },
+    tabChange(v) {
+      console.log("switch to " + v);
+    },
   },
 });

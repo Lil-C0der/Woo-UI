@@ -1,5 +1,9 @@
 <template>
-  <div class="woo-tabs-pane">
+  <div
+    class="woo-tabs-pane"
+    v-show="isActive"
+    :class="{ 'pane-active': isActive }"
+  >
     <slot></slot>
   </div>
 </template>
@@ -9,16 +13,26 @@ export default {
   name: "woo-tabs-pane",
   inject: ["eventBus"],
   data() {
-    return {};
+    return {
+      isActive: null,
+    };
   },
-  components: {},
-  methods: {},
-  created() {
-    this.eventBus.$on("itemClick", (name) => {
-      console.log(name);
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
+  mounted() {
+    this.eventBus.$on(["itemClick", "tabChange"], (name) => {
+      this.isActive = this.name === name;
     });
   },
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.pane-active {
+  color: green;
+}
+</style>

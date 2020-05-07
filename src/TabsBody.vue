@@ -11,13 +11,6 @@ export default {
   data() {
     return {};
   },
-  components: {},
-  methods: {},
-  created() {
-    this.eventBus.$on("itemClick", (name) => {
-      console.log(name);
-    });
-  },
 };
 </script>
 

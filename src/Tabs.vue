@@ -1,7 +1,6 @@
 <template>
   <div class="woo-tabs">
     <slot></slot>
-    <!-- {{ currentName }} -->
   </div>
 </template>
 
@@ -12,7 +11,7 @@ export default {
   name: "woo-tabs",
   data() {
     return {
-      currentName: null,
+      activeNameCopy: null,
       eventBus: new Vue(),
     };
   },
@@ -33,33 +32,30 @@ export default {
   provide() {
     return {
       eventBus: this.eventBus,
-      currentName: this.currentName,
     };
   },
-  watch: {
-    activeName: function(val) {
-      console.log(val);
-      this.currentName = val;
-    },
-  },
-  computed: {},
-  created() {
+
+  mounted() {
     this.eventBus.$on("itemClick", (name) => {
-      this.currentName = name;
+      this.activeNameCopy = name;
+      // tab 被点击的回调函数
       this.$emit("tab-click", name);
-      console.log("tabs got " + this.currentName);
     });
   },
   watch: {
-    currentName: function(newVal) {
+    // props
+    activeName: function(val) {
+      this.activeNameCopy = val;
+    },
+    // props的副本
+    activeNameCopy: function(newVal) {
+      // 发送事件 TabsItem组件监听
+      this.eventBus.$emit("tabChange", this.activeNameCopy);
+      // 双向绑定事件 切换面板的回调函数
       this.$emit("change", newVal);
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.woo-tabs {
-  // color: #000;
-}
-</style>
+<style lang="scss" scoped></style>
