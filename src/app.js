@@ -48,14 +48,24 @@ const app = new Vue({
     showPop: false,
   },
   methods: {
-    yyy() {
-      console.log("yyy");
-    },
     popShow() {
       console.log("show");
     },
     popHide() {
       console.log("hide");
+    },
+    toggle() {
+      this.showPop = !this.showPop;
+      // console.log(showPop);
+    },
+    listen(val) {
+      // console.log(val);
+    },
+    xxx() {
+      console.log("xx");
+    },
+    zzz() {
+      // console.log("zzzz");
     },
   },
 });

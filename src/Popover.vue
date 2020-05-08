@@ -4,7 +4,7 @@
       ref="contentWrapper"
       class="woo-popover-content"
       :style="contentStyle"
-      v-show="visible"
+      v-show="visibleCopy"
       @click.stop
     >
       <slot></slot>
@@ -13,7 +13,7 @@
     <span
       ref="triggerWrapper"
       class="trigger-wrapper"
-      @click="handlePopoverClick"
+      @click="handleTriggerClick"
     >
       <slot name="trigger"></slot>
     </span>
@@ -24,52 +24,68 @@
 export default {
   name: "woo-popover",
   model: {
-    prop: "",
+    prop: "visible",
+    event: "visible-change",
   },
   data() {
     return {
-      visible: false,
+      visibleCopy: false,
       wrapperLeft: null,
       wrapperTop: null,
       wrapperWidth: null,
       arrowLeft: null,
     };
   },
-  props: {},
-  methods: {
-    // 关闭 popover 文本框
-    closePopover() {
-      this.visible = false;
-      this.$emit("hide");
-      // 移除 document 的事件监听
-      document.removeEventListener("click", this.closePopover);
+  props: {
+    visible: {
+      type: Boolean,
+      default: false,
     },
+  },
+  methods: {
     // 初始化文本框的位置
     initPopoverPosition() {
-      const triggerEl = this.$refs.triggerWrapper;
-      const { width, height, top, left } = triggerEl.getBoundingClientRect();
+      const {
+        width,
+        height,
+        top,
+        left,
+      } = this.$refs.triggerWrapper.getBoundingClientRect();
       this.wrapperTop = top + window.scrollY;
       this.$nextTick(() => {
         // 确定文本框 arrow 的位置
-        const wrapperEl = this.$refs.contentWrapper;
-        const { width: wrapperWidth } = wrapperEl.getBoundingClientRect();
+        const {
+          width: wrapperWidth,
+        } = this.$refs.contentWrapper.getBoundingClientRect();
         this.wrapperLeft = left - (wrapperWidth - width) / 2 + window.scrollX;
         this.arrowLeft = wrapperWidth / 2;
       });
     },
-    handlePopoverClick() {
-      document.removeEventListener("click", this.closePopover);
-      this.visible = !this.visible;
-      this.initPopoverPosition();
-      if (this.visible) {
+    //  触发器被点击
+    handleTriggerClick() {
+      this.visibleCopy = !this.visibleCopy;
+    },
+    // 点击空白处 关闭 popover 文本框
+    hidePopover() {
+      this.visibleCopy = false;
+    },
+    // 显示文本框
+    showPopover() {
+      // 将文本框插入到最后
+      document.body.appendChild(this.$refs.contentWrapper);
+      setTimeout(() => {
+        // 添加 document 事件监听器 点击页面其他地方关闭文本框
+        document.addEventListener("click", this.hidePopover);
         this.$emit("show");
-        // 将文本框插入到最后
-        document.body.appendChild(this.$refs.contentWrapper);
-        setTimeout(() => {
-          // 添加 document 事件监听器 点击页面其他地方关闭文本框
-          document.addEventListener("click", this.closePopover);
-        }, 0);
+      }, 0);
+    },
+    handleVisibleChange() {
+      if (this.visibleCopy) {
+        this.initPopoverPosition();
+        this.showPopover();
       } else {
+        // 移除 document 的事件监听
+        document.removeEventListener("click", this.hidePopover);
         this.$emit("hide");
       }
     },
@@ -80,6 +96,15 @@ export default {
         left: `${this.wrapperLeft}px`,
         top: `${this.wrapperTop}px`,
       };
+    },
+  },
+  watch: {
+    visible: function(newVal) {
+      this.visibleCopy = newVal;
+    },
+    visibleCopy: function(newVal) {
+      this.$emit("visible-change", newVal);
+      this.handleVisibleChange();
     },
   },
 };

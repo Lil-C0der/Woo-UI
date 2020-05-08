@@ -51,19 +51,25 @@
             <div
               style="padding: 20px; border: 1px solid green; overflow: hidden;"
             >
-              <!-- @click="yyy" -->
-              <woo-popover @show="popShow" @hide="popHide">
+              <woo-popover
+                v-model="showPop"
+                @visible-change="listen"
+                @hide="popHide"
+                @show="popShow"
+              >
+                <i>it is a popover content </i>
+                <woo-button @click="xxx">确定</woo-button>
+                <template v-slot:trigger>
+                  <woo-button @click="zzz">click 激活</woo-button>
+                </template>
+              </woo-popover>
+
+              <!-- <woo-popover width="400">
                 <i>it is a popover content</i>
                 <template v-slot:trigger>
                   <woo-button>click 激活</woo-button>
                 </template>
-              </woo-popover>
-              <woo-popover width="400">
-                <i>it is a popover content</i>
-                <template v-slot:trigger>
-                  <woo-button>click 激活</woo-button>
-                </template>
-              </woo-popover>
+              </woo-popover> -->
             </div>
             <!-- <woo-popover width="400">
               <i v-show="showPop">it is another popover content</i>
