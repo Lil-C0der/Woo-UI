@@ -47,5 +47,9 @@ const app = new Vue({
   data: {
     showPop: false,
   },
-  methods: {},
+  methods: {
+    yyy() {
+      console.log("yyy");
+    },
+  },
 });

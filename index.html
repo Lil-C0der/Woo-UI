@@ -45,14 +45,17 @@
           <woo-header>Header</woo-header>
 
           <woo-content>
-            <woo-row style="padding: 20px;">
+            <div
+              style="padding: 20px; border: 1px solid green; overflow: hidden;"
+              @click="yyy"
+            >
               <woo-popover width="400">
                 <i>it is a popover content</i>
                 <template v-slot:trigger>
                   <woo-button>click 激活</woo-button>
                 </template>
               </woo-popover>
-            </woo-row>
+            </div>
             <!-- <woo-popover width="400">
               <i v-show="showPop">it is another popover content</i>
             </woo-popover>
