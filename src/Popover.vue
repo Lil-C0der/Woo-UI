@@ -40,8 +40,9 @@ export default {
       const triggerEl = this.$refs.triggerWrapper;
       const wrapperEl = this.$refs.contentWrapper;
       const { width, height, top, left } = triggerEl.getBoundingClientRect();
-      this.wrapperLeft = left - width / 2;
-      this.wrapperTop = top;
+      this.wrapperLeft = left - width / 2 + window.scrollX;
+      this.wrapperTop = top + window.scrollY;
+      console.log(this.wrapperLeft, this.wrapperTop);
       this.$nextTick(() => {
         this.wrapperWidth = wrapperEl.getBoundingClientRect().width;
       });
