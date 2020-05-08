@@ -46,6 +46,7 @@ const app = new Vue({
   el: "#app",
   data: {
     showPop: false,
+    key: "2",
   },
   methods: {
     popShow() {
@@ -57,6 +58,9 @@ const app = new Vue({
     toggle() {
       this.showPop = !this.showPop;
       // console.log(showPop);
+    },
+    toggle2() {
+      this.key = "1";
     },
     listen(val) {
       // console.log(val);

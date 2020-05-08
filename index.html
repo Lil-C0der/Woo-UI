@@ -45,12 +45,14 @@
           <woo-header
             >Header
             <woo-button @click="toggle">toggle</woo-button>
+            <woo-button @click="toggle2">toggle2</woo-button>
           </woo-header>
 
           <woo-content>
             <div
               style="padding: 20px; border: 1px solid green; overflow: hidden;"
             >
+              <woo-button-group></woo-button-group>
               <woo-popover
                 v-model="showPop"
                 @visible-change="listen"
@@ -75,6 +77,19 @@
               <i v-show="showPop">it is another popover content</i>
             </woo-popover>
             <woo-button @click="showPop=!showPop">click 激活</woo-button> -->
+
+            <woo-tabs v-model="key">
+              <woo-tabs-head>
+                <woo-tabs-item name="1">1</woo-tabs-item>
+                <woo-tabs-item name="2">2</woo-tabs-item>
+                <woo-tabs-item name="3">3</woo-tabs-item>
+              </woo-tabs-head>
+              <woo-tabs-body>
+                <woo-tabs-pane name="1">A</woo-tabs-pane>
+                <woo-tabs-pane name="2">B</woo-tabs-pane>
+                <woo-tabs-pane name="3">C</woo-tabs-pane>
+              </woo-tabs-body>
+            </woo-tabs>
           </woo-content>
 
           <woo-footer>Footer</woo-footer>

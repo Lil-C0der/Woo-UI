@@ -31,21 +31,31 @@ export default {
     },
   },
   methods: {
-    // 初始化被选中的tabItem
-    initTabItem() {
+    // 根据 name 属性获取对应的 tabsItem 组件
+    getInstance(name) {
       const tabsHead = this.$children.find(
         (vm) => vm.$options.name === "woo-tabs-head"
       );
-      this.activeItemInstance = tabsHead.$children.find(
-        (child) => child.name === this.activeName && !child.disabled
+      return tabsHead.$children.find(
+        (child) => child.name === name && !child.disabled
       );
-      if (this.activeItemInstance && !this.activeItemInstance.disabled) {
-        this.eventBus.$emit(
-          "tabChange",
-          this.activeNameCopy,
-          this.activeItemInstance
+    },
+    // 初始化被选中的tabItem
+    initTabItem(name) {
+      this.activeNameCopy = name;
+      this.activeItemInstance = this.getInstance(name);
+    },
+    checkTabsChildren() {
+      if (!this.$children.length) {
+        throw new Error(
+          "Component tabs's child components should be tabs-head and tabs-body"
         );
       }
+    },
+    // 同步
+    updateActiveItem(name, instance) {
+      this.activeNameCopy = name;
+      this.activeItemInstance = instance;
     },
   },
   provide() {
@@ -54,17 +64,20 @@ export default {
     };
   },
   mounted() {
-    if (!this.$children.length) {
-      throw new Error(
-        "Component tabs's child components should be tabs-head and tabs-body"
+    this.checkTabsChildren();
+    this.initTabItem(this.activeName);
+    if (this.activeItemInstance && !this.activeItemInstance.disabled) {
+      this.eventBus.$emit(
+        "tabChange",
+        this.activeNameCopy,
+        this.activeItemInstance
       );
     }
-    this.initTabItem();
+
     // 监听item点击事件
     this.eventBus.$on("itemClick", (name, itemInstance) => {
       // 同步
-      this.activeNameCopy = name;
-      this.activeItemInstance = itemInstance;
+      this.updateActiveItem(name, itemInstance);
       // tab-items 被点击的回调函数
       this.$emit("tab-click", name);
     });
@@ -74,12 +87,13 @@ export default {
     activeName: {
       handler: function(val) {
         this.activeNameCopy = val;
+        this.activeItemInstance = this.getInstance(val);
       },
     },
     // props 的副本
     activeNameCopy: {
       handler: function(newVal) {
-        // 发送 tabChange 事件 TabsItem 组件监听
+        // 发送 tabChange 事件 TabsItem 和 TabsHead 组件监听
         this.eventBus.$emit(
           "tabChange",
           this.activeNameCopy,
