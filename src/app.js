@@ -51,5 +51,11 @@ const app = new Vue({
     yyy() {
       console.log("yyy");
     },
+    popShow() {
+      console.log("show");
+    },
+    popHide() {
+      console.log("hide");
+    },
   },
 });

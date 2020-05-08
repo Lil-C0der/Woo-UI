@@ -42,13 +42,22 @@
       <woo-layout style="height: 100vh;">
         <woo-sider>Sider </woo-sider>
         <woo-layout style="height: 100vh;">
-          <woo-header>Header</woo-header>
+          <woo-header
+            >Header
+            <woo-button @click="toggle">toggle</woo-button>
+          </woo-header>
 
           <woo-content>
             <div
               style="padding: 20px; border: 1px solid green; overflow: hidden;"
-              @click="yyy"
             >
+              <!-- @click="yyy" -->
+              <woo-popover @show="popShow" @hide="popHide">
+                <i>it is a popover content</i>
+                <template v-slot:trigger>
+                  <woo-button>click 激活</woo-button>
+                </template>
+              </woo-popover>
               <woo-popover width="400">
                 <i>it is a popover content</i>
                 <template v-slot:trigger>
