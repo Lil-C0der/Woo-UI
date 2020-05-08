@@ -37,64 +37,32 @@
     </style>
   </head>
   <body>
-    <div class="test" style="border: 8px solid blue; height: 1000px;"></div>
     <div id="app">
-      <woo-layout style="height: 100vh;">
-        <woo-sider>Sider </woo-sider>
-        <woo-layout style="height: 100vh;">
-          <woo-header
-            >Header
-            <woo-button @click="toggle">toggle</woo-button>
-            <woo-button @click="toggle2">toggle2</woo-button>
-          </woo-header>
-
-          <woo-content>
-            <div
-              style="padding: 20px; border: 1px solid green; overflow: hidden;"
-            >
-              <woo-button-group></woo-button-group>
-              <woo-popover
-                v-model="showPop"
-                @visible-change="listen"
-                @hide="popHide"
-                @show="popShow"
-              >
-                <i>it is a popover content </i>
-                <woo-button @click="xxx">确定</woo-button>
-                <template v-slot:trigger>
-                  <woo-button @click="zzz">click 激活</woo-button>
-                </template>
-              </woo-popover>
-
-              <!-- <woo-popover width="400">
-                <i>it is a popover content</i>
-                <template v-slot:trigger>
-                  <woo-button>click 激活</woo-button>
-                </template>
-              </woo-popover> -->
-            </div>
-            <!-- <woo-popover width="400">
-              <i v-show="showPop">it is another popover content</i>
-            </woo-popover>
-            <woo-button @click="showPop=!showPop">click 激活</woo-button> -->
-
-            <woo-tabs v-model="key">
-              <woo-tabs-head>
-                <woo-tabs-item name="1">1</woo-tabs-item>
-                <woo-tabs-item name="2">2</woo-tabs-item>
-                <woo-tabs-item name="3">3</woo-tabs-item>
-              </woo-tabs-head>
-              <woo-tabs-body>
-                <woo-tabs-pane name="1">A</woo-tabs-pane>
-                <woo-tabs-pane name="2">B</woo-tabs-pane>
-                <woo-tabs-pane name="3">C</woo-tabs-pane>
-              </woo-tabs-body>
-            </woo-tabs>
-          </woo-content>
-
-          <woo-footer>Footer</woo-footer>
-        </woo-layout>
-      </woo-layout>
+      <woo-content style="padding: 500px 200px; overflow: hidden;">
+        <woo-popover
+          v-model="showPop"
+          @visible-change="listen"
+          @hide="popHide"
+          @show="popShow"
+        >
+          <i
+            >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </i>
+          <woo-button @click="xxx">确定</woo-button>
+          <template v-slot:trigger>
+            <!-- <woo-button @click="zzz" style="width: 300px;"
+              >click 激活</woo-button
+            > -->
+            <woo-button @click="zzz">click 激活</woo-button>
+          </template>
+        </woo-popover>
+      </woo-content>
     </div>
   </body>
   <script src="./src/app.js"></script>

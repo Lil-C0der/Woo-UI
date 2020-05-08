@@ -32,8 +32,6 @@ export default {
       visibleCopy: false,
       wrapperLeft: null,
       wrapperTop: null,
-      wrapperWidth: null,
-      arrowLeft: null,
     };
   },
   props: {
@@ -53,12 +51,11 @@ export default {
       } = this.$refs.triggerWrapper.getBoundingClientRect();
       this.wrapperTop = top + window.scrollY;
       this.$nextTick(() => {
-        // 确定文本框 arrow 的位置
+        // 确定文本框的位置
         const {
           width: wrapperWidth,
         } = this.$refs.contentWrapper.getBoundingClientRect();
         this.wrapperLeft = left - (wrapperWidth - width) / 2 + window.scrollX;
-        this.arrowLeft = wrapperWidth / 2;
       });
     },
     //  触发器被点击
@@ -116,42 +113,38 @@ $border-color: #dedde2;
   display: inline-block;
   vertical-align: top;
   .trigger-wrapper {
-    display: block;
-    height: 100%;
+    display: inline-block;
   }
 }
 .woo-popover-content {
   border: 1px solid $border-color;
   border-radius: 4px;
-  padding: 16px;
-  margin-bottom: 16px;
+  padding: 1em;
+  width: 14.3em;
+  margin-top: -2px;
   position: absolute;
   z-index: 99;
   background-color: #fff;
   transform: translateY(calc(-100% - 8px));
   font-size: 14px;
-  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.15);
-  .woo-popover-arrow {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  .woo-popover-arrow,
+  .woo-popover-arrow::after {
     width: 0;
     height: 0;
-    display: block;
-    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.15));
     border: 8px solid transparent;
-    border-top-color: #dedde2;
     border-bottom: 0;
     position: absolute;
-    left: 50%;
-    transform: translateX(-100%);
-    bottom: -8px;
     z-index: 97;
+  }
+  .woo-popover-arrow {
+    border-top-color: #dedde2;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
     &::after {
       content: "";
-      width: 0;
-      height: 0;
-      border: 8px solid transparent;
       border-top-color: #fff;
-      border-bottom: 0;
-      position: absolute;
       bottom: 1px;
       margin-left: -8px;
     }
