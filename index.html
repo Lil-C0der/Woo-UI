@@ -43,37 +43,19 @@
         <woo-layout style="height: 100vh;">
           <woo-header>Header</woo-header>
 
-          <woo-content style="padding: 20px;">
-            <woo-input></woo-input>
-            <woo-button @click="toggleTab">toggle</woo-button>
-            <woo-tabs
-              v-model="tabName"
-              @tab-click="tabClick"
-              @change="tabChange"
-            >
-              <woo-tabs-head>
-                <woo-tabs-item name="1st">
-                  <template v-slot:name>
-                    <span>
-                      <woo-icon name="settings"></woo-icon>
-                      1
-                    </span>
-                  </template>
-                </woo-tabs-item>
-                <woo-tabs-item name="2nd">2</woo-tabs-item>
-                <woo-tabs-item name="3rd" disabled>3</woo-tabs-item>
-                <woo-tabs-item name="4th">4</woo-tabs-item>
-                <template v-slot:extra-actions>
-                  <woo-button>Extra Actions</woo-button>
+          <woo-content>
+            <woo-row style="padding: 20px;">
+              <woo-popover width="400">
+                <i>it is a popover content</i>
+                <template v-slot:trigger>
+                  <woo-button>click 激活</woo-button>
                 </template>
-              </woo-tabs-head>
-              <woo-tabs-body>
-                <woo-tabs-pane name="1st">A</woo-tabs-pane>
-                <woo-tabs-pane name="2nd">B</woo-tabs-pane>
-                <woo-tabs-pane name="3rd">C</woo-tabs-pane>
-                <woo-tabs-pane name="4th">D</woo-tabs-pane>
-              </woo-tabs-body>
-            </woo-tabs>
+              </woo-popover>
+            </woo-row>
+            <!-- <woo-popover width="400">
+              <i v-show="showPop">it is another popover content</i>
+            </woo-popover>
+            <woo-button @click="showPop=!showPop">click 激活</woo-button> -->
           </woo-content>
 
           <woo-footer>Footer</woo-footer>

@@ -17,6 +17,7 @@ import TabsHead from "./TabsHead.vue";
 import TabsItem from "./TabsItem.vue";
 import TabsPane from "./TabsPane.vue";
 import TabsBody from "./TabsBody.vue";
+import Popover from "./Popover.vue";
 
 import WooPlugin from "./plugin";
 
@@ -37,27 +38,14 @@ Vue.component("woo-tabs-head", TabsHead);
 Vue.component("woo-tabs-item", TabsItem);
 Vue.component("woo-tabs-pane", TabsPane);
 Vue.component("woo-tabs-body", TabsBody);
+Vue.component("woo-popover", Popover);
 
 Vue.use(WooPlugin);
 
 const app = new Vue({
   el: "#app",
   data: {
-    tabName: "2nd",
-    // tabName: "3rd",
+    showPop: false,
   },
-  methods: {
-    toggleTab() {
-      this.tabName = "3rd";
-    },
-    tabClick(newName) {
-      console.log(newName);
-      this.$nextTick(() => {
-        console.log(this.tabName);
-      });
-    },
-    tabChange(newName) {
-      // console.log(newName);
-    },
-  },
+  methods: {},
 });
