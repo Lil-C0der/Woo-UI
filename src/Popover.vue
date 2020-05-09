@@ -10,11 +10,8 @@
       <slot></slot>
       <div class="woo-popover-arrow" :class="`arrow-${placement}`"></div>
     </div>
-    <span
-      ref="triggerWrapper"
-      class="trigger-wrapper"
-      @click="handleTriggerClick"
-    >
+
+    <span ref="triggerWrapper" @click.stop class="trigger-wrapper">
       <slot name="trigger"></slot>
     </span>
   </div>
@@ -32,6 +29,7 @@ export default {
       visibleCopy: false,
       wrapperLeft: null,
       wrapperTop: null,
+      timer: null,
     };
   },
   props: {
@@ -44,6 +42,13 @@ export default {
       default: "top",
       validator(val) {
         return ["top", "bottom", "left", "right"].indexOf(val) !== -1;
+      },
+    },
+    trigger: {
+      type: String,
+      default: "click",
+      validator(val) {
+        return ["hover", "click"].indexOf(val) !== -1;
       },
     },
   },
@@ -83,31 +88,34 @@ export default {
     },
     //  触发器被点击
     handleTriggerClick() {
-      this.visibleCopy = !this.visibleCopy;
+      if (!this.visibleCopy) {
+        this.showPopover();
+      } else {
+        this.hidePopover();
+        console.log("关闭了");
+      }
     },
-    // 点击空白处 关闭 popover 文本框
-    hidePopover() {
-      this.visibleCopy = false;
+    handleContentMouseenter() {
+      clearTimeout(this.timer);
     },
-    // 显示文本框
-    showPopover() {
+    showPopover(e) {
+      this.visibleCopy = true;
       // 将文本框插入到最后
       document.body.appendChild(this.$refs.contentWrapper);
+      this.initPopoverPosition();
       setTimeout(() => {
         // 添加 document 事件监听器 点击页面其他地方关闭文本框
         document.addEventListener("click", this.hidePopover);
         this.$emit("show");
       }, 0);
     },
-    handleVisibleChange() {
-      if (this.visibleCopy) {
-        this.initPopoverPosition();
-        this.showPopover();
-      } else {
-        // 移除 document 的事件监听
-        document.removeEventListener("click", this.hidePopover);
+    // 关闭 popover 文本框
+    hidePopover() {
+      document.removeEventListener("click", this.hidePopover);
+      this.timer = setTimeout(() => {
+        this.visibleCopy = false;
         this.$emit("hide");
-      }
+      }, 200);
     },
   },
   computed: {
@@ -124,8 +132,58 @@ export default {
     },
     visibleCopy: function(newVal) {
       this.$emit("visible-change", newVal);
-      this.handleVisibleChange();
     },
+  },
+  mounted() {
+    if (this.trigger === "click") {
+      this.$refs.triggerWrapper.addEventListener(
+        "click",
+        this.handleTriggerClick
+      );
+    } else {
+      this.$refs.triggerWrapper.addEventListener(
+        "mouseenter",
+        this.showPopover
+      );
+      this.$refs.triggerWrapper.addEventListener(
+        "mouseleave",
+        this.hidePopover
+      );
+      // 文本框的 mouseenter 事件
+      this.$refs.contentWrapper.addEventListener(
+        "mouseenter",
+        this.handleContentMouseenter
+      );
+      this.$refs.contentWrapper.addEventListener(
+        "mouseleave",
+        this.hidePopover
+      );
+    }
+  },
+  destroyed() {
+    if (this.trigger === "click") {
+      this.$refs.triggerWrapper.removeEventListener(
+        "click",
+        this.handleTriggerClick
+      );
+    } else {
+      this.$refs.triggerWrapper.removeEventListener(
+        "mouseenter",
+        this.showPopover
+      );
+      this.$refs.triggerWrapper.removeEventListener(
+        "mouseleave",
+        this.hidePopover
+      );
+      this.$refs.contentWrapper.removeEventListener(
+        "mouseenter",
+        this.handleContentMouseenter
+      );
+      this.$refs.contentWrapper.removeEventListener(
+        "mouseleave",
+        this.hidePopover
+      );
+    }
   },
 };
 </script>

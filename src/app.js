@@ -62,7 +62,9 @@ const app = new Vue({
     toggle2() {
       this.key = "1";
     },
-    listen(val) {
+    close(val) {
+      this.$refs.pop.hidePopover();
+      // this.showPop = !false;
       // console.log(val);
     },
     xxx() {

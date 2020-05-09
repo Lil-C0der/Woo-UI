@@ -39,71 +39,65 @@
   <body>
     <div id="app">
       <woo-content style="padding: 1000px 250px; overflow: hidden;">
-        <woo-popover
-          v-model="showPop"
-          @visible-change="listen"
-          @hide="popHide"
-          @show="popShow"
-        >
-          <i>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </i>
-          <woo-button @click="xxx">确定</woo-button>
-          <template v-slot:trigger>
-            <woo-button @click="zzz">TOP</woo-button>
-          </template>
-        </woo-popover>
-        <woo-popover placement="bottom">
-          <i>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </i>
-          <woo-button @click="xxx">确定</woo-button>
-          <template v-slot:trigger>
-            <woo-button>BOTTOM</woo-button>
-          </template>
-        </woo-popover>
-        <woo-popover placement="left">
-          <i>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </i>
-          <woo-button @click="xxx">确定</woo-button>
-          <template v-slot:trigger>
-            <woo-button>LEFT</woo-button>
-          </template>
-        </woo-popover>
-        <woo-popover placement="right">
-          <i>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </i>
-          <woo-button @click="xxx">确定</woo-button>
-          <template v-slot:trigger>
-            <woo-button>RIGHT</woo-button>
-          </template>
-        </woo-popover>
+        <div style="margin-bottom: 50px;">
+          <woo-popover>
+            <strong>it is a text</strong>
+            <template v-slot:trigger>
+              <woo-button>TOP</woo-button>
+            </template>
+          </woo-popover>
+          <woo-popover placement="bottom">
+            <strong>it is a text</strong>
+            <template v-slot:trigger>
+              <woo-button>BOTTOM</woo-button>
+            </template>
+          </woo-popover>
+          <woo-popover placement="left">
+            <strong>it is a text</strong>
+            <template v-slot:trigger>
+              <woo-button>LEFT</woo-button>
+            </template>
+          </woo-popover>
+          <woo-popover placement="right">
+            <strong>it is a text</strong>
+            <template v-slot:trigger>
+              <woo-button @click="xxx">RIGHT</woo-button>
+            </template>
+          </woo-popover>
+        </div>
+
+        <div style="margin-bottom: 50px;">
+          <woo-popover trigger="hover">
+            <div><a href="#">123</a></div>
+            <!-- <strong>it is a text</strong> -->
+            <template v-slot:trigger>
+              <woo-button @click="xxx">TOP</woo-button>
+            </template>
+          </woo-popover>
+          <woo-popover placement="bottom" trigger="hover">
+            <strong>it is a text</strong>
+            <template v-slot:trigger>
+              <woo-button>BOTTOM</woo-button>
+            </template>
+          </woo-popover>
+          <woo-popover placement="left" trigger="hover">
+            <strong>it is a text</strong>
+            <template v-slot:trigger>
+              <woo-button>LEFT</woo-button>
+            </template>
+          </woo-popover>
+          <woo-popover ref="pop" placement="right" trigger="hover">
+            <div>
+              <a href="#">123</a>
+              <woo-button @click="close" icon-name="download">
+                download
+              </woo-button>
+            </div>
+            <template v-slot:trigger>
+              <woo-button @click="xxx">RIGHT</woo-button>
+            </template>
+          </woo-popover>
+        </div>
       </woo-content>
     </div>
   </body>
