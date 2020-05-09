@@ -51,8 +51,8 @@ export default {
     // 初始化文本框的位置
     initPopoverPosition() {
       this.$nextTick(() => {
-        // 确定文本框的位置
         const { placement } = this;
+        const { contentWrapper, triggerWrapper } = this.$refs;
         const {
           width,
           height,
@@ -60,11 +60,12 @@ export default {
           bottom,
           left,
           right,
-        } = this.$refs.triggerWrapper.getBoundingClientRect();
+        } = triggerWrapper.getBoundingClientRect();
         const {
           width: wrapperWidth,
           height: wrapperHeight,
-        } = this.$refs.contentWrapper.getBoundingClientRect();
+        } = contentWrapper.getBoundingClientRect();
+        // 确定文本框的位置
         if (["top", "bottom"].indexOf(placement) !== -1) {
           this.wrapperLeft = left - (wrapperWidth - width) / 2 + window.scrollX;
           this.wrapperTop =
