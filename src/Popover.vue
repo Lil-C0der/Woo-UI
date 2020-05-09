@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      visibleCopy: false,
+      visibleCopy: this.visible,
       wrapperLeft: null,
       wrapperTop: null,
       timer: null,
@@ -55,6 +55,8 @@ export default {
   methods: {
     // 初始化文本框的位置
     initPopoverPosition() {
+      // 将文本框插入到最后
+      document.body.appendChild(this.$refs.contentWrapper);
       this.$nextTick(() => {
         const { placement } = this;
         const { contentWrapper, triggerWrapper } = this.$refs;
@@ -98,15 +100,12 @@ export default {
     handleContentMouseenter() {
       clearTimeout(this.timer);
     },
+    // 显示文本框
     showPopover(e) {
       this.visibleCopy = true;
-      // 将文本框插入到最后
-      document.body.appendChild(this.$refs.contentWrapper);
-      this.initPopoverPosition();
       setTimeout(() => {
         // 添加 document 事件监听器 点击页面其他地方关闭文本框
         document.addEventListener("click", this.hidePopover);
-        this.$emit("show");
       }, 0);
     },
     // 关闭 popover 文本框
@@ -114,7 +113,6 @@ export default {
       document.removeEventListener("click", this.hidePopover);
       this.timer = setTimeout(() => {
         this.visibleCopy = false;
-        this.$emit("hide");
       }, 200);
     },
   },
@@ -132,9 +130,14 @@ export default {
     },
     visibleCopy: function(newVal) {
       this.$emit("visible-change", newVal);
+      if (newVal) {
+        this.initPopoverPosition();
+        this.$emit("show");
+      } else this.$emit("hide");
     },
   },
   mounted() {
+    this.initPopoverPosition();
     if (this.trigger === "click") {
       this.$refs.triggerWrapper.addEventListener(
         "click",

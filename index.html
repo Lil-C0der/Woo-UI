@@ -38,7 +38,10 @@
   </head>
   <body>
     <div id="app">
-      <woo-content style="padding: 1000px 250px; overflow: hidden;">
+      <woo-button icon-name="settings" @click="showPop=!showPop">
+        toggle
+      </woo-button>
+      <woo-content style="padding:100px; overflow: hidden;">
         <div style="margin-bottom: 50px;">
           <woo-popover>
             <strong>it is a text</strong>
@@ -67,11 +70,11 @@
         </div>
 
         <div style="margin-bottom: 50px;">
-          <woo-popover trigger="hover">
-            <div><a href="#">123</a></div>
-            <!-- <strong>it is a text</strong> -->
+          <!-- <woo-popover trigger="hover"> -->
+          <woo-popover v-model="showPop" trigger="hover">
+            <span>123</span>
             <template v-slot:trigger>
-              <woo-button @click="xxx">TOP</woo-button>
+              <woo-button @click="xxx">测试</woo-button>
             </template>
           </woo-popover>
           <woo-popover placement="bottom" trigger="hover">
