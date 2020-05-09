@@ -82,6 +82,9 @@ export default {
       this.$emit("tab-click", name);
     });
   },
+  destroyed() {
+    this.eventBus.$off("itemClick");
+  },
   watch: {
     // props
     activeName: {

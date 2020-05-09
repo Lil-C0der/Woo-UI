@@ -49,6 +49,9 @@ export default {
       });
     });
   },
+  destroyed() {
+    this.eventBus.$off("itemClick");
+  },
 };
 </script>
 
