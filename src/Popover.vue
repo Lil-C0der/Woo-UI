@@ -7,12 +7,12 @@
       v-show="visibleCopy"
       @click.stop
     >
-      <slot></slot>
+      <slot name="content"></slot>
       <div class="woo-popover-arrow" :class="`arrow-${placement}`"></div>
     </div>
 
     <span ref="triggerWrapper" @click.stop class="trigger-wrapper">
-      <slot name="trigger"></slot>
+      <slot></slot>
     </span>
   </div>
 </template>
