@@ -8,7 +8,7 @@
       @click.stop
     >
       <slot></slot>
-      <div class="woo-popover-arrow"></div>
+      <div class="woo-popover-arrow" :class="`arrow-${placement}`"></div>
     </div>
     <span
       ref="triggerWrapper"
@@ -39,23 +39,45 @@ export default {
       type: Boolean,
       default: false,
     },
+    placement: {
+      type: String,
+      default: "top",
+      validator(val) {
+        return ["top", "bottom", "left", "right"].indexOf(val) !== -1;
+      },
+    },
   },
   methods: {
     // 初始化文本框的位置
     initPopoverPosition() {
-      const {
-        width,
-        height,
-        top,
-        left,
-      } = this.$refs.triggerWrapper.getBoundingClientRect();
-      this.wrapperTop = top + window.scrollY;
       this.$nextTick(() => {
         // 确定文本框的位置
+        const { placement } = this;
+        const {
+          width,
+          height,
+          top,
+          bottom,
+          left,
+          right,
+        } = this.$refs.triggerWrapper.getBoundingClientRect();
         const {
           width: wrapperWidth,
+          height: wrapperHeight,
         } = this.$refs.contentWrapper.getBoundingClientRect();
-        this.wrapperLeft = left - (wrapperWidth - width) / 2 + window.scrollX;
+        if (["top", "bottom"].indexOf(placement) !== -1) {
+          this.wrapperLeft = left - (wrapperWidth - width) / 2 + window.scrollX;
+          this.wrapperTop =
+            eval(placement) +
+            window.scrollY +
+            (placement === "top" ? -wrapperHeight - 10 : 10);
+        } else {
+          this.wrapperTop = top - (wrapperHeight - height) / 2 + window.scrollY;
+          this.wrapperLeft =
+            eval(placement) +
+            window.scrollX +
+            (placement === "left" ? -wrapperWidth - 10 : 10);
+        }
       });
     },
     //  触发器被点击
@@ -121,11 +143,9 @@ $border-color: #dedde2;
   border-radius: 4px;
   padding: 1em;
   width: 14.3em;
-  margin-top: -2px;
   position: absolute;
   z-index: 99;
   background-color: #fff;
-  transform: translateY(calc(-100% - 8px));
   font-size: 14px;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
   .woo-popover-arrow,
@@ -139,14 +159,35 @@ $border-color: #dedde2;
   }
   .woo-popover-arrow {
     border-top-color: #dedde2;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
     &::after {
       content: "";
       border-top-color: #fff;
       bottom: 1px;
       margin-left: -8px;
+    }
+    &.arrow-top,
+    &.arrow-bottom {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.arrow-top {
+      bottom: -8px;
+    }
+    &.arrow-bottom {
+      top: -8px;
+      transform: translateX(-50%) rotate(-180deg);
+    }
+    &.arrow-left,
+    &.arrow-right {
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+    }
+    &.arrow-left {
+      right: -12px;
+      transform: translateY(-50%) rotate(-90deg);
+    }
+    &.arrow-right {
+      left: -12px;
     }
   }
 }
