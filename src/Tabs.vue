@@ -45,11 +45,7 @@ export default {
     initTabItem(name) {
       this.activeItemInstance = this.getInstance(name);
       this.activeNameCopy = this.activeItemInstance.name;
-      this.eventBus.$emit(
-        "tabChange",
-        this.activeNameCopy,
-        this.activeItemInstance
-      );
+      this.eventBus.$emit("tabChange", this.activeItemInstance);
     },
     checkTabsChildren() {
       if (!this.$children.length) {
@@ -59,9 +55,9 @@ export default {
       }
     },
     // 同步
-    updateActiveItem(name, instance) {
-      this.activeNameCopy = name;
-      this.activeItemInstance = instance;
+    updateActiveItem(vm) {
+      this.activeItemInstance = vm;
+      this.activeNameCopy = vm.name;
     },
   },
   provide() {
@@ -72,13 +68,12 @@ export default {
   mounted() {
     this.checkTabsChildren();
     this.initTabItem(this.activeName);
-
     // 监听item点击事件
-    this.eventBus.$on("itemClick", (name, itemInstance) => {
+    this.eventBus.$on("itemClick", (vm) => {
       // 同步
-      this.updateActiveItem(name, itemInstance);
+      this.updateActiveItem(vm);
       // tab-items 被点击的回调函数
-      this.$emit("tab-click", name);
+      this.$emit("tab-click", vm.name);
     });
   },
   beforeDestroy() {
@@ -88,20 +83,23 @@ export default {
     // props
     activeName: {
       handler: function(val) {
-        this.activeNameCopy = val;
+        if (this.getInstance(val).disabled) {
+          return;
+        }
         this.activeItemInstance = this.getInstance(val);
+        this.activeNameCopy = val;
       },
     },
     // props 的副本
     activeNameCopy: {
-      handler: function(newVal) {
+      handler: function(newVal, oldVal) {
+        // 如果 activeNameCopy 没有被初始化则不会触发事件
+        if (!oldVal) {
+          return;
+        }
         // 发送 tabChange 事件 TabsItem 和 TabsHead 组件监听
         if (!this.activeItemInstance.disabled) {
-          this.eventBus.$emit(
-            "tabChange",
-            this.activeNameCopy,
-            this.activeItemInstance
-          );
+          this.eventBus.$emit("tabChange", this.activeItemInstance);
         }
         // 双向绑定事件 切换面板的回调函数
         this.$emit("change", newVal);

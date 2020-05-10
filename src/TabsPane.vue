@@ -25,8 +25,8 @@ export default {
     },
   },
   mounted() {
-    this.eventBus.$on(["itemClick", "tabChange"], (name) => {
-      this.isActive = this.name === name;
+    this.eventBus.$on(["itemClick", "tabChange"], (vm) => {
+      this.isActive = this.name === vm.name;
     });
   },
   beforeDestroy() {

@@ -24,11 +24,10 @@ export default {
     };
   },
   methods: {
-    getSlideBarPosition(name, instance) {
-      if (!instance?.disabled) {
-        this.slideBarOffsetLeft = instance?.$el?.offsetLeft;
-        this.slideBarWidth =
-          instance && window.getComputedStyle(instance.$el).width;
+    getSlideBarPosition(vm) {
+      if (!vm.disabled) {
+        this.slideBarOffsetLeft = vm.$el?.offsetLeft;
+        this.slideBarWidth = vm && window.getComputedStyle(vm.$el).width;
       }
       // 在页面上显示 SlideBar
       this.getStyle = true;
@@ -43,9 +42,9 @@ export default {
     },
   },
   mounted() {
-    this.eventBus.$on("tabChange", (name, itemInstance) => {
+    this.eventBus.$on("tabChange", (vm) => {
       this.$nextTick(() => {
-        this.getSlideBarPosition(name, itemInstance);
+        this.getSlideBarPosition(vm);
       });
     });
   },
