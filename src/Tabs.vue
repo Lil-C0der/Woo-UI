@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       eventBus: new Vue(),
-      activeNameCopy: this.activeName,
+      activeNameCopy: null,
       activeItemInstance: null,
     };
   },
@@ -36,14 +36,15 @@ export default {
       const tabsHead = this.$children.find(
         (vm) => vm.$options.name === "woo-tabs-head"
       );
-      return tabsHead.$children.find(
-        (child) => child.name === name && !child.disabled
+      return (
+        tabsHead.$children.find((child) => child.name === name) ??
+        tabsHead.$children[0]
       );
     },
     // 初始化被选中的tabItem
     initTabItem(name) {
-      this.activeNameCopy = name;
       this.activeItemInstance = this.getInstance(name);
+      this.activeNameCopy = this.activeItemInstance.name;
     },
     checkTabsChildren() {
       if (!this.$children.length) {
@@ -66,13 +67,6 @@ export default {
   mounted() {
     this.checkTabsChildren();
     this.initTabItem(this.activeName);
-    if (this.activeItemInstance && !this.activeItemInstance.disabled) {
-      this.eventBus.$emit(
-        "tabChange",
-        this.activeNameCopy,
-        this.activeItemInstance
-      );
-    }
 
     // 监听item点击事件
     this.eventBus.$on("itemClick", (name, itemInstance) => {
@@ -97,11 +91,13 @@ export default {
     activeNameCopy: {
       handler: function(newVal) {
         // 发送 tabChange 事件 TabsItem 和 TabsHead 组件监听
-        this.eventBus.$emit(
-          "tabChange",
-          this.activeNameCopy,
-          this.activeItemInstance
-        );
+        if (!this.activeItemInstance.disabled) {
+          this.eventBus.$emit(
+            "tabChange",
+            this.activeNameCopy,
+            this.activeItemInstance
+          );
+        }
         // 双向绑定事件 切换面板的回调函数
         this.$emit("change", newVal);
       },

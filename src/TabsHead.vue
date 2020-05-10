@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     getSlideBarPosition(name, instance) {
-      if (!instance.disabled) {
+      if (!instance?.disabled) {
         this.slideBarOffsetLeft = instance?.$el?.offsetLeft;
         this.slideBarWidth =
           instance && window.getComputedStyle(instance.$el).width;
