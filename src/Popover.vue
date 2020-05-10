@@ -94,7 +94,6 @@ export default {
         this.showPopover();
       } else {
         this.hidePopover();
-        console.log("关闭了");
       }
     },
     handleContentMouseenter() {

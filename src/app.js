@@ -45,7 +45,8 @@ Vue.use(WooPlugin);
 const app = new Vue({
   el: "#app",
   data: {
-    showPop: false,
+    // showPop: false,
+    showPop: true,
     key: "2",
   },
   methods: {
@@ -59,19 +60,35 @@ const app = new Vue({
       this.showPop = !this.showPop;
       // console.log(showPop);
     },
-    toggle2() {
-      this.key = "1";
-    },
-    close(val) {
-      this.$refs.pop.hidePopover();
-      // this.showPop = !false;
-      // console.log(val);
-    },
+
     xxx() {
       console.log("xx");
     },
-    zzz() {
-      // console.log("zzzz");
-    },
+  },
+  mounted() {
+    // console.log(this.$refs.popRef.$el);
+    const callback = () => {
+      console.log("enter");
+    };
+    const callback2 = () => {
+      console.log("leave");
+    };
+    const contentEl = this.$refs.test.$refs.contentWrapper;
+    const triggerEl = this.$refs.test.$refs.triggerWrapper;
+    const myEvt1 = new Event("mouseenter");
+    const myEvt2 = new Event("mouseleave");
+    triggerEl.addEventListener("mouseenter", callback);
+    triggerEl.addEventListener("mouseleave", callback2);
+    triggerEl.dispatchEvent(myEvt1);
+    this.$nextTick(() => {
+      console.log(contentEl);
+      // console.log(window.getComputedStyle(contentEl).display);
+      triggerEl.dispatchEvent(myEvt2);
+      setTimeout(() => {
+        console.log("123");
+        console.log(contentEl);
+        // console.log(window.getComputedStyle(contentEl).display);
+      }, 800);
+    });
   },
 });

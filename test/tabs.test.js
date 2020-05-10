@@ -32,9 +32,9 @@ describe("Tabs组件", () => {
         el: div,
       });
       done();
-      vm.$el.remove();
-      vm.$destroy();
     }).to.throw();
+    vm.$el.remove();
+    vm.$destroy();
   });
 
   it("可以设置 activeName ", (done) => {

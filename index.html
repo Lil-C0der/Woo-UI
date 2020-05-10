@@ -43,62 +43,18 @@
       </woo-button>
       <woo-content style="padding:100px; overflow: hidden;">
         <div style="margin-bottom: 50px;">
-          <woo-popover>
-            <strong>it is a text</strong>
-            <template v-slot:trigger>
-              <woo-button>TOP</woo-button>
+          <!-- <woo-popover v-model="showPop">
+            <template v-slot:content>
+              <span>123</span>
             </template>
-          </woo-popover>
-          <woo-popover placement="bottom">
-            <strong>it is a text</strong>
-            <template v-slot:trigger>
-              <woo-button>BOTTOM</woo-button>
-            </template>
-          </woo-popover>
-          <woo-popover placement="left">
-            <strong>it is a text</strong>
-            <template v-slot:trigger>
-              <woo-button>LEFT</woo-button>
-            </template>
-          </woo-popover>
-          <woo-popover placement="right">
-            <strong>it is a text</strong>
-            <template v-slot:trigger>
-              <woo-button @click="xxx">RIGHT</woo-button>
-            </template>
-          </woo-popover>
-        </div>
+            <woo-button>TOP</woo-button>
+          </woo-popover> -->
 
-        <div style="margin-bottom: 50px;">
-          <!-- <woo-popover trigger="hover"> -->
-          <woo-popover v-model="showPop" trigger="hover">
-            <span>123</span>
-            <template v-slot:trigger>
-              <woo-button @click="xxx">测试</woo-button>
+          <woo-popover ref="test" trigger="hover">
+            <template v-slot:content>
+              <span>测试文本</span>
             </template>
-          </woo-popover>
-          <woo-popover placement="bottom" trigger="hover">
-            <strong>it is a text</strong>
-            <template v-slot:trigger>
-              <woo-button>BOTTOM</woo-button>
-            </template>
-          </woo-popover>
-          <woo-popover placement="left" trigger="hover">
-            <strong>it is a text</strong>
-            <template v-slot:trigger>
-              <woo-button>LEFT</woo-button>
-            </template>
-          </woo-popover>
-          <woo-popover ref="pop" placement="right" trigger="hover">
-            <div>
-              <a href="#">123</a>
-              <woo-button @click="close" icon-name="download">
-                download
-              </woo-button>
-            </div>
-            <template v-slot:trigger>
-              <woo-button @click="xxx">RIGHT</woo-button>
-            </template>
+            <woo-button>按钮</woo-button>
           </woo-popover>
         </div>
       </woo-content>
