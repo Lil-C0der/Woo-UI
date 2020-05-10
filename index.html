@@ -38,26 +38,42 @@
   </head>
   <body>
     <div id="app">
-      <woo-button icon-name="settings" @click="showPop=!showPop">
+      <woo-button icon-name="settings" @click="toggle">
         toggle
       </woo-button>
+      {{this.key}}
       <woo-content style="padding:100px; overflow: hidden;">
-        <div style="margin-bottom: 50px;">
-          <!-- <woo-popover v-model="showPop">
-            <template v-slot:content>
-              <span>123</span>
-            </template>
-            <woo-button>TOP</woo-button>
-          </woo-popover> -->
-
-          <woo-popover ref="test" trigger="hover">
-            <template v-slot:content>
-              <span>测试文本</span>
-            </template>
-            <woo-button>按钮</woo-button>
-          </woo-popover>
-        </div>
+        <woo-collapse single v-model="key" @change="xxx">
+          <woo-collapse-item name="1" title="title 1">
+            content 1
+          </woo-collapse-item>
+          <woo-collapse-item name="2" title="title 2">
+            content 2
+          </woo-collapse-item>
+          <woo-collapse-item name="3" title="title 3">
+            content 3
+          </woo-collapse-item>
+          <woo-collapse-item name="4" title="title 4">
+            content4
+          </woo-collapse-item>
+        </woo-collapse>
       </woo-content>
+
+      <woo-button icon-name="settings" @click="toggle2">
+        toggle2
+      </woo-button>
+      <woo-tabs v-model="key2" @change="xxx">
+        <woo-tabs-head>
+          <woo-tabs-item name="title 1">1</woo-tabs-item>
+          <woo-tabs-item name="title 2">2</woo-tabs-item>
+          <woo-tabs-item name="title 3">3</woo-tabs-item>
+        </woo-tabs-head>
+        <woo-tabs-body>
+          <woo-tabs-pane name="title 1">1</woo-tabs-pane>
+          <woo-tabs-pane name="title 2">2</woo-tabs-pane>
+          <woo-tabs-pane name="title 3">3</woo-tabs-pane>
+        </woo-tabs-body>
+      </woo-tabs>
     </div>
   </body>
   <script src="./src/app.js"></script>

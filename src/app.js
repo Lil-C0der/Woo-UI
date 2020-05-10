@@ -18,6 +18,8 @@ import TabsItem from "./TabsItem.vue";
 import TabsPane from "./TabsPane.vue";
 import TabsBody from "./TabsBody.vue";
 import Popover from "./Popover.vue";
+import Collapse from "./Collapse.vue";
+import CollapseItem from "./CollapseItem.vue";
 
 import WooPlugin from "./plugin";
 
@@ -39,56 +41,32 @@ Vue.component("woo-tabs-item", TabsItem);
 Vue.component("woo-tabs-pane", TabsPane);
 Vue.component("woo-tabs-body", TabsBody);
 Vue.component("woo-popover", Popover);
+Vue.component("woo-collapse", Collapse);
+Vue.component("woo-collapse-item", CollapseItem);
 
 Vue.use(WooPlugin);
 
 const app = new Vue({
   el: "#app",
   data: {
-    // showPop: false,
     showPop: true,
-    key: "2",
+    key: ["2", "3"],
+    // key: "title 2",
+    key2: "2",
   },
   methods: {
-    popShow() {
-      console.log("show");
-    },
-    popHide() {
-      console.log("hide");
-    },
     toggle() {
-      this.showPop = !this.showPop;
-      // console.log(showPop);
+      // this.key = ["3"];
+      this.key = [];
+      // this.key = "3";
+      this.key = null;
     },
-
-    xxx() {
-      console.log("xx");
+    toggle2() {
+      this.key2 = "title 3";
     },
-  },
-  mounted() {
-    // console.log(this.$refs.popRef.$el);
-    const callback = () => {
-      console.log("enter");
-    };
-    const callback2 = () => {
-      console.log("leave");
-    };
-    const contentEl = this.$refs.test.$refs.contentWrapper;
-    const triggerEl = this.$refs.test.$refs.triggerWrapper;
-    const myEvt1 = new Event("mouseenter");
-    const myEvt2 = new Event("mouseleave");
-    triggerEl.addEventListener("mouseenter", callback);
-    triggerEl.addEventListener("mouseleave", callback2);
-    triggerEl.dispatchEvent(myEvt1);
-    this.$nextTick(() => {
-      console.log(contentEl);
-      // console.log(window.getComputedStyle(contentEl).display);
-      triggerEl.dispatchEvent(myEvt2);
-      setTimeout(() => {
-        console.log("123");
-        console.log(contentEl);
-        // console.log(window.getComputedStyle(contentEl).display);
-      }, 800);
-    });
+    xxx(e) {
+      console.log(e);
+      // console.log("xx");
+    },
   },
 });
