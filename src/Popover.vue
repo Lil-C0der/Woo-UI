@@ -114,6 +114,58 @@ export default {
         this.visibleCopy = false;
       }, 200);
     },
+    // 添加事件监听
+    initListener() {
+      if (this.trigger === "click") {
+        this.$refs.triggerWrapper.addEventListener(
+          "click",
+          this.handleTriggerClick
+        );
+      } else {
+        this.$refs.triggerWrapper.addEventListener(
+          "mouseenter",
+          this.showPopover
+        );
+        this.$refs.triggerWrapper.addEventListener(
+          "mouseleave",
+          this.hidePopover
+        );
+        // 文本框的 mouseenter 事件
+        this.$refs.contentWrapper.addEventListener(
+          "mouseenter",
+          this.handleContentMouseenter
+        );
+        this.$refs.contentWrapper.addEventListener(
+          "mouseleave",
+          this.hidePopover
+        );
+      }
+    },
+    removeListener() {
+      if (this.trigger === "click") {
+        this.$refs.triggerWrapper.removeEventListener(
+          "click",
+          this.handleTriggerClick
+        );
+      } else {
+        this.$refs.triggerWrapper.removeEventListener(
+          "mouseenter",
+          this.showPopover
+        );
+        this.$refs.triggerWrapper.removeEventListener(
+          "mouseleave",
+          this.hidePopover
+        );
+        this.$refs.contentWrapper.removeEventListener(
+          "mouseenter",
+          this.handleContentMouseenter
+        );
+        this.$refs.contentWrapper.removeEventListener(
+          "mouseleave",
+          this.hidePopover
+        );
+      }
+    },
   },
   computed: {
     contentStyle() {
@@ -136,56 +188,13 @@ export default {
     },
   },
   mounted() {
-    this.initPopoverPosition();
-    if (this.trigger === "click") {
-      this.$refs.triggerWrapper.addEventListener(
-        "click",
-        this.handleTriggerClick
-      );
-    } else {
-      this.$refs.triggerWrapper.addEventListener(
-        "mouseenter",
-        this.showPopover
-      );
-      this.$refs.triggerWrapper.addEventListener(
-        "mouseleave",
-        this.hidePopover
-      );
-      // 文本框的 mouseenter 事件
-      this.$refs.contentWrapper.addEventListener(
-        "mouseenter",
-        this.handleContentMouseenter
-      );
-      this.$refs.contentWrapper.addEventListener(
-        "mouseleave",
-        this.hidePopover
-      );
+    if (this.visibleCopy) {
+      this.initPopoverPosition();
     }
+    this.initListener();
   },
   destroyed() {
-    if (this.trigger === "click") {
-      this.$refs.triggerWrapper.removeEventListener(
-        "click",
-        this.handleTriggerClick
-      );
-    } else {
-      this.$refs.triggerWrapper.removeEventListener(
-        "mouseenter",
-        this.showPopover
-      );
-      this.$refs.triggerWrapper.removeEventListener(
-        "mouseleave",
-        this.hidePopover
-      );
-      this.$refs.contentWrapper.removeEventListener(
-        "mouseenter",
-        this.handleContentMouseenter
-      );
-      this.$refs.contentWrapper.removeEventListener(
-        "mouseleave",
-        this.hidePopover
-      );
-    }
+    this.removeListener();
   },
 };
 </script>
