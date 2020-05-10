@@ -31,13 +31,10 @@ export default {
   provide() {
     return {
       eventBus: this.eventBus,
-      single: this.single,
-      activeKeyCopy: this.activeKeyCopy,
     };
   },
   methods: {
     toggleKey(key) {
-      console.log(key);
       this.activeKeyCopy = this.activeKeyCopy === key ? null : key;
     },
     addKey(key) {

@@ -17,7 +17,7 @@
 <script>
 export default {
   name: "woo-collapse-item",
-  inject: ["eventBus", "single"],
+  inject: ["eventBus"],
   data() {
     return {
       isOpen: false,
@@ -45,7 +45,6 @@ export default {
   },
   mounted() {
     this.eventBus.$on("keyChange", (key) => {
-      console.log("on");
       this.isOpen = key?.includes(this.name);
     });
   },
