@@ -51,22 +51,26 @@ const app = new Vue({
   data: {
     showPop: true,
     key: ["2", "3"],
-    // key: "title 2",
-    key2: "2",
+    // key: "2",
+    key2: "title 2",
   },
   methods: {
     toggle() {
       // this.key = ["3"];
-      this.key = [];
+      this.key = ["1", "4"];
       // this.key = "3";
-      this.key = null;
     },
     toggle2() {
-      this.key2 = "title 3";
+      this.key2 = "title 1";
     },
     xxx(e) {
       console.log(e);
+      console.log("外面接收到Change");
+
       // console.log("xx");
+    },
+    yyy(e) {
+      console.log("tab " + e);
     },
   },
 });

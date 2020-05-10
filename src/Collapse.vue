@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       eventBus: new Vue(),
-      activeKeyCopy: [],
       activeKeyCopy: this.activeKey,
     };
   },
@@ -38,6 +37,7 @@ export default {
   },
   methods: {
     toggleKey(key) {
+      console.log(key);
       this.activeKeyCopy = this.activeKeyCopy === key ? null : key;
     },
     addKey(key) {
@@ -52,12 +52,20 @@ export default {
     },
   },
   watch: {
-    activeKey: function(newVal) {
-      this.activeKeyCopy = newVal;
-      this.eventBus.$emit("keyChange", newVal);
+    activeKey: {
+      handler: function(newVal, oldVal) {
+        const str1 = [...newVal].sort().toString();
+        const str2 = [...oldVal].sort().toString();
+        if (str1 !== str2) {
+          this.activeKeyCopy = newVal;
+        }
+      },
     },
-    activeKeyCopy: function(newVal) {
-      this.$emit("change", newVal);
+    activeKeyCopy: {
+      handler: function(newVal) {
+        this.$emit("change", newVal);
+        this.eventBus.$emit("keyChange", newVal);
+      },
     },
   },
   mounted() {

@@ -37,23 +37,17 @@ export default {
   methods: {
     handleItemClick() {
       if (this.isOpen) {
-        this.isOpen = false;
         this.eventBus.$emit("hideItem", this.name);
       } else {
-        this.isOpen = true;
         this.eventBus.$emit("showItem", this.name);
       }
     },
   },
   mounted() {
     this.eventBus.$on("keyChange", (key) => {
+      console.log("on");
       this.isOpen = key?.includes(this.name);
     });
-    if (this.single) {
-      this.eventBus.$on("showItem", (name) => {
-        this.isOpen = name === this.name;
-      });
-    }
   },
   beforeDestroy() {
     this.eventBus.$off(["showItem", "keyChange"]);
