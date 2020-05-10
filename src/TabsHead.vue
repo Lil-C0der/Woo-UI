@@ -50,7 +50,7 @@ export default {
     });
   },
   destroyed() {
-    this.eventBus.$off("itemClick");
+    this.eventBus.$off(["tabChange"]);
   },
 };
 </script>

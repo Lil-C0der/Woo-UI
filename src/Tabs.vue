@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       eventBus: new Vue(),
-      activeNameCopy: null,
+      activeNameCopy: this.activeName,
       activeItemInstance: null,
     };
   },
@@ -45,6 +45,11 @@ export default {
     initTabItem(name) {
       this.activeItemInstance = this.getInstance(name);
       this.activeNameCopy = this.activeItemInstance.name;
+      this.eventBus.$emit(
+        "tabChange",
+        this.activeNameCopy,
+        this.activeItemInstance
+      );
     },
     checkTabsChildren() {
       if (!this.$children.length) {
@@ -76,7 +81,7 @@ export default {
       this.$emit("tab-click", name);
     });
   },
-  destroyed() {
+  beforeDestroy() {
     this.eventBus.$off("itemClick");
   },
   watch: {

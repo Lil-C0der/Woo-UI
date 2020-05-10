@@ -34,7 +34,7 @@ export default {
       if (this.disabled) {
         return;
       }
-      this.eventBus?.$emit("itemClick", this.name, this);
+      this.eventBus.$emit("itemClick", this.name, this);
       this.$emit("click", this.name);
     },
   },
@@ -44,9 +44,12 @@ export default {
     },
   },
   mounted() {
-    this.eventBus?.$on(["itemClick", "tabChange"], (name) => {
+    this.eventBus.$on(["itemClick", "tabChange"], (name) => {
       this.isActive = this.name === name;
     });
+  },
+  beforeDestroy() {
+    this.eventBus.$off(["itemClick", "tabChange"]);
   },
 };
 </script>

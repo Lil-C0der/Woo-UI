@@ -29,8 +29,8 @@ export default {
       this.isActive = this.name === name;
     });
   },
-  destroyed() {
-    this.eventBus.$off("itemClick");
+  beforeDestroy() {
+    this.eventBus.$off(["itemClick", "tabChange"]);
   },
 };
 </script>
