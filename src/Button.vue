@@ -47,26 +47,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$button-height: 32px;
+$font-size: 14px;
+$border-radius: 4px;
+$button-bg: #f5f5f5;
+$button-bg-hover: #f1f1f1;
+$button-bg-active: #d0d0d0;
+$color: #333;
+$color-active: #fefefe;
+$border-color: #dedde2;
+$border-color-hover: #c0c4cc;
+
 .woo-button {
   vertical-align: middle;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 0 1.14em;
-  font-size: var(--font-size);
-  height: var(--button-height);
-  background-color: var(--button-bg);
-  color: var(--color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  font-size: $font-size;
+  height: $button-height;
+  background-color: $button-bg;
+  color: $color;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
   &:hover {
-    background-color: var(--button-bg-hover);
-    border-color: var(--border-color-hover);
+    background-color: $button-bg-hover;
+    border-color: $border-color-hover;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.15);
   }
   &:active {
-    background-color: var(--button-bg-active);
-    color: var(--color-active);
+    background-color: $button-bg-active;
+    color: $color-active;
   }
   &:focus {
     outline: none;
