@@ -1,9 +1,5 @@
 <template>
-  <button
-    @click="$emit('click')"
-    class="woo-button"
-    :class="`icon-${iconPosition}`"
-  >
+  <button @click="$emit('click')" class="woo-button" :class="buttonClass">
     <span class="content">
       <slot></slot>
     </span>
@@ -38,6 +34,29 @@ export default {
       type: Boolean,
       default: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    type: {
+      type: String,
+      default: "normal",
+      validator(val) {
+        return (
+          ["normal", "primary", "dashed", "danger", "warn"].indexOf(val) !== -1
+        );
+      },
+    },
+  },
+  computed: {
+    buttonClass() {
+      const { iconPosition, type, disabled } = this;
+      return {
+        [`icon-${iconPosition}`]: iconPosition,
+        ["woo-button-disabled"]: disabled,
+        [`woo-button-${type}`]: type,
+      };
+    },
   },
   components: {
     WooIcon,
@@ -53,11 +72,16 @@ $border-radius: 4px;
 $button-bg: #f5f5f5;
 $button-bg-hover: #f1f1f1;
 $button-bg-active: #d0d0d0;
+$button-bg-disabled: #ebebeb;
+$button-bg-primary: #98bcd5;
+$button-bg-warn: #f1dca7;
+$button-bg-danger: #e2a5ad;
 $color: #333;
 $color-active: #fefefe;
+$disabled-color: #a0a0a0;
 $border-color: #dedde2;
 $border-color-hover: #c0c4cc;
-
+$border-color-disabled: #c3c3c3;
 .woo-button {
   vertical-align: middle;
   display: inline-flex;
@@ -81,6 +105,27 @@ $border-color-hover: #c0c4cc;
   }
   &:focus {
     outline: none;
+  }
+  &.woo-button-disabled,
+  &.woo-button-disabled:hover,
+  &.woo-button-disabled:active {
+    color: $disabled-color;
+    border-color: $border-color-disabled;
+    background-color: $button-bg-disabled;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+  &.woo-button-dashed {
+    border-style: dashed;
+  }
+  &.woo-button-primary {
+    background-color: $button-bg-primary;
+  }
+  &.woo-button-warn {
+    background-color: $button-bg-warn;
+  }
+  &.woo-button-danger {
+    background-color: $button-bg-danger;
   }
   .woo-icon {
     margin: 0 0.3em 0 0;
