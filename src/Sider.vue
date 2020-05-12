@@ -97,8 +97,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
+
 .woo-sider {
-  background-color: #8895b1;
   transition: all 0.3s;
   .sider-trigger {
     position: fixed;

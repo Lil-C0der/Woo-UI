@@ -55,17 +55,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$tab-height: 40px;
-$bar-bg-color: #8c8baa;
+@import "var";
+
 .woo-tabs-head {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   height: $tab-height;
-  border-bottom: 1px solid #dedde2;
+  border-bottom: 1px solid $border-color;
   position: relative;
   .woo-tabs-slide-bar {
-    background-color: $bar-bg-color;
+    background-color: $tab-active-color;
     transition: all 0.3s;
     height: 3px;
     width: 90 px;

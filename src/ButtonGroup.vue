@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$border-radius: 4px;
+@import "var";
 
 .woo-button-grounp {
   vertical-align: middle;

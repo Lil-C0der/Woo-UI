@@ -200,7 +200,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$border-color: #dedde2;
+@import "var";
+
 .woo-popover {
   display: inline-block;
   vertical-align: top;

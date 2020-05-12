@@ -68,27 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$button-height: 32px;
-$font-size: 14px;
-$border-radius: 4px;
-$button-bg: #f5f5f5;
-$button-bg-hover: #f1f1f1;
-$button-bg-active: #d0d0d0;
-$button-bg-disabled: #ebebeb;
-$button-bg-primary: #98bcd5;
-$button-bg-primary-active: #92b4cc;
-$button-bg-success: #89d7bc;
-$button-bg-success-active: #84ceb4;
-$button-bg-warn: #f1dca7;
-$button-bg-warn-active: #e7d3a0;
-$button-bg-danger: #e2a5ad;
-$button-bg-danger-active: #d99ea6;
-$color: #333;
-$color-active: #fefefe;
-$disabled-color: #a0a0a0;
-$border-color: #dedde2;
-$border-color-hover: #c0c4cc;
-$border-color-disabled: #c3c3c3;
+@import "var";
 .woo-button {
   vertical-align: middle;
   display: inline-flex;
@@ -96,9 +76,9 @@ $border-color-disabled: #c3c3c3;
   align-items: center;
   padding: 0 1.14em;
   font-size: $font-size;
-  height: $button-height;
+  height: $height;
   background-color: $button-bg;
-  color: $color;
+  color: $color-black;
   border: 1px solid $border-color;
   border-radius: $border-radius;
   &:hover {
@@ -108,7 +88,7 @@ $border-color-disabled: #c3c3c3;
   }
   &:active {
     background-color: $button-bg-active;
-    color: $color-active;
+    color: $color-white;
   }
   &:focus {
     outline: none;

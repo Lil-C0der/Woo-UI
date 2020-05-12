@@ -26,12 +26,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .woo-layout {
   display: flex;
   flex-direction: column;
   flex: 1;
   font-size: 22px;
-  color: #fff;
+  color: $layout-bg-color;
   &.horizontal-layout {
     flex-direction: row;
   }

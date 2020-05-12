@@ -26,7 +26,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .woo-footer {
-  background-color: #546c8c;
+  background-color: $footer-bg-color;
 }
 </style>

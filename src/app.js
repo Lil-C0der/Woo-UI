@@ -65,7 +65,6 @@ const app = new Vue({
     },
     xxx(e) {
       console.log(e);
-      console.log("外面接收到Change");
 
       // console.log("xx");
     },

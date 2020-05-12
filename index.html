@@ -16,9 +16,7 @@
       *::after {
         box-sizing: border-box;
       }
-      /* #app {
-        margin: 10px 0 0 20px;
-      } */
+
       body {
         font-size: var(--font-size);
       }
@@ -26,19 +24,6 @@
   </head>
   <body>
     <div id="app">
-      <woo-button>按钮</woo-button>
-      <woo-button disabled>禁用</woo-button>
-      <woo-button type="dashed">dashed</woo-button>
-      <woo-button type="primary">primary</woo-button>
-      <woo-button type="success">success</woo-button>
-      <woo-button type="warn">warn</woo-button>
-      <woo-button type="danger">danger</woo-button>
-
-      <woo-button-group>
-        <woo-button icon-name="download">DOWNLOAD</woo-button>
-        <woo-button icon-name="upload">UPLOAD</woo-button>
-      </woo-button-group>
-
       <woo-button icon-name="settings" @click="toggle">
         toggle
       </woo-button>

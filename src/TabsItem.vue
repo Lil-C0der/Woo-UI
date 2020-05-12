@@ -55,9 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$active-color: #8c8baa;
-$disabled-color: #a0a0a0;
-$bg-disabled: #ebebeb;
+@import "var";
 
 .woo-tabs-item {
   padding: 0 2em;
@@ -73,11 +71,11 @@ $bg-disabled: #ebebeb;
     vertical-align: middle;
   }
   &:hover {
-    color: $active-color;
+    color: $tab-active-color;
   }
   &.item-active {
     font-weight: bold;
-    color: $active-color;
+    color: $tab-active-color;
   }
   &.item-disabled {
     color: $disabled-color;

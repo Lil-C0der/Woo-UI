@@ -55,11 +55,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$border-color: #dedde2;
-$font-color: #333;
+@import "var";
+
 .woo-collapse-item {
   margin-top: -1px;
-  color: $font-color;
+  color: $color-black;
   .woo-collapse-item-name {
     padding: 1em 2.5em;
     display: flex;
@@ -80,7 +80,7 @@ $font-color: #333;
   }
   .woo-collapse-item-content {
     padding: 1em;
-    background-color: #fefefe;
+    background-color: $color-white;
   }
 }
 </style>

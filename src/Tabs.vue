@@ -110,7 +110,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .woo-tabs {
-  color: #194568;
+  color: $font-blue;
 }
 </style>

@@ -1,12 +1,13 @@
 <template>
-  <main class="woo-content">
+  <div class="woo-cascader">
+    <input class="woo-cascader-picker" />
     <slot></slot>
-  </main>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "woo-content",
+  name: "woo-cascader",
   data() {
     return {};
   },
@@ -16,11 +17,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
-.woo-content {
-  flex: 1;
-  background-color: $color-white;
-  color: $color-black;
-  padding: 20px;
+.woo-cascader {
 }
 </style>

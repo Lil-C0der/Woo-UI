@@ -27,9 +27,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
+
 header {
   width: 100%;
-  background-color: #bcc2d7;
+  background-color: $header-bg-color;
   padding: 0 20px;
 }
 </style>

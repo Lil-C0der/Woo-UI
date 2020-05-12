@@ -98,25 +98,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
+
 .woo-input-wrapper {
-  $height: 32px;
-  $color: #333;
-  $disabled-color: #a0a0a0;
-  $border-color: #dedde2;
-  $border-color-hover: #c0c4cc;
-  $border-color-disabled: #c3c3c3;
-  $border-radius: 4px;
-  $font-size: 12px;
-  $red: #de426b;
-  $deep-red: #c02955;
-  $bg-disabled: #ebebeb;
   display: inline-flex;
   position: relative;
   align-items: center;
   width: 100%;
   max-width: 220px;
   flex-shrink: 0;
-  font-size: $font-size;
+  font-size: $input-tip-font-size;
   > .woo-icon-clear {
     position: absolute;
     right: 1em;
@@ -137,7 +128,7 @@ export default {
     font-size: inherit;
     border: 1px solid $border-color;
     border-radius: $border-radius;
-    color: $color;
+    color: $color-black;
     flex: 1;
     &:hover {
       border-color: $border-color-hover;

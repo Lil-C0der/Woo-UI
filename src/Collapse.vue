@@ -90,13 +90,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$border-color: #dedde2;
-$font-color: #333;
+@import "var";
 .woo-collapse {
   border: 1px solid $border-color;
-  border: 1px solid red;
-  border-radius: 4px;
-  color: $font-color;
+  border-radius: $border-radius;
+  color: $color-black;
   overflow: hidden;
+  & :last-child {
+    & :first-child {
+      border-bottom: none;
+    }
+    & :last-child {
+      border-top: 1px solid $border-color;
+    }
+  }
 }
 </style>

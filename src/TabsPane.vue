@@ -36,10 +36,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .woo-tabs-pane {
   padding: 16px;
   &.pane-active {
-    color: #194568;
+    color: $font-blue;
   }
 }
 </style>
