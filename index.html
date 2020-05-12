@@ -22,22 +22,22 @@
       body {
         font-size: var(--font-size);
       }
-      :root {
-        /* --button-height: 32px; */
-        /* --font-size: 14px; */
-        /* --border-radius: 4px; */
-        /* --button-bg: #f5f5f5; */
-        /* --button-bg-hover: #f1f1f1; */
-        /* --button-bg-active: #d0d0d0; */
-        /* --color: #333; */
-        /* --color-active: #fefefe; */
-        /* --border-color: #dedde2; */
-        /* --border-color-hover: #c0c4cc; */
-      }
     </style>
   </head>
   <body>
     <div id="app">
+      <woo-button>按钮</woo-button>
+      <woo-button disabled>禁用</woo-button>
+      <woo-button type="dashed">dashed</woo-button>
+      <woo-button type="primary">primary</woo-button>
+      <woo-button type="warn">warn</woo-button>
+      <woo-button type="danger">danger</woo-button>
+
+      <woo-button-group>
+        <woo-button icon-name="download">DOWNLOAD</woo-button>
+        <woo-button icon-name="upload">UPLOAD</woo-button>
+      </woo-button-group>
+
       <woo-button icon-name="settings" @click="toggle">
         toggle
       </woo-button>
