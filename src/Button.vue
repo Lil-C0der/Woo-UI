@@ -43,7 +43,9 @@ export default {
       default: "normal",
       validator(val) {
         return (
-          ["normal", "primary", "dashed", "danger", "warn"].indexOf(val) !== -1
+          ["normal", "primary", "dashed", "success", "danger", "warn"].indexOf(
+            val
+          ) !== -1
         );
       },
     },
@@ -74,6 +76,7 @@ $button-bg-hover: #f1f1f1;
 $button-bg-active: #d0d0d0;
 $button-bg-disabled: #ebebeb;
 $button-bg-primary: #98bcd5;
+$button-bg-success: #89d7bc;
 $button-bg-warn: #f1dca7;
 $button-bg-danger: #e2a5ad;
 $color: #333;
@@ -120,6 +123,9 @@ $border-color-disabled: #c3c3c3;
   }
   &.woo-button-primary {
     background-color: $button-bg-primary;
+  }
+  &.woo-button-success {
+    background-color: $button-bg-success;
   }
   &.woo-button-warn {
     background-color: $button-bg-warn;
