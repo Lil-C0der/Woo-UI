@@ -142,7 +142,7 @@ export default {
   }
 }
 
-@import "var";
+@import "_var";
 .woo-toast {
   font-size: $font-size;
   min-height: $toast-min-height;

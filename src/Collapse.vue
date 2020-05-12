@@ -90,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "_var";
 .woo-collapse {
   border: 1px solid $border-color;
   border-radius: $border-radius;

@@ -200,7 +200,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "_var";
 
 .woo-popover {
   display: inline-block;

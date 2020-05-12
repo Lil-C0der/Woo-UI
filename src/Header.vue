@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "_var";
 
 header {
   width: 100%;

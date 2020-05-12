@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "_var";
 
 .woo-input-wrapper {
   display: inline-flex;

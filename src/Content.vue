@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "_var";
 .woo-content {
   flex: 1;
   background-color: $color-white;

@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "_var";
 .woo-layout {
   display: flex;
   flex-direction: column;
