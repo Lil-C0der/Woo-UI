@@ -108,12 +108,13 @@ export default {
   $border-radius: 4px;
   $font-size: 12px;
   $red: #de426b;
-  $deep-red: rgb(192, 41, 85);
+  $deep-red: #c02955;
   $bg-disabled: #ebebeb;
   display: inline-flex;
   position: relative;
   align-items: center;
   width: 100%;
+  max-width: 220px;
   flex-shrink: 0;
   font-size: $font-size;
   > .woo-icon-clear {
