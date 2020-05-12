@@ -76,9 +76,13 @@ $button-bg-hover: #f1f1f1;
 $button-bg-active: #d0d0d0;
 $button-bg-disabled: #ebebeb;
 $button-bg-primary: #98bcd5;
+$button-bg-primary-active: #92b4cc;
 $button-bg-success: #89d7bc;
+$button-bg-success-active: #84ceb4;
 $button-bg-warn: #f1dca7;
+$button-bg-warn-active: #e7d3a0;
 $button-bg-danger: #e2a5ad;
+$button-bg-danger-active: #d99ea6;
 $color: #333;
 $color-active: #fefefe;
 $disabled-color: #a0a0a0;
@@ -123,15 +127,27 @@ $border-color-disabled: #c3c3c3;
   }
   &.woo-button-primary {
     background-color: $button-bg-primary;
+    &.woo-button-primary:active {
+      background-color: $button-bg-primary-active;
+    }
   }
   &.woo-button-success {
     background-color: $button-bg-success;
+    &.woo-button-success:active {
+      background-color: $button-bg-success-active;
+    }
   }
   &.woo-button-warn {
     background-color: $button-bg-warn;
+    &.woo-button-warn:active {
+      background-color: $button-bg-warn-active;
+    }
   }
   &.woo-button-danger {
     background-color: $button-bg-danger;
+    &.woo-button-danger:active {
+      background-color: $button-bg-danger-active;
+    }
   }
   .woo-icon {
     margin: 0 0.3em 0 0;
