@@ -44,7 +44,7 @@ export default {
       this.activeKeyCopy?.push(key);
     },
     deleteKey(key) {
-      const index = this.activeKey?.indexOf(key);
+      const index = this.activeKeyCopy?.indexOf(key);
       this.activeKeyCopy.splice(index, 1);
     },
   },
