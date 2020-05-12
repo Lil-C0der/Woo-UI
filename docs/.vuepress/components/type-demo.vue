@@ -16,10 +16,5 @@ export default {
   components: {
     "woo-button": Button,
   },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
 };
 </script>

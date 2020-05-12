@@ -1,11 +1,11 @@
 module.exports = {
+  base: "/Woo-UI/",
   title: "Woo-UI",
   description: "我自己的 UI 组件库",
-  // .vuepress/config.js
   themeConfig: {
     sidebar: [
       {
-        title: "指南",
+        title: "开发指南",
         children: ["/get-started/", "/install/"],
         collapsable: false,
       },
@@ -13,7 +13,17 @@ module.exports = {
         title: "组件",
         path: "/components/",
         collapsable: false,
-        children: ["/components/button"],
+        children: [
+          "/components/button",
+          "/components/icon",
+          "/components/input",
+          "/components/grid",
+          "/components/layout",
+          "/components/toast",
+          "/components/popover",
+          "/components/tabs",
+          "/components/collapse",
+        ],
       },
     ],
   },

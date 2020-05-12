@@ -24,11 +24,6 @@ export default {
     "woo-button": Button,
     "woo-button-group": ButtonGroup,
   },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
 };
 </script>
 
