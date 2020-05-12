@@ -20,10 +20,12 @@
       ></woo-icon>
     </template>
     <template v-if="error">
-      <woo-icon name="error"></woo-icon>
-      <span class="message">
-        {{ error }}
-      </span>
+      <div class="woo-input-tip">
+        <woo-icon name="error"></woo-icon>
+        <span class="message">
+          {{ error }}
+        </span>
+      </div>
     </template>
   </div>
 </template>
@@ -104,10 +106,8 @@ export default {
   display: inline-flex;
   position: relative;
   align-items: center;
-  width: 100%;
-  max-width: 220px;
   flex-shrink: 0;
-  font-size: $input-tip-font-size;
+  font-size: $font-size;
   > .woo-icon-clear {
     position: absolute;
     right: 1em;
@@ -149,19 +149,24 @@ export default {
     }
   }
   &.error {
+    color: $color-red;
     input {
-      border-color: $red;
+      border-color: $color-red;
+      position: relative;
       &:hover {
-        border-color: $deep-red;
+        border-color: $color-deep-red;
       }
       &:focus {
-        border-color: $deep-red;
+        border-color: $color-deep-red;
       }
     }
-    color: $red;
-  }
-  .message {
-    font-size: inherit;
+    .woo-input-tip {
+      display: inline-flex;
+      align-items: center;
+      .woo-icon-error {
+        margin-right: 0.3em;
+      }
+    }
   }
 }
 </style>
