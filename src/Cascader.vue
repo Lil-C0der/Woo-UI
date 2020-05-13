@@ -3,9 +3,7 @@
     <div class="woo-cascader-wrapper">
       <woo-input class="woo-cascader-picker" @click.native="handleClick" />
       <div class="woo-cascader-popper" v-show="popperVisible">
-        <div>
-          <woo-cascader-menu :items="source"></woo-cascader-menu>
-        </div>
+        <woo-cascader-menu :items="source"></woo-cascader-menu>
       </div>
     </div>
     <slot></slot>
@@ -28,23 +26,14 @@ export default {
   data() {
     return {
       popperVisible: false,
-      level1Item: null,
     };
   },
   methods: {
     handleClick() {
       this.popperVisible = !this.popperVisible;
     },
-    selectLevel1(e) {
-      this.level1Item = e.target.innerText;
-    },
   },
-  computed: {
-    levelItems() {
-      const obj = this.source.find((n) => n.label === this.level1Item) ?? [];
-      return obj.children;
-    },
-  },
+  computed: {},
 };
 </script>
 
@@ -52,16 +41,23 @@ export default {
 @import "_var";
 
 .woo-cascader {
+  position: relative;
   .woo-cascader-wrapper {
     height: 100%;
   }
-  .woo-cascader-picker {
-  }
   .woo-cascader-popper {
-    height: 200px;
-    position: relative;
+    border: 1px solid $border-color;
+    background-color: $layout-bg-color;
+    border-radius: $border-radius;
+    overflow: hidden;
+    // border-right: none;
+    position: absolute;
+    top: 100%;
     left: 0;
-    top: 0;
+    transform: translateY(10px);
+    z-index: 97;
+    box-shadow: $cascader-box-shadow;
+    // filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.15));
   }
 }
 </style>
