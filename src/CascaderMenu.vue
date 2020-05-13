@@ -3,7 +3,7 @@
     <ul class="woo-cascader-menu-left">
       <li
         class="woo-cascader-menu-item"
-        @click="handleItemClick(item)"
+        @click="handleItemClick"
         v-for="item in items"
         :data-isLeaf="item.children"
         :key="item.value"
@@ -45,22 +45,21 @@ export default {
     };
   },
   methods: {
-    // handleItemClick(e) {
-    handleItemClick(item) {
-      // this.selectedItemLabel = e.target.innerText;
+    handleItemClick(e) {
+      // handleItemClick(item) {
+      this.selectedItemLabel = e.target.innerText;
       // console.log(this.selectedItemLabel);
-      this.selectedItem = item;
-      console.log(this.selectedItem);
-
+      // this.selectedItem = item;
+      // console.log(this.selectedItem);
       // this.isActive = true;
     },
   },
   computed: {
     childrenItems() {
-      // const obj =
-      //   this.items.find((n) => n.label === this.selectedItemLabel) ?? [];
-      // return obj.children;
-      return this.selectedItem?.children;
+      const obj =
+        this.items.find((n) => n.label === this.selectedItemLabel) ?? [];
+      return obj.children;
+      // return this.selectedItem?.children;
     },
   },
   components: {
@@ -90,7 +89,7 @@ export default {
     margin: 0;
     padding: 0;
     min-width: 136px;
-    border-right: 1px solid $border-color;
+    border-right: 1px solid $border-color-light;
     .woo-cascader-menu-item {
       overflow: hidden;
       list-style: none;
