@@ -20,8 +20,12 @@ import TabsBody from "./TabsBody.vue";
 import Popover from "./Popover.vue";
 import Collapse from "./Collapse.vue";
 import CollapseItem from "./CollapseItem.vue";
+import Cascader from "./Cascader";
+// import CascaderMenuItem from "./CascaderMenuItem";
 
 import WooPlugin from "./plugin";
+
+import Demo from "./Demo.vue";
 
 Vue.component("woo-button", Button);
 Vue.component("woo-icon", Icon);
@@ -43,33 +47,13 @@ Vue.component("woo-tabs-body", TabsBody);
 Vue.component("woo-popover", Popover);
 Vue.component("woo-collapse", Collapse);
 Vue.component("woo-collapse-item", CollapseItem);
+Vue.component("woo-cascader", Cascader);
+// Vue.component("woo-cascader-menu-item", CascaderMenuItem);
 
 Vue.use(WooPlugin);
 
-const app = new Vue({
-  el: "#app",
-  data: {
-    showPop: true,
-    key: ["2", "3"],
-    // key: "2",
-    key2: "title 2",
-  },
-  methods: {
-    toggle() {
-      // this.key = ["3"];
-      this.key = ["1", "4"];
-      // this.key = "3";
-    },
-    toggle2() {
-      this.key2 = "title 1";
-    },
-    xxx(e) {
-      console.log(e);
+Vue.config.productionTip = false;
 
-      // console.log("xx");
-    },
-    yyy(e) {
-      console.log("tab " + e);
-    },
-  },
-});
+new Vue({
+  render: (h) => h(Demo),
+}).$mount("#app");
