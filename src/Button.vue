@@ -107,24 +107,36 @@ export default {
   }
   &.woo-button-primary {
     background-color: $button-bg-primary;
+    &.woo-button-primary:hover {
+      background-color: $button-bg-primary-hover;
+    }
     &.woo-button-primary:active {
       background-color: $button-bg-primary-active;
     }
   }
   &.woo-button-success {
     background-color: $button-bg-success;
+    &.woo-button-success:hover {
+      background-color: $button-bg-success-hover;
+    }
     &.woo-button-success:active {
       background-color: $button-bg-success-active;
     }
   }
   &.woo-button-warn {
     background-color: $button-bg-warn;
+    &.woo-button-warn:hover {
+      background-color: $button-bg-warn-hover;
+    }
     &.woo-button-warn:active {
       background-color: $button-bg-warn-active;
     }
   }
   &.woo-button-danger {
     background-color: $button-bg-danger;
+    &.woo-button-danger:hover {
+      background-color: $button-bg-danger-hover;
+    }
     &.woo-button-danger:active {
       background-color: $button-bg-danger-active;
     }

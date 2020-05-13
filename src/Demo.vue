@@ -1,6 +1,10 @@
 <template>
   <div style="padding:100px">
     <woo-button icon-name="right">BUTTON</woo-button>
+    <woo-button type="primary" icon-name="right">BUTTON</woo-button>
+    <woo-button type="success" icon-name="right">BUTTON</woo-button>
+    <woo-button type="danger" icon-name="right">BUTTON</woo-button>
+    <woo-button type="warn" icon-name="right">BUTTON</woo-button>
     <p>111111111111</p>
     <woo-cascader :source="source"></woo-cascader>
     <p>111111111111</p>
@@ -292,4 +296,23 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "_var";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::before {
+  box-sizing: border-box;
+}
+*::after {
+  box-sizing: border-box;
+}
+#app {
+  padding: 20px;
+}
+html {
+  font-size: $font-size;
+}
+</style>
