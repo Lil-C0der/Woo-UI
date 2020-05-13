@@ -1,14 +1,14 @@
 <template>
   <div style="padding:20px">
     <div style="margin:20px 0">
-      <woo-input></woo-input>
+      <!-- <woo-input></woo-input> -->
     </div>
     <woo-cascader :source="source"></woo-cascader>
   </div>
 </template>
 
 <script>
-import Input from "./Input.vue";
+// import Input from "./Input.vue";
 import Cascader from "./Cascader";
 
 export default {
@@ -70,7 +70,7 @@ export default {
   },
   components: {
     "woo-cascader": Cascader,
-    "woo-input": Input,
+    // "woo-input": Input,
   },
   methods: {},
 };

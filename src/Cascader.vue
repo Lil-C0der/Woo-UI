@@ -4,14 +4,8 @@
       <woo-input class="woo-cascader-picker" @click.native="handleClick" />
       <div class="woo-cascader-popper" v-show="popperVisible">
         <div>
-          {{ source[0].label }}
+          <woo-cascader-menu :items="source"></woo-cascader-menu>
         </div>
-        <div>
-          {{ source[1].label }}
-        </div>
-        <!-- <ul class="woo-cascader-menu" v-for="i in source" :key="i.value">
-          <cascader-menu-item :source-item="i"></cascader-menu-item>
-        </ul> -->
       </div>
     </div>
     <slot></slot>
@@ -19,12 +13,12 @@
 </template>
 
 <script>
-// import CascaderMenuItem from "./CascaderMenuItem";
+import CascaderMenu from "./CascaderMenu";
 
 export default {
   name: "woo-cascader",
   components: {
-    // CascaderMenuItem,
+    "woo-cascader-menu": CascaderMenu,
   },
   props: {
     source: {
@@ -34,11 +28,21 @@ export default {
   data() {
     return {
       popperVisible: false,
+      level1Item: null,
     };
   },
   methods: {
     handleClick() {
       this.popperVisible = !this.popperVisible;
+    },
+    selectLevel1(e) {
+      this.level1Item = e.target.innerText;
+    },
+  },
+  computed: {
+    levelItems() {
+      const obj = this.source.find((n) => n.label === this.level1Item) ?? [];
+      return obj.children;
     },
   },
 };
@@ -54,12 +58,10 @@ export default {
   .woo-cascader-picker {
   }
   .woo-cascader-popper {
-    border: 1px solid red;
-    height: 20px;
-    width: 200%;
-  }
-  ul {
-    list-style: none;
+    height: 200px;
+    position: relative;
+    left: 0;
+    top: 0;
   }
 }
 </style>
