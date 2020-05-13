@@ -135,7 +135,7 @@ export default {
     }
     &:focus {
       border-color: $border-color-hover;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset;
+      box-shadow: $input-box-shadow;
     }
     &[disabled],
     &[readonly] {

@@ -156,7 +156,7 @@ export default {
   color: #ffffff;
   border-radius: 4px;
   background-color: $toast-bg;
-  box-shadow: 0 0 3px 0 rgba($color: #000000, $alpha: 0.5);
+  box-shadow: $toast-box-shadow;
   z-index: 999;
   &.top-toast {
     animation: top-slide-in 0.6s;
