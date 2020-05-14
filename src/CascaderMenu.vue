@@ -9,7 +9,7 @@
         :key="item.value"
       >
         <span class="cascader-menu-item-text">
-          {{ item.label }}
+          {{ item.name }}
         </span>
         <woo-icon
           v-if="item.children"
@@ -55,9 +55,9 @@ export default {
   },
   methods: {
     handleItemClick(i) {
-      console.log(this.selected);
       let copy = JSON.parse(JSON.stringify(this.selected));
       copy[this.level] = i;
+      copy.splice(this.level + 1);
       this.selectedItems = copy;
       this.$emit("itemChange", copy);
     },

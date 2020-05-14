@@ -3,9 +3,10 @@
     <div class="woo-cascader-wrapper">
       <woo-input
         readonly
+        :value="inputVal"
         ref="inputRef"
         class="woo-cascader-picker"
-        @click.native="handleClick"
+        @click.native.stop="handleClick"
       />
       <div class="woo-cascader-popper" v-show="popperVisible">
         <woo-cascader-menu
@@ -49,18 +50,24 @@ export default {
   methods: {
     handleClick() {
       this.popperVisible = !this.popperVisible;
+      document.addEventListener("click", () => {
+        this.popperVisible = false;
+      });
     },
     handleItemChange(arr) {
-      this.$emit("change", arr);
+      console.log(arr.map((n) => n.label));
+      const str1 = this.selected.map((n) => n.value).toString();
+      const str2 = arr.map((n) => n.value).toString();
+      if (str1 !== str2) {
+        this.$emit("change", arr);
+      }
     },
   },
-  watch: {
-    selected: function() {
-      // this.selectedCopy = this.selected;
-    },
-  },
+  watch: {},
   computed: {
-    selectedVal() {},
+    inputVal() {
+      return this.selected.map((n) => n.label).join(" / ");
+    },
   },
   mounted() {},
 };
@@ -79,6 +86,8 @@ export default {
     background-color: $layout-bg-color;
     border-radius: $border-radius;
     overflow: hidden;
+    max-height: 200px;
+    overflow-y: scroll;
     position: absolute;
     top: 100%;
     left: 0;
