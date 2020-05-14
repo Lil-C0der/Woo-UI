@@ -1,10 +1,11 @@
 <template>
   <div style="padding:100px">
-    <p>{{ selected.map((n) => n.label) }}</p>
+    <p>{{ selected.map((n) => n.name) }}</p>
     <woo-cascader
       v-model="selected"
       @change="xxx"
       :source="source"
+      :load-data="getData"
     ></woo-cascader>
     <p>111111111111</p>
   </div>
@@ -16,26 +17,38 @@ import Cascader from "./Cascader";
 
 import db from "./db";
 
-function foo(pid = 0) {
-  return db.filter((n) => n.p_id === pid);
+function getChildren(pid = 0) {
+  return new Promise((success, fail) => {
+    setTimeout(() => {
+      let result = db.filter((n) => n.p_id === pid);
+      result = result.length === 0 ? "" : result;
+      success(result);
+    }, 300);
+  });
 }
-
-console.log(foo());
 
 export default {
   methods: {
-    xxx() {
-      console.log("xxx");
+    xxx() {},
+    getData(node, callback) {
+      const { name, id, p_id } = node;
+      getChildren(id).then((res) => {
+        callback(res);
+        console.log(this.source[0]);
+      });
     },
   },
   data() {
     return {
       selected: [],
-      // selected: ["zhinan", "shejiyuanze", "yizhi"],
-      source: foo(),
+      source: [],
     };
   },
-
+  mounted() {
+    getChildren().then((res) => {
+      this.source = res;
+    });
+  },
   components: {
     "woo-cascader": Cascader,
     "woo-button": Button,

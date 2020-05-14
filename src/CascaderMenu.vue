@@ -10,6 +10,7 @@
       >
         <span class="cascader-menu-item-text">
           {{ item.name }}
+          <!-- {{ item.label }} -->
         </span>
         <woo-icon
           v-if="item.children"
@@ -67,8 +68,9 @@ export default {
   },
   computed: {
     childrenItems() {
-      let currentSelectedItem = this.selected[this.level];
-      return currentSelectedItem?.children;
+      // let currentSelectedItem = this.selected[this.level];
+      // return currentSelectedItem?.children;
+      return this.selected[this.level]?.children;
     },
   },
   watch: {
@@ -103,6 +105,9 @@ export default {
     padding: 0;
     min-width: 136px;
     border-right: 1px solid $border-color-light;
+    min-height: 120px;
+    max-height: 200px;
+    overflow-y: auto;
     .woo-cascader-menu-item {
       overflow: hidden;
       list-style: none;

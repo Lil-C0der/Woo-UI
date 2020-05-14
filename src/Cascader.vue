@@ -40,6 +40,10 @@ export default {
     source: {
       type: Array,
     },
+    // 动态加载数据源的方法
+    loadData: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -50,15 +54,22 @@ export default {
   methods: {
     handleClick() {
       this.popperVisible = !this.popperVisible;
-      document.addEventListener("click", () => {
-        this.popperVisible = false;
-      });
     },
     handleItemChange(arr) {
-      console.log(arr.map((n) => n.label));
-      const str1 = this.selected.map((n) => n.value).toString();
-      const str2 = arr.map((n) => n.value).toString();
+      // const str1 = this.selected.map((n) => n.value).toString();
+      // const str2 = arr.map((n) => n.value).toString();
+      const str1 = this.selected.map((n) => n.id).toString();
+      const str2 = arr.map((n) => n.id).toString();
       if (str1 !== str2) {
+        console.log(arr);
+        const lastItem = arr[arr.length - 1];
+        const updateChildren = (res) => {
+          const item = this.source.filter((i) => i.id === lastItem.id)[0];
+          console.log(item);
+          console.log(lastItem);
+          this.$set(lastItem, "children", res);
+        };
+        this.loadData(lastItem, updateChildren);
         this.$emit("change", arr);
       }
     },
@@ -66,7 +77,7 @@ export default {
   watch: {},
   computed: {
     inputVal() {
-      return this.selected.map((n) => n.label).join(" / ");
+      return this.selected.map((n) => n.name).join(" / ");
     },
   },
   mounted() {},
@@ -86,8 +97,6 @@ export default {
     background-color: $layout-bg-color;
     border-radius: $border-radius;
     overflow: hidden;
-    max-height: 200px;
-    overflow-y: scroll;
     position: absolute;
     top: 100%;
     left: 0;
