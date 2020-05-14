@@ -1,12 +1,11 @@
 <template>
   <div style="padding:100px">
-    <woo-button icon-name="right">BUTTON</woo-button>
-    <woo-button type="primary" icon-name="right">BUTTON</woo-button>
-    <woo-button type="success" icon-name="right">BUTTON</woo-button>
-    <woo-button type="danger" icon-name="right">BUTTON</woo-button>
-    <woo-button type="warn" icon-name="right">BUTTON</woo-button>
-    <p>111111111111</p>
-    <woo-cascader :source="source"></woo-cascader>
+    <p>{{ selected }}</p>
+    <woo-cascader
+      v-model="selected"
+      @change="xxx"
+      :source="source"
+    ></woo-cascader>
     <p>111111111111</p>
   </div>
 </template>
@@ -16,8 +15,15 @@ import Button from "./Button.vue";
 import Cascader from "./Cascader";
 
 export default {
+  methods: {
+    xxx() {
+      // console.log();
+    },
+  },
   data() {
     return {
+      selected: [],
+      // selected: ["zhinan", "shejiyuanze", "yizhi"],
       source: [
         {
           value: "zhinan",
@@ -288,11 +294,11 @@ export default {
       ],
     };
   },
+
   components: {
     "woo-cascader": Cascader,
     "woo-button": Button,
   },
-  methods: {},
 };
 </script>
 

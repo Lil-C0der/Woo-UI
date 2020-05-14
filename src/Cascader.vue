@@ -1,9 +1,18 @@
 <template>
   <div class="woo-cascader">
     <div class="woo-cascader-wrapper">
-      <woo-input class="woo-cascader-picker" @click.native="handleClick" />
+      <woo-input
+        readonly
+        ref="inputRef"
+        class="woo-cascader-picker"
+        @click.native="handleClick"
+      />
       <div class="woo-cascader-popper" v-show="popperVisible">
-        <woo-cascader-menu :items="source"></woo-cascader-menu>
+        <woo-cascader-menu
+          :items="source"
+          :selected="selected"
+          @itemChange="handleItemChange"
+        ></woo-cascader-menu>
       </div>
     </div>
     <slot></slot>
@@ -18,7 +27,15 @@ export default {
   components: {
     "woo-cascader-menu": CascaderMenu,
   },
+  model: {
+    prop: "selected",
+    event: "change",
+  },
   props: {
+    selected: {
+      type: Array,
+      default: () => [],
+    },
     source: {
       type: Array,
     },
@@ -26,14 +43,26 @@ export default {
   data() {
     return {
       popperVisible: false,
+      selectedCopy: this.selected,
     };
   },
   methods: {
     handleClick() {
       this.popperVisible = !this.popperVisible;
     },
+    handleItemChange(arr) {
+      this.$emit("change", arr);
+    },
   },
-  computed: {},
+  watch: {
+    selected: function() {
+      // this.selectedCopy = this.selected;
+    },
+  },
+  computed: {
+    selectedVal() {},
+  },
+  mounted() {},
 };
 </script>
 
@@ -50,7 +79,6 @@ export default {
     background-color: $layout-bg-color;
     border-radius: $border-radius;
     overflow: hidden;
-    // border-right: none;
     position: absolute;
     top: 100%;
     left: 0;

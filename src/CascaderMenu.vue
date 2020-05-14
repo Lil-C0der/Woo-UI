@@ -1,11 +1,11 @@
 <template>
   <div class="woo-cascader-menu-wrapper">
+    <div>{{ level }}</div>
     <ul class="woo-cascader-menu-left">
       <li
         class="woo-cascader-menu-item"
-        @click="handleItemClick"
+        @click="handleItemClick(item)"
         v-for="item in items"
-        :data-isLeaf="item.children"
         :key="item.value"
       >
         <span class="cascader-menu-item-text">
@@ -20,6 +20,9 @@
     </ul>
     <woo-cascader-menu
       :items="childrenItems"
+      :level="level + 1"
+      :selected="selected"
+      @itemChange="handleItemChange"
       v-if="childrenItems"
     ></woo-cascader-menu>
   </div>
@@ -32,41 +35,51 @@ import CascaderMenu from "./CascaderMenu";
 export default {
   name: "woo-cascader-menu",
   props: {
+    selected: {
+      type: Array,
+      default: () => [],
+    },
     items: {
       type: Array,
+    },
+    level: {
+      type: Number,
+      default: 0,
     },
   },
   data() {
     return {
-      selectedItem: null,
-      selectedItemLabel: null,
-      isActive: false,
-      isLeaf: false,
+      selectedCopy: this.selected,
+      selectedItems: this.selected,
     };
   },
   methods: {
-    handleItemClick(e) {
-      // handleItemClick(item) {
-      this.selectedItemLabel = e.target.innerText;
-      // console.log(this.selectedItemLabel);
-      // this.selectedItem = item;
-      // console.log(this.selectedItem);
-      // this.isActive = true;
+    handleItemClick(i) {
+      console.log(this.selected);
+      let copy = JSON.parse(JSON.stringify(this.selected));
+      copy[this.level] = i;
+      this.selectedItems = copy;
+      this.$emit("itemChange", copy);
+    },
+    handleItemChange(newArr) {
+      this.$emit("itemChange", newArr);
     },
   },
   computed: {
     childrenItems() {
-      const obj =
-        this.items.find((n) => n.label === this.selectedItemLabel) ?? [];
-      return obj.children;
-      // return this.selectedItem?.children;
+      let currentSelectedItem = this.selected[this.level];
+      return currentSelectedItem?.children;
+    },
+  },
+  watch: {
+    selected: function() {
+      this.selectedCopy = this.selected;
     },
   },
   components: {
     "woo-icon": Icon,
     "woo-cascader-menu": CascaderMenu,
   },
-  mounted() {},
 };
 </script>
 
