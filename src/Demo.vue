@@ -21,6 +21,15 @@ function getChildren(pid = 0) {
     setTimeout(() => {
       let result = db.filter((n) => n.p_id === pid);
       result = result.length === 0 ? "" : result;
+      if (result) {
+        result.map((n) => {
+          if (db.filter((i) => i.p_id === n.id).length) {
+            n.isLeaf = false;
+          } else {
+            n.isLeaf = true;
+          }
+        });
+      }
       success(result);
     }, 300);
   });
@@ -49,6 +58,7 @@ export default {
   mounted() {
     getChildren().then((res) => {
       this.source = res;
+      console.log(res);
     });
   },
   components: {

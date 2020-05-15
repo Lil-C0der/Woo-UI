@@ -13,7 +13,7 @@
           <!-- {{ item.label }} -->
         </span>
         <woo-icon
-          v-if="item.children"
+          v-if="item.isLeaf === false || item.children"
           name="right"
           class="item-icon"
         ></woo-icon>
