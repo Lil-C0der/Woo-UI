@@ -68,9 +68,10 @@ export default {
   },
   computed: {
     childrenItems() {
-      // let currentSelectedItem = this.selected[this.level];
-      // return currentSelectedItem?.children;
-      return this.selected[this.level]?.children;
+      const item = this.items.find(
+        (i) => i.id === this.selected[this.level]?.id
+      );
+      return item?.children;
     },
   },
   watch: {

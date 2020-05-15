@@ -4,10 +4,9 @@
     <woo-cascader
       v-model="selected"
       @change="xxx"
-      :source="source"
+      :source.sync="source"
       :load-data="getData"
     ></woo-cascader>
-    <p>111111111111</p>
   </div>
 </template>
 
@@ -29,7 +28,10 @@ function getChildren(pid = 0) {
 
 export default {
   methods: {
-    xxx() {},
+    xxx(v) {
+      console.log("change");
+    },
+
     getData(node, callback) {
       const { name, id, p_id } = node;
       getChildren(id).then((res) => {
@@ -41,6 +43,7 @@ export default {
     return {
       selected: [],
       source: [],
+      key: "tab 2",
     };
   },
   mounted() {

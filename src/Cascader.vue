@@ -64,7 +64,7 @@ export default {
         const lastItem = arr[arr.length - 1];
 
         let simple = (children, id) => {
-          return children.filter((i) => i.id === id)[0];
+          return children.find((i) => i.id === id);
         };
         let complex = (children, id, p_id) => {
           let noChildren = [];
@@ -76,10 +76,6 @@ export default {
               noChildren.push(i);
             }
           });
-          if (!noChildren.length && !hasChildren.length) {
-            console.log("000");
-            return false;
-          }
           let item = simple(noChildren, id);
           if (item) {
             return item;
@@ -103,8 +99,10 @@ export default {
           if (!res) {
             return false;
           }
-          const toUpdateItem = complex(this.source, lastItem.id, lastItem.p_id);
-          this.$set(toUpdateItem, "children", res);
+          const copy = JSON.parse(JSON.stringify(this.source));
+          const toUpdateItem = complex(copy, lastItem.id, lastItem.p_id);
+          toUpdateItem.children = res;
+          this.$emit("update:source", copy);
         };
         this.loadData(lastItem, updateChildren);
         this.$emit("change", arr);
