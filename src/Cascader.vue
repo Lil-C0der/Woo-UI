@@ -61,13 +61,50 @@ export default {
       const str1 = this.selected.map((n) => n.id).toString();
       const str2 = arr.map((n) => n.id).toString();
       if (str1 !== str2) {
-        console.log(arr);
         const lastItem = arr[arr.length - 1];
+
+        let simple = (children, id) => {
+          return children.filter((i) => i.id === id)[0];
+        };
+        let complex = (children, id, p_id) => {
+          let noChildren = [];
+          let hasChildren = [];
+          children.forEach((i) => {
+            if (i.children) {
+              hasChildren.push(i);
+            } else {
+              noChildren.push(i);
+            }
+          });
+          if (!noChildren.length && !hasChildren.length) {
+            console.log("000");
+            return false;
+          }
+          let item = simple(noChildren, id);
+          if (item) {
+            return item;
+          } else {
+            let item = simple(hasChildren, id);
+            if (item) {
+              return item;
+            } else {
+              for (let i = 0; i < hasChildren.length; i++) {
+                let item = complex(hasChildren[i].children, id);
+                if (item) {
+                  return item;
+                }
+              }
+              return undefined;
+            }
+          }
+        };
+
         const updateChildren = (res) => {
-          const item = this.source.filter((i) => i.id === lastItem.id)[0];
-          console.log(item);
-          console.log(lastItem);
-          this.$set(lastItem, "children", res);
+          if (!res) {
+            return false;
+          }
+          const toUpdateItem = complex(this.source, lastItem.id, lastItem.p_id);
+          this.$set(toUpdateItem, "children", res);
         };
         this.loadData(lastItem, updateChildren);
         this.$emit("change", arr);

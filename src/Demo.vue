@@ -34,7 +34,6 @@ export default {
       const { name, id, p_id } = node;
       getChildren(id).then((res) => {
         callback(res);
-        console.log(this.source[0]);
       });
     },
   },
