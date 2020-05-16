@@ -1,12 +1,11 @@
 <template>
-  <div class="woo-cascader">
+  <div class="woo-cascader" @click="handleClick">
     <div class="woo-cascader-wrapper">
       <woo-input
         readonly
         :value="inputVal"
         ref="inputRef"
         class="woo-cascader-picker"
-        @click.native.stop="handleClick"
       />
       <div class="woo-cascader-popper" v-show="popperVisible">
         <woo-cascader-menu
@@ -53,11 +52,22 @@ export default {
   },
   methods: {
     handleClick() {
-      this.popperVisible = !this.popperVisible;
+      if (!this.popperVisible) {
+        this.showPopper();
+      } else this.hidePopper();
+    },
+    showPopper() {
+      this.popperVisible = true;
+      setTimeout(() => {
+        document.addEventListener("click", this.hidePopper);
+      }, 0);
+    },
+    hidePopper() {
+      console.log("关闭了");
+      document.removeEventListener("click", this.hidePopper);
+      this.popperVisible = false;
     },
     handleItemChange(arr) {
-      // const str1 = this.selected.map((n) => n.value).toString();
-      // const str2 = arr.map((n) => n.value).toString();
       const str1 = this.selected.map((n) => n.id).toString();
       const str2 = arr.map((n) => n.id).toString();
       if (str1 !== str2) {
@@ -104,7 +114,7 @@ export default {
           toUpdateItem.children = res;
           this.$emit("update:source", copy);
         };
-        this.loadData(lastItem, updateChildren);
+        this.loadData && this.loadData(lastItem, updateChildren);
         this.$emit("change", arr);
       }
     },
@@ -124,6 +134,8 @@ export default {
 
 .woo-cascader {
   position: relative;
+  display: inline-block;
+  border: 1px solid red;
   .woo-cascader-wrapper {
     height: 100%;
   }

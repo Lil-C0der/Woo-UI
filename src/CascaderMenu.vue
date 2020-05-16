@@ -4,16 +4,15 @@
     <ul class="woo-cascader-menu-left">
       <li
         class="woo-cascader-menu-item"
-        @click="handleItemClick(item)"
+        @click.stop="handleItemClick(item)"
         v-for="item in items"
         :key="item.value"
       >
         <span class="cascader-menu-item-text">
           {{ item.name }}
-          <!-- {{ item.label }} -->
         </span>
         <woo-icon
-          v-if="item.isLeaf === false || item.children"
+          v-if="arrowVisible(item)"
           name="right"
           class="item-icon"
         ></woo-icon>
@@ -64,6 +63,12 @@ export default {
     },
     handleItemChange(newArr) {
       this.$emit("itemChange", newArr);
+    },
+    // 控制小箭头的显示
+    arrowVisible(item) {
+      if ("isLeaf" in item) {
+        return !item.isLeaf;
+      } else return item.children;
     },
   },
   computed: {
@@ -117,6 +122,7 @@ export default {
       justify-content: center;
       align-items: center;
       vertical-align: bottom;
+      user-select: none;
       .cascader-menu-item-text {
         padding: 0 1em 0 0.3em;
         flex: 1;
