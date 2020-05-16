@@ -32,16 +32,4 @@ export default {
   fill: currentColor;
   overflow: hidden;
 }
-@keyframes spin {
-  0% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.woo-icon-loading {
-  animation: spin 0.8s linear infinite;
-}
 </style>

@@ -45,3 +45,13 @@ $bg-disabled: #ebebeb;
 
 $toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

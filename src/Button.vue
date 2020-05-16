@@ -157,5 +157,9 @@ export default {
       order: 1;
     }
   }
+
+  .woo-icon-loading {
+    animation: spin 0.8s linear infinite;
+  }
 }
 </style>
