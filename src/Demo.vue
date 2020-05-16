@@ -5,15 +5,6 @@
       v-model="selected"
       @change="xxx"
       @click="yyy"
-      @visible-change="zzz"
-      :source.sync="source"
-    ></woo-cascader>
-
-    <p>{{ selected.map((n) => n.name) }}</p>
-    <woo-cascader
-      v-model="selected"
-      @change="xxx"
-      @click="yyy"
       :source.sync="source"
     ></woo-cascader>
 
@@ -22,7 +13,7 @@
         <template v-slot:content>
           <span>pop</span>
         </template>
-        <woo-button>button</woo-button>
+        <woo-button @click="yyy">button</woo-button>
       </woo-popover>
     </div>
   </div>
@@ -51,20 +42,15 @@ function getChildren(pid = 0) {
         });
       }
       success(result);
-    }, 300);
+    }, 1000);
   });
 }
 
 export default {
   methods: {
-    xxx(v) {
-      console.log("change");
-    },
+    xxx(v) {},
     yyy() {
-      console.log("yyy");
-    },
-    zzz(v) {
-      console.log(v);
+      this.selected = [];
     },
     getData(node, callback) {
       const { name, id, p_id } = node;
@@ -76,8 +62,8 @@ export default {
   data() {
     return {
       // source: [],
-      // selected: ["zhinan", "shejiyuanze", "yizhi"],
-      selected: [],
+      // selected: [],
+      selected: ["zhinan", "shejiyuanze", "yizhi"],
       source: [
         {
           id: "zhinan",

@@ -10,7 +10,7 @@
       <div class="woo-cascader-popper" v-show="popperVisible">
         <woo-cascader-menu
           :items="source"
-          :selected="selected"
+          :selected-items="selectedItems"
           @itemChange="handleItemChange"
         ></woo-cascader-menu>
       </div>
@@ -38,6 +38,7 @@ export default {
     clickOutside,
   },
   props: {
+    // id
     selected: {
       type: Array,
       default: () => [],
@@ -53,7 +54,8 @@ export default {
   data() {
     return {
       popperVisible: false,
-      selectedCopy: this.selected,
+      // obj
+      selectedItems: [],
     };
   },
   methods: {
@@ -70,15 +72,15 @@ export default {
     hidePopper() {
       this.popperVisible = false;
     },
-    handleItemChange(arr) {
-      const str1 = this.selected.map((n) => n.id).toString();
-      const str2 = arr.map((n) => n.id).toString();
+    handleItemChange(itemsArr) {
+      const str1 = this.selected.toString();
+      const str2 = itemsArr.toString();
       if (str1 !== str2) {
-        const lastItem = arr[arr.length - 1];
+        const lastItem = itemsArr[itemsArr.length - 1];
         let simple = (children, id) => {
           return children.find((i) => i.id === id);
         };
-        let complex = (children, id, p_id) => {
+        let complex = (children, id) => {
           let noChildren = [];
           let hasChildren = [];
           children.forEach((i) => {
@@ -106,30 +108,56 @@ export default {
             }
           }
         };
-
         const updateChildren = (res) => {
-          if (!res) {
-            return false;
-          }
-          const copy = JSON.parse(JSON.stringify(this.source));
-          const toUpdateItem = complex(copy, lastItem.id, lastItem.p_id);
-          toUpdateItem.children = res;
-          this.$emit("update:source", copy);
+          if (res) {
+            const copy = JSON.parse(JSON.stringify(this.source));
+            const toUpdateItem = complex(copy, lastItem.id);
+            toUpdateItem.children = res;
+            this.$emit("update:source", copy);
+          } else return false;
         };
+        this.selectedItems = itemsArr;
         this.loadData && this.loadData(lastItem, updateChildren);
-        this.$emit("change", arr);
+        this.$emit(
+          "change",
+          itemsArr.map((n) => n.id)
+        );
+        console.log(this.selectedItems);
       }
+    },
+    getItems(items, ids) {
+      this.selectedItems = [];
+      const getItemById = (items, ids) => {
+        const idsCopy = ids.slice(0);
+        const item = items.find((i) => idsCopy.includes(i.id));
+        if (item) {
+          idsCopy.splice(idsCopy.indexOf(item.id), 1);
+          this.selectedItems.push(item);
+          if (item.children) {
+            getItemById(item.children, idsCopy);
+          } else return false;
+        } else return false;
+      };
+      getItemById(items, ids);
     },
   },
   watch: {
     popperVisible: function(visible) {
       this.$emit("visible-change", visible);
     },
+    selected: function() {
+      this.getItems(this.source, this.selected);
+    },
   },
   computed: {
     inputVal() {
-      return this.selected.map((n) => n.name).join(" / ");
+      return this.selectedItems?.map((i) => i.name).join(" / ");
     },
+  },
+  mounted() {
+    if (this.selected.length) {
+      this.getItems(this.source, this.selected);
+    }
   },
   beforeDestroy() {
     removeListener();
@@ -143,7 +171,6 @@ export default {
 .woo-cascader {
   position: relative;
   display: inline-block;
-  border: 1px solid red;
   .woo-cascader-wrapper {
     height: 100%;
   }

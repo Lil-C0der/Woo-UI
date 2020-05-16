@@ -1,6 +1,5 @@
 <template>
   <div class="woo-cascader-menu-wrapper">
-    <div>{{ level }}</div>
     <ul class="woo-cascader-menu-left">
       <li
         class="woo-cascader-menu-item"
@@ -21,7 +20,7 @@
     <woo-cascader-menu
       :items="childrenItems"
       :level="level + 1"
-      :selected="selected"
+      :selected-items="selectedItems"
       @itemChange="handleItemChange"
       v-if="childrenItems"
     ></woo-cascader-menu>
@@ -35,6 +34,10 @@ import CascaderMenu from "./CascaderMenu";
 export default {
   name: "woo-cascader-menu",
   props: {
+    selectedItems: {
+      type: Array,
+      default: () => [],
+    },
     selected: {
       type: Array,
       default: () => [],
@@ -48,17 +51,13 @@ export default {
     },
   },
   data() {
-    return {
-      selectedCopy: this.selected,
-      selectedItems: this.selected,
-    };
+    return {};
   },
   methods: {
     handleItemClick(i) {
-      let copy = JSON.parse(JSON.stringify(this.selected));
+      let copy = JSON.parse(JSON.stringify(this.selectedItems));
       copy[this.level] = i;
       copy.splice(this.level + 1);
-      this.selectedItems = copy;
       this.$emit("itemChange", copy);
     },
     handleItemChange(newArr) {
@@ -74,7 +73,7 @@ export default {
   computed: {
     childrenItems() {
       const item = this.items.find(
-        (i) => i.id === this.selected[this.level]?.id
+        (i) => i.id === this.selectedItems[this.level]?.id
       );
       return item?.children;
     },
