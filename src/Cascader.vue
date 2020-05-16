@@ -7,9 +7,11 @@
         ref="inputRef"
         class="woo-cascader-picker"
       />
+      <div class="popper-arrow" v-show="popperVisible"></div>
       <div class="woo-cascader-popper" v-show="popperVisible">
         <woo-cascader-menu
           :items="source"
+          :selected="selected"
           :selected-items="selectedItems"
           :loading-item="loadingItem"
           @itemChange="handleItemChange"
@@ -180,6 +182,8 @@ export default {
   display: inline-block;
   .woo-cascader-wrapper {
     height: 100%;
+    .woo-cascader-picker {
+    }
   }
   .woo-cascader-popper {
     border: 1px solid $border-color;
@@ -192,7 +196,28 @@ export default {
     transform: translateY(10px);
     z-index: 97;
     box-shadow: $cascader-box-shadow;
-    // filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.15));
+  }
+  .popper-arrow {
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top: 0;
+    border-bottom-color: $border-color;
+    position: absolute;
+    z-index: 98;
+    left: 10px;
+    top: 100%;
+    transform: translateY(2px);
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      border: 8px solid transparent;
+      border-top: 0;
+      border-bottom-color: $layout-bg-color;
+      transform: translate(-8px, 1px);
+    }
   }
 }
 </style>

@@ -3,6 +3,7 @@
     <ul class="woo-cascader-menu-left">
       <li
         class="woo-cascader-menu-item"
+        :class="selectedItem(item)"
         @click.stop="handleItemClick(item)"
         v-for="item in items"
         :key="item.value"
@@ -27,6 +28,7 @@
     <woo-cascader-menu
       :items="childrenItems"
       :level="level + 1"
+      :selected="selected"
       :selected-items="selectedItems"
       :loading-item="loadingItem"
       @itemChange="handleItemChange"
@@ -91,6 +93,13 @@ export default {
       // 不为叶子节点 且当前 item 为 loadingItem
       return this.arrowVisible(item) && this.loadingItem.id === item.id;
     },
+    // 是否为选中项
+    selectedItem(item) {
+      const { selected, level } = this;
+      if (selected[level] === item.id) {
+        return "selected-item";
+      }
+    },
   },
   computed: {
     childrenItems() {
@@ -121,7 +130,6 @@ export default {
   justify-content: flex-start;
   color: $color-black;
   font-size: $font-size;
-  overflow: hidden;
   .woo-cascader-menu-left:last-child {
     border-right: none;
   }
@@ -131,6 +139,7 @@ export default {
     margin: 0;
     padding: 0;
     min-width: 136px;
+    white-space: nowrap;
     border-right: 1px solid $border-color-light;
     min-height: 120px;
     max-height: 200px;
@@ -161,6 +170,9 @@ export default {
       &.cascader-menu-item-active {
         background-color: $button-bg-active;
       }
+    }
+    .selected-item {
+      background-color: $button-bg-active;
     }
   }
 }
