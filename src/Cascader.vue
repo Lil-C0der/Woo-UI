@@ -1,5 +1,5 @@
 <template>
-  <div class="woo-cascader" @click="handleClick">
+  <div class="woo-cascader" @click="handleClick" v-click-outside="hidePopper">
     <div class="woo-cascader-wrapper">
       <woo-input
         readonly
@@ -22,6 +22,9 @@
 <script>
 import CascaderMenu from "./CascaderMenu";
 
+import clickOutside from "./click-outside.js";
+import { removeListener } from "./click-outside.js";
+
 export default {
   name: "woo-cascader",
   components: {
@@ -30,6 +33,9 @@ export default {
   model: {
     prop: "selected",
     event: "change",
+  },
+  directives: {
+    clickOutside,
   },
   props: {
     selected: {
@@ -54,17 +60,14 @@ export default {
     handleClick() {
       if (!this.popperVisible) {
         this.showPopper();
-      } else this.hidePopper();
+      } else {
+        this.hidePopper();
+      }
     },
     showPopper() {
       this.popperVisible = true;
-      setTimeout(() => {
-        document.addEventListener("click", this.hidePopper);
-      }, 0);
     },
     hidePopper() {
-      console.log("关闭了");
-      document.removeEventListener("click", this.hidePopper);
       this.popperVisible = false;
     },
     handleItemChange(arr) {
@@ -72,7 +75,6 @@ export default {
       const str2 = arr.map((n) => n.id).toString();
       if (str1 !== str2) {
         const lastItem = arr[arr.length - 1];
-
         let simple = (children, id) => {
           return children.find((i) => i.id === id);
         };
@@ -119,13 +121,19 @@ export default {
       }
     },
   },
-  watch: {},
+  watch: {
+    popperVisible: function(visible) {
+      this.$emit("visible-change", visible);
+    },
+  },
   computed: {
     inputVal() {
       return this.selected.map((n) => n.name).join(" / ");
     },
   },
-  mounted() {},
+  beforeDestroy() {
+    removeListener();
+  },
 };
 </script>
 

@@ -88,7 +88,7 @@ export default {
         }
       });
     },
-    //  触发器被点击
+    // 触发器被点击
     handleTriggerClick() {
       if (!this.visibleCopy) {
         this.showPopover();

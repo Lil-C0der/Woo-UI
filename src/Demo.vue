@@ -4,8 +4,19 @@
     <woo-cascader
       v-model="selected"
       @change="xxx"
+      @click="yyy"
+      @visible-change="zzz"
       :source.sync="source"
     ></woo-cascader>
+
+    <p>{{ selected.map((n) => n.name) }}</p>
+    <woo-cascader
+      v-model="selected"
+      @change="xxx"
+      @click="yyy"
+      :source.sync="source"
+    ></woo-cascader>
+
     <div style="margin:100px">
       <woo-popover>
         <template v-slot:content>
@@ -49,7 +60,12 @@ export default {
     xxx(v) {
       console.log("change");
     },
-
+    yyy() {
+      console.log("yyy");
+    },
+    zzz(v) {
+      console.log(v);
+    },
     getData(node, callback) {
       const { name, id, p_id } = node;
       getChildren(id).then((res) => {
