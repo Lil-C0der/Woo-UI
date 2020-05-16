@@ -11,6 +11,7 @@
         <woo-cascader-menu
           :items="source"
           :selected-items="selectedItems"
+          :loading-item="loadingItem"
           @itemChange="handleItemChange"
         ></woo-cascader-menu>
       </div>
@@ -56,6 +57,8 @@ export default {
       popperVisible: false,
       // obj
       selectedItems: [],
+      // 正在加载的item
+      loadingItem: {},
     };
   },
   methods: {
@@ -72,11 +75,11 @@ export default {
     hidePopper() {
       this.popperVisible = false;
     },
-    handleItemChange(itemsArr) {
+    handleItemChange(items) {
       const str1 = this.selected.toString();
-      const str2 = itemsArr.toString();
+      const str2 = items.toString();
       if (str1 !== str2) {
-        const lastItem = itemsArr[itemsArr.length - 1];
+        const lastItem = items[items.length - 1];
         let simple = (children, id) => {
           return children.find((i) => i.id === id);
         };
@@ -114,15 +117,19 @@ export default {
             const toUpdateItem = complex(copy, lastItem.id);
             toUpdateItem.children = res;
             this.$emit("update:source", copy);
-          } else return false;
+            this.loadingItem = {};
+          } else {
+            this.loadingItem = {};
+            return false;
+          }
         };
-        this.selectedItems = itemsArr;
-        this.loadData && this.loadData(lastItem, updateChildren);
-        this.$emit(
-          "change",
-          itemsArr.map((n) => n.id)
-        );
-        console.log(this.selectedItems);
+        if (this.loadData) {
+          this.loadData(lastItem, updateChildren);
+          this.loadingItem = lastItem;
+        }
+        this.selectedItems = items;
+        const ids = items.map((n) => n.id);
+        this.$emit("change", ids);
       }
     },
     getItems(items, ids) {

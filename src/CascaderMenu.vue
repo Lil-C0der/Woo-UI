@@ -10,17 +10,25 @@
         <span class="cascader-menu-item-text">
           {{ item.name }}
         </span>
-        <woo-icon
-          v-if="arrowVisible(item)"
-          name="right"
-          class="item-icon"
-        ></woo-icon>
+        <!-- loading 图标 -->
+        <template v-if="loadingIconVisible(item)">
+          <woo-icon name="loading"></woo-icon>
+        </template>
+        <!-- 右箭头 -->
+        <template v-else>
+          <woo-icon
+            v-if="arrowVisible(item)"
+            name="right"
+            class="item-icon"
+          ></woo-icon>
+        </template>
       </li>
     </ul>
     <woo-cascader-menu
       :items="childrenItems"
       :level="level + 1"
       :selected-items="selectedItems"
+      :loading-item="loadingItem"
       @itemChange="handleItemChange"
       v-if="childrenItems"
     ></woo-cascader-menu>
@@ -34,20 +42,29 @@ import CascaderMenu from "./CascaderMenu";
 export default {
   name: "woo-cascader-menu",
   props: {
+    // 对象数组 选中的items
     selectedItems: {
       type: Array,
       default: () => [],
     },
+    // id数组
     selected: {
       type: Array,
       default: () => [],
     },
+    // 所有的items
     items: {
       type: Array,
     },
+    // 当前层级
     level: {
       type: Number,
       default: 0,
+    },
+    // 正在加载的item
+    loadingItem: {
+      type: Object,
+      default: () => ({}),
     },
   },
   data() {
@@ -68,6 +85,11 @@ export default {
       if ("isLeaf" in item) {
         return !item.isLeaf;
       } else return item.children;
+    },
+    // 控制 loading 图标的显示
+    loadingIconVisible(item) {
+      // 不为叶子节点 且当前 item 为 loadingItem
+      return this.arrowVisible(item) && this.loadingItem.id === item.id;
     },
   },
   computed: {
@@ -129,6 +151,9 @@ export default {
       .item-icon {
         position: relative;
         right: 0em;
+      }
+      .woo-icon-loading {
+        animation: spin 0.8s linear infinite;
       }
       &:hover {
         background-color: $button-bg-hover;
