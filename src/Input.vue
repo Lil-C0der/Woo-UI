@@ -130,6 +130,7 @@ export default {
     border-radius: $border-radius;
     color: $color-black;
     flex: 1;
+    text-overflow: ellipsis;
     &:hover {
       border-color: $border-color-hover;
     }
