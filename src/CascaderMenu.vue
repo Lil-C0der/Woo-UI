@@ -137,7 +137,7 @@ export default {
     overflow: hidden;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 2px 0;
     min-width: 136px;
     white-space: nowrap;
     border-right: 1px solid $border-color-light;

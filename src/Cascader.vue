@@ -182,8 +182,6 @@ export default {
   display: inline-block;
   .woo-cascader-wrapper {
     height: 100%;
-    .woo-cascader-picker {
-    }
   }
   .woo-cascader-popper {
     border: 1px solid $border-color;
