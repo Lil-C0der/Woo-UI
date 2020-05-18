@@ -1,6 +1,6 @@
 <template>
   <div style="padding:100px">
-    <woo-icon name="loading"></woo-icon>
+    <woo-button icon-name="settings"></woo-button>
     <p>{{ selected }}</p>
     <woo-cascader
       v-model="selected"
