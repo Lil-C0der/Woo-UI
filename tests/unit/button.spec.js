@@ -43,38 +43,35 @@ describe("Button 组件", () => {
   });
 
   // TODO Button 组件 css还没测
-  // it("默认的order为1", () => {
-  //   const wrapper = mount(Button, {
-  //     attachToDocument: true,
-  //     propsData: {
-  //       iconName: "download",
-  //     },
-  //   });
-  //   const vm = wrapper.vm;
-  //   const svgEl = vm.$el.querySelectorAll("svg");
-  //   const { order } = window.getComputedStyle(svgEl[1]);
-  // expect(order).to.eq("1");
-  // console.log(123456);
-  // console.log(window.getComputedStyle(svgEl[1]));
-  // });
+  xit("默认的order为1", () => {
+    const wrapper = mount(Button, {
+      attachToDocument: true,
+      propsData: {
+        iconName: "download",
+      },
+    });
+    const vm = wrapper.vm;
+    console.log(123456);
+    const svgEl = vm.$el.querySelector(".woo-icon-download");
+    console.log(svgEl.style);
+    console.log(window.getComputedStyle(svgEl));
+    const { order } = window.getComputedStyle(svgEl[1]);
+    expect(order).to.eq("1");
+  });
 
-  // it("设置iconPosition可以改变order", () => {
-  //   const Constructor = Vue.extend(Button);
-  //   const testBtn = new Constructor({
-  //     propsData: {
-  //       icon: "woo-icon-download",
-  //       iconPosition: "right",
-  //     },
-  //   });
-  //   const div = document.createElement("div");
-  //   document.body.appendChild(div);
-  //   testBtn.$mount(div);
-  //   const svgEl = testBtn.$el.querySelectorAll("svg");
-  //   const { order } = window.getComputedStyle(svgEl[0]);
-  //   expect(order).to.eq("2");
-  //   testBtn.$el.remove();
-  //   testBtn.$destroy();
-  // });
+  xit("设置iconPosition可以改变order", () => {
+    const wrapper = mount(Button, {
+      attachToDocument: true,
+      propsData: {
+        iconName: "download",
+        iconPosition: "right",
+      },
+    });
+    const vm = wrapper.vm;
+    const svgEl = vm.$el.querySelector(".woo-icon-download");
+    const { order } = window.getComputedStyle(svgEl);
+    expect(order).to.eq("2");
+  });
 
   it("点击button触发click事件", () => {
     const wrapper = mount(Button, {
