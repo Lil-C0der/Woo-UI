@@ -1,6 +1,6 @@
 <template>
   <div class="woo-collapse-item">
-    <div class="woo-collapse-item-name" @click="handleItemClick">
+    <div class="woo-collapse-item-header" @click="handleItemClick">
       <woo-icon
         name="right"
         class="title-icon"
@@ -60,7 +60,7 @@ export default {
 .woo-collapse-item {
   margin-top: -1px;
   color: $color-black;
-  .woo-collapse-item-name {
+  .woo-collapse-item-header {
     padding: 1em 2.5em;
     display: flex;
     align-items: center;

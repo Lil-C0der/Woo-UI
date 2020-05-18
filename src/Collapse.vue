@@ -10,11 +10,11 @@ import Vue from "vue";
 export default {
   name: "woo-collapse",
   model: {
-    prop: "activeKey",
+    prop: "activeName",
     event: "change",
   },
   props: {
-    activeKey: {
+    activeName: {
       type: [String, Array],
     },
     single: {
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       eventBus: new Vue(),
-      activeKeyCopy: this.activeKey,
+      activeNameCopy: this.activeName,
     };
   },
   provide() {
@@ -34,39 +34,48 @@ export default {
     };
   },
   methods: {
+    initActiveKey() {
+      if (!this.activeNameCopy) {
+        this.activeNameCopy = [];
+      }
+      if (typeof this.activeNameCopy === "string") {
+        this.activeNameCopy = [this.activeName];
+      }
+    },
     toggleKey(key) {
-      this.activeKeyCopy = this.activeKeyCopy === key ? null : key;
+      this.activeNameCopy = this.activeNameCopy === key ? null : key;
     },
     addKey(key) {
-      if (!this.activeKeyCopy) {
-        this.activeKeyCopy = [];
-      }
-      this.activeKeyCopy?.push(key);
+      this.activeNameCopy?.push(key);
     },
     deleteKey(key) {
-      const index = this.activeKeyCopy?.indexOf(key);
-      this.activeKeyCopy.splice(index, 1);
+      const index = this.activeNameCopy?.indexOf(key);
+      this.activeNameCopy.splice(index, 1);
     },
   },
   watch: {
-    activeKey: {
+    activeName: {
       handler: function(newVal, oldVal) {
         const str1 = [...newVal].sort().toString();
         const str2 = [...oldVal].sort().toString();
         if (str1 !== str2) {
-          this.activeKeyCopy = newVal;
+          this.activeNameCopy = newVal;
         }
       },
     },
-    activeKeyCopy: {
-      handler: function(newVal) {
+    activeNameCopy: {
+      handler: function(newVal, oldVal) {
+        if (this.single === false && typeof oldVal === "string") {
+          return false;
+        }
         this.$emit("change", newVal);
         this.eventBus.$emit("keyChange", newVal);
       },
     },
   },
   mounted() {
-    this.eventBus.$emit("keyChange", this.activeKeyCopy);
+    this.initActiveKey();
+    this.eventBus.$emit("keyChange", this.activeNameCopy);
     if (this.single) {
       this.eventBus.$on("showItem", (name) => {
         this.toggleKey(name);
