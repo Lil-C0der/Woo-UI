@@ -26,6 +26,7 @@ describe("Tabs组件", () => {
     }).to.throw();
   });
 
+  // TODO 用 vue-test-utils 优化
   it("可以设置 activeName ", () => {
     Vue.component("woo-tabs", Tabs);
     Vue.component("woo-tabs-head", TabsHead);

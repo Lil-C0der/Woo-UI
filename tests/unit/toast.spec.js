@@ -99,6 +99,7 @@ describe("Toast组件", () => {
       const spanEl = closeBtnEl.querySelector("span");
       closeBtnEl.click();
       expect(spanEl.innerHTML.trim()).to.eq("test Close");
+      // 关闭时调用 closeOption 传入的回调函数
       expect(callback).have.been.calledWith(vm);
     });
 

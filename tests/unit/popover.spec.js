@@ -31,13 +31,9 @@ describe("Popover 组件", () => {
         placement: "bottom",
       },
     });
-    const vm = wrapper.vm;
-    const contentEl = vm.$refs.contentWrapper;
-    expect(
-      contentEl
-        .querySelector(".woo-popover-arrow")
-        .classList.contains("arrow-bottom")
-    ).to.be.true;
+    const arrowWrapper = wrapper.find(".woo-popover-arrow");
+    // classes 方法 docs:https://vue-test-utils.vuejs.org/zh/api/wrapper/#classes
+    expect(arrowWrapper.classes()).to.include("arrow-bottom");
   });
 
   it("可以设置 trigger", () => {
@@ -48,20 +44,25 @@ describe("Popover 组件", () => {
       propsData: {
         trigger: "hover",
       },
+      slots: {
+        default: "<button>test button</button>",
+        content: "<div>test content</div>",
+      },
     });
     const vm = wrapper.vm;
     const contentEl = vm.$refs.contentWrapper;
-    const triggerEl = vm.$refs.triggerWrapper;
-    const myEvt1 = new Event("mouseenter");
-    const myEvt2 = new Event("mouseleave");
-    triggerEl.addEventListener("mouseenter", callback1);
-    triggerEl.addEventListener("mouseleave", callback2);
-    triggerEl.dispatchEvent(myEvt1);
-
+    const btnWrapper = wrapper.find(".trigger-wrapper");
+    const btnEl = vm.$refs.triggerWrapper;
+    btnEl.addEventListener("mouseenter", callback1);
+    btnEl.addEventListener("mouseenter", callback2);
+    // 触发事件
+    btnWrapper.trigger("mouseenter");
+    // 组件中 showPopper 函数是异步执行的
     vm.$nextTick().then(() => {
       expect(callback1).to.have.been.called;
       expect(window.getComputedStyle(contentEl).display).to.eq("block");
-      triggerEl.dispatchEvent(myEvt2);
+      // 触发 mouseleave 事件, Popper 消失
+      btnWrapper.trigger("mouseleave");
       setTimeout(() => {
         expect(callback2).to.have.been.called;
         expect(window.getComputedStyle(contentEl).display).to.eq("none");

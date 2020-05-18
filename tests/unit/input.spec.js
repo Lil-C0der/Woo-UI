@@ -60,24 +60,16 @@ describe("Input 组件", () => {
     it("支持 change/input/focus/blur 事件", () => {
       const wrapper = mount(Input, {
         attachToDocument: true,
-        propsData: {
-          error: "ERROR",
-        },
       });
       const vm = wrapper.vm;
-      const inputEl = vm.$el.querySelector("input");
+      const inputWrapper = wrapper.find("input");
       const callback = sinon.fake();
       ["change", "input", "focus", "blur"].forEach((eventName) => {
-        let myEvt = new Event(eventName);
-        Object.defineProperty(myEvt, "target", {
-          value: { value: "testVal" },
-          enumerable: false,
-          configurable: false,
-          writable: false,
-        });
+        // 设置事件的目标target docs:https://vue-test-utils.vuejs.org/zh/api/wrapper/#trigger
+        inputWrapper.element.value = "test value";
         vm.$on(eventName, callback);
-        inputEl.dispatchEvent(myEvt);
-        expect(callback).to.have.been.calledWith("testVal");
+        inputWrapper.trigger(eventName);
+        expect(callback).to.have.been.calledWith("test value");
       });
     });
   });
