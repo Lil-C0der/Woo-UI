@@ -96,6 +96,7 @@ describe("Col组件", () => {
         xxl: { span: 12, offset: 12 },
       },
     });
+    const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-xxl-12")).to.be.true;
     expect(vm.$el.classList.contains("woo-col-xxl-offset-12")).to.be.true;
   });
