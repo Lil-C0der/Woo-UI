@@ -5,7 +5,7 @@
       v-if="dangerouslyUseHTMLString"
       v-html="$slots.default"
     ></div>
-    <div class="woo-toast-text" v-else>
+    <div v-else class="woo-toast-text">
       <span>
         <slot></slot>
       </span>
@@ -84,8 +84,8 @@ export default {
   },
   methods: {
     close() {
-      // 关闭时执行回调函数
       if (typeof this.closeOption.callback === "function") {
+        // 关闭时执行回调函数
         this.closeOption?.callback(this); // this 即为当前的 toast 实例
       }
       this.$el.remove();
@@ -104,6 +104,7 @@ export default {
   mounted() {
     if (this.delay) {
       this.execAutoClose();
+      // 在 beforeDestroy 生命周期函数中清除定时器
       this.$once("hook:beforeDestroy", () => {
         clearTimeout(this.timer);
       });

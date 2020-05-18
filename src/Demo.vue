@@ -1,6 +1,6 @@
 <template>
   <div style="padding:100px">
-    <woo-button icon-name="settings"></woo-button>
+    <woo-button icon-name="settings" @click="ccc"></woo-button>
     <p>{{ selected }}</p>
     <woo-cascader
       v-model="selected"
@@ -9,14 +9,7 @@
       :source.sync="source"
     ></woo-cascader>
 
-    <div style="margin:100px">
-      <woo-popover>
-        <template v-slot:content>
-          <span>pop</span>
-        </template>
-        <woo-button @click="yyy">button</woo-button>
-      </woo-popover>
-    </div>
+    <div style="margin:100px"></div>
   </div>
 </template>
 
@@ -24,6 +17,8 @@
 import Cascader from "./Cascader";
 import Button from "./Button.vue";
 import Icon from "./Icon.vue";
+import Toast from "./Toast.vue";
+import WooPlugin from "./plugin";
 
 import Popover from "./Popover";
 
@@ -53,6 +48,11 @@ export default {
     xxx(v) {},
     yyy() {
       this.selected = [];
+    },
+    ccc() {
+      this.$toast("<i id='test'>test text</i>", {
+        dangerouslyUseHTMLString: true,
+      });
     },
     getData(node, callback) {
       const { name, id, p_id } = node;
