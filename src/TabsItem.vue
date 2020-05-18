@@ -44,12 +44,12 @@ export default {
     },
   },
   mounted() {
-    this.eventBus.$on(["tabChange"], (vm) => {
+    this.eventBus?.$on(["tabChange"], (vm) => {
       this.isActive = this.name === vm.name;
     });
   },
   beforeDestroy() {
-    this.eventBus.$off(["tabChange"]);
+    this.eventBus?.$off(["tabChange"]);
   },
 };
 </script>

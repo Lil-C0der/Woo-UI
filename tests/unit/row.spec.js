@@ -12,7 +12,7 @@ describe("Row组件", () => {
     const wrapper = mount(Row, {
       attachToDocument: true,
       slots: {
-        default: [Col],
+        default: Col,
       },
       propsData: {
         gutter: 20,

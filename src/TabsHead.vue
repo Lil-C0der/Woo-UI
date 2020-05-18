@@ -42,14 +42,14 @@ export default {
     },
   },
   mounted() {
-    this.eventBus.$on("tabChange", (vm) => {
+    this.eventBus?.$on("tabChange", (vm) => {
       this.$nextTick(() => {
         this.getSlideBarPosition(vm);
       });
     });
   },
   destroyed() {
-    this.eventBus.$off(["tabChange"]);
+    this.eventBus?.$off(["tabChange"]);
   },
 };
 </script>
