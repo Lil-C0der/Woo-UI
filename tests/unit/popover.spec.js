@@ -40,7 +40,7 @@ describe("Popover 组件", () => {
     ).to.be.true;
   });
 
-  it("可以设置 trigger", (done) => {
+  it("可以设置 trigger", () => {
     const callback1 = sinon.fake();
     const callback2 = sinon.fake();
     const wrapper = mount(Popover, {
@@ -57,14 +57,14 @@ describe("Popover 组件", () => {
     triggerEl.addEventListener("mouseenter", callback1);
     triggerEl.addEventListener("mouseleave", callback2);
     triggerEl.dispatchEvent(myEvt1);
-    vm.$nextTick(() => {
+
+    vm.$nextTick().then(() => {
       expect(callback1).to.have.been.called;
       expect(window.getComputedStyle(contentEl).display).to.eq("block");
       triggerEl.dispatchEvent(myEvt2);
       setTimeout(() => {
         expect(callback2).to.have.been.called;
         expect(window.getComputedStyle(contentEl).display).to.eq("none");
-        done();
       }, 800);
     });
   });

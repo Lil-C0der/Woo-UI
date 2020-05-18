@@ -26,7 +26,7 @@ describe("Tabs组件", () => {
     }).to.throw();
   });
 
-  it("可以设置 activeName ", (done) => {
+  it("可以设置 activeName ", () => {
     Vue.component("woo-tabs", Tabs);
     Vue.component("woo-tabs-head", TabsHead);
     Vue.component("woo-tabs-item", TabsItem);
@@ -54,10 +54,10 @@ describe("Tabs组件", () => {
       },
     });
     const vm = wrapper.vm;
-    vm.$nextTick(() => {
+
+    vm.$nextTick().then(() => {
       const tabsItemList = vm.$el.querySelectorAll(".woo-tabs-item");
       expect(tabsItemList[1].classList.contains("item-active")).to.eq(true);
-      done();
     });
   });
   // TODO isVertical
