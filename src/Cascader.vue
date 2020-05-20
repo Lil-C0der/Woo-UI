@@ -11,7 +11,7 @@
       <div class="woo-cascader-popper" v-show="popperVisible">
         <woo-cascader-menu
           :items="source"
-          :selected="selected"
+          :selected="selectedCopy"
           :selected-items="selectedItems"
           :loading-item="loadingItem"
           @itemChange="handleItemChange"
@@ -59,8 +59,10 @@ export default {
   data() {
     return {
       popperVisible: false,
-      // obj
+      // obj 数组
       selectedItems: [],
+      // id 数组
+      selectedCopy: this.selected,
       // 正在加载的item
       loadingItem: {},
     };
@@ -79,16 +81,23 @@ export default {
     hidePopper() {
       this.popperVisible = false;
     },
+    // 参数为所有选中的对象
     handleItemChange(items) {
       const str1 = this.selected.toString();
       const str2 = items.toString();
+      // 只有点击了不同选项才执行之后的操作
       if (str1 !== str2) {
         const lastItem = items[items.length - 1];
-        let simple = (children, id) => {
+        // 只遍历第一层
+        let traverse = (children, id) => {
+          // 根据 id 来查找 children 中的元素
           return children.find((i) => i.id === id);
         };
-        let complex = (children, id) => {
+        // 更深层的遍历
+        let deepTraverse = (children, id) => {
+          // 不含 children 属性的节点数组
           let noChildren = [];
+          // 含有 children 属性的节点数组
           let hasChildren = [];
           children.forEach((i) => {
             if (i.children) {
@@ -97,16 +106,19 @@ export default {
               noChildren.push(i);
             }
           });
-          let item = simple(noChildren, id);
+          // 在 noChildren 节点数组中遍历一次
+          let item = traverse(noChildren, id);
           if (item) {
             return item;
           } else {
-            let item = simple(hasChildren, id);
+            // 找不到则遍历 hasChildren 节点数组
+            let item = traverse(hasChildren, id);
             if (item) {
               return item;
             } else {
+              // 找不到则对 hasChildren 数组中每一个元素继续进行深层遍历
               for (let i = 0; i < hasChildren.length; i++) {
-                let item = complex(hasChildren[i].children, id);
+                let item = deepTraverse(hasChildren[i].children, id);
                 if (item) {
                   return item;
                 }
@@ -115,12 +127,17 @@ export default {
             }
           }
         };
+        // 动态加载子节点
         const updateChildren = (res) => {
           if (res) {
+            // 深拷贝 source 数组
             const copy = JSON.parse(JSON.stringify(this.source));
-            const toUpdateItem = complex(copy, lastItem.id);
+            // 深层遍历 根据节点的 id 来找出节点对象
+            const toUpdateItem = deepTraverse(copy, lastItem.id);
+            // 给节点对象添加 children 属性 其值为动态返回的res
             toUpdateItem.children = res;
             this.$emit("update:source", copy);
+            // 停止 loading 动画
             this.loadingItem = {};
           } else {
             this.loadingItem = {};
@@ -128,27 +145,39 @@ export default {
           }
         };
         if (this.loadData) {
+          // 调用传入的动态加载子节点函数
           this.loadData(lastItem, updateChildren);
+          // loading 动画
           this.loadingItem = lastItem;
         }
+
         this.selectedItems = items;
-        const ids = items.map((n) => n.id);
-        this.$emit("change", ids);
+        this.selectedCopy = items.map((n) => n.id);
+        // 修改对象数组
+        this.getItems(this.source, this.selectedCopy);
+        // 对外发出 change 事件 参数为所有选中项的 id 数组
+        this.$emit("change", this.selectedCopy);
       }
     },
     getItems(items, ids) {
-      this.selectedItems = [];
+      // 根据传入的 id 数组来找到与之对应的节点对象
       const getItemById = (items, ids) => {
+        // 深拷贝 id 数组
         const idsCopy = ids.slice(0);
+        // 找出对应的对象
         const item = items.find((i) => idsCopy.includes(i.id));
         if (item) {
+          // 从 id 数组中删掉已经找到的 id，避免不同层级相同 id 的情况使出现 Bug
           idsCopy.splice(idsCopy.indexOf(item.id), 1);
+          // 添加到对象数组中
           this.selectedItems.push(item);
           if (item.children) {
+            // 继续在第一级选项的 children 数组中查找下一级的对象
             getItemById(item.children, idsCopy);
           } else return false;
         } else return false;
       };
+      this.selectedItems = [];
       getItemById(items, ids);
     },
   },
@@ -157,7 +186,8 @@ export default {
       this.$emit("visible-change", visible);
     },
     selected: function() {
-      this.getItems(this.source, this.selected);
+      this.selectedCopy = this.selected;
+      this.getItems(this.source, this.selectedCopy);
     },
   },
   computed: {
