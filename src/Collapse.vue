@@ -16,6 +16,7 @@ export default {
   props: {
     activeName: {
       type: [String, Array],
+      default: () => [],
     },
     single: {
       type: Boolean,
@@ -35,42 +36,25 @@ export default {
   },
   methods: {
     initActiveKey() {
-      if (!this.activeNameCopy) {
-        this.activeNameCopy = [];
-      }
-      if (typeof this.activeNameCopy === "string") {
+      if (typeof this.activeNameCopy === "string" && !this.single) {
         this.activeNameCopy = [this.activeName];
       }
     },
     toggleKey(key) {
       this.activeNameCopy = this.activeNameCopy === key ? null : key;
+      this.$emit("change", this.activeNameCopy);
+      this.eventBus.$emit("keyChange", this.activeNameCopy);
     },
     addKey(key) {
       this.activeNameCopy?.push(key);
+      this.$emit("change", this.activeNameCopy);
+      this.eventBus.$emit("keyChange", this.activeNameCopy);
     },
     deleteKey(key) {
       const index = this.activeNameCopy?.indexOf(key);
       this.activeNameCopy.splice(index, 1);
-    },
-  },
-  watch: {
-    activeName: {
-      handler: function(newVal, oldVal) {
-        const str1 = [...newVal].sort().toString();
-        const str2 = [...oldVal].sort().toString();
-        if (str1 !== str2) {
-          this.activeNameCopy = newVal;
-        }
-      },
-    },
-    activeNameCopy: {
-      handler: function(newVal, oldVal) {
-        if (this.single === false && typeof oldVal === "string") {
-          return false;
-        }
-        this.$emit("change", newVal);
-        this.eventBus.$emit("keyChange", newVal);
-      },
+      this.$emit("change", this.activeNameCopy);
+      this.eventBus.$emit("keyChange", this.activeNameCopy);
     },
   },
   mounted() {

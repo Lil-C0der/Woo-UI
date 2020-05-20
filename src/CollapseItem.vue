@@ -82,6 +82,7 @@ export default {
       position: absolute;
       left: 1em;
       transition: all 0.3s;
+      border: none;
       &.downIcon {
         transform: rotate(90deg);
       }
