@@ -1,12 +1,7 @@
 <template>
   <div class="woo-sider" :style="siderStyle">
     <slot></slot>
-    <div
-      v-if="collapsible"
-      class="sider-trigger"
-      :style="siderStyle"
-      @click="handleTriggerClick"
-    >
+    <div v-if="collapsible" class="sider-trigger" @click="handleTriggerClick">
       <woo-icon v-if="collapsible" :name="iconName"></woo-icon>
     </div>
   </div>
@@ -112,8 +107,9 @@ export default {
   .sider-trigger {
     position: absolute;
     bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
     line-height: 1.5;
-    text-align: center;
   }
 }
 </style>
