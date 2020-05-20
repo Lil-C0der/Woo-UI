@@ -7,8 +7,7 @@
       :style="siderStyle"
       @click="handleTriggerClick"
     >
-      <woo-icon v-show="showLeftArrow" name="woo-icon-left"></woo-icon>
-      <woo-icon v-show="showRightArrow" name="woo-icon-right"></woo-icon>
+      <woo-icon v-if="collapsible" :name="iconName"></woo-icon>
     </div>
   </div>
 </template>
@@ -24,11 +23,8 @@ export default {
   },
   data() {
     return {
-      isCollapsed: this.collapsed || this.defaultCollapsed,
-      currentWidth:
-        this.collapsed || this.defaultCollapsed
-          ? this.collapsedWidth
-          : this.width,
+      collapsedCopy: this.collapsed,
+      currentWidth: this.collapsed ? this.collapsedWidth : this.width,
       rotate: false,
     };
   },
@@ -65,8 +61,8 @@ export default {
   },
   methods: {
     handleTriggerClick() {
-      this.isCollapsed = !this.isCollapsed;
-      this.$emit("collapse", this.isCollapsed);
+      this.collapsedCopy = !this.collapsedCopy;
+      this.$emit("collapse", this.collapsedCopy);
       this.currentWidth = this.newWidth;
     },
   },
@@ -75,23 +71,33 @@ export default {
       return { width: this.currentWidth + "px" };
     },
     newWidth() {
-      if (this.isCollapsed) return this.collapsedWidth;
+      if (this.collapsedCopy) return this.collapsedWidth;
       else return this.width;
     },
-    showLeftArrow() {
-      const { reverseArrow, isCollapsed } = this;
-      return (reverseArrow && isCollapsed) || !isCollapsed;
-    },
-    showRightArrow() {
-      const { reverseArrow, isCollapsed } = this;
-      return (reverseArrow && !isCollapsed) || isCollapsed;
+    iconName() {
+      const { reverseArrow, collapsedCopy, collapsed } = this;
+      if (!reverseArrow) {
+        if (!collapsedCopy) {
+          return "left";
+        } else return "right";
+      } else {
+        if (!collapsedCopy) {
+          return "right";
+        } else return "left";
+      }
     },
   },
   watch: {
     collapsed: function(val) {
-      this.isCollapsed = val;
+      this.collapsedCopy = val;
       this.currentWidth = this.newWidth;
     },
+  },
+  mounted() {
+    if (this.defaultCollapsed) {
+      this.collapsedCopy = true;
+      this.currentWidth = this.collapsedWidth;
+    }
   },
 };
 </script>
@@ -101,9 +107,12 @@ export default {
 
 .woo-sider {
   transition: all 0.3s;
+  position: relative;
+  background: $sider-bg-color;
   .sider-trigger {
-    position: fixed;
+    position: absolute;
     bottom: 0;
+    line-height: 1.5;
     text-align: center;
   }
 }
