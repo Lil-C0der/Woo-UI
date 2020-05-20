@@ -1,5 +1,5 @@
 <template>
-  <div class="woo-collapse-item">
+  <div class="woo-collapse-item" :class="collapseItemClass">
     <div class="woo-collapse-item-header" @click="handleItemClick">
       <woo-icon
         name="right"
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import WooIcon from "./Icon";
+
 export default {
   name: "woo-collapse-item",
   inject: ["eventBus"],
@@ -33,14 +35,23 @@ export default {
       default: "",
     },
   },
-
+  components: {
+    WooIcon,
+  },
   methods: {
     handleItemClick() {
+      console.log(1111);
+
       if (this.isOpen) {
         this.eventBus.$emit("hideItem", this.name);
       } else {
         this.eventBus.$emit("showItem", this.name);
       }
+    },
+  },
+  computed: {
+    collapseItemClass() {
+      return { "active-item": this.isOpen };
     },
   },
   mounted() {
