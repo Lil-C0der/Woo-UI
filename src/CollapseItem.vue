@@ -40,8 +40,6 @@ export default {
   },
   methods: {
     handleItemClick() {
-      console.log(1111);
-
       if (this.isOpen) {
         this.eventBus.$emit("hideItem", this.name);
       } else {

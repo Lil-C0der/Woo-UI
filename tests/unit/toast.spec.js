@@ -3,8 +3,6 @@ import { mount } from "@vue/test-utils";
 
 import Toast from "@/Toast";
 
-import Vue from "vue";
-
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 chai.use(sinonChai);
