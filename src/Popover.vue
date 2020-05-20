@@ -183,8 +183,7 @@ export default {
       this.$emit("visible-change", newVal);
       if (newVal) {
         this.initPopoverPosition();
-        this.$emit("show");
-      } else this.$emit("hide");
+      } else return;
     },
   },
   mounted() {
