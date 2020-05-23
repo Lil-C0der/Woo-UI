@@ -3,17 +3,18 @@
     <woo-header></woo-header>
     <woo-layout>
       <woo-content style="height:300px;padding-left:600px">
-        <woo-slide height="140px">
-          <woo-slide-item class="box">
+        <woo-button @click="xxx">toggle</woo-button>
+        <woo-slide height="140px" ref="slide" :initial-index="2">
+          <woo-slide-item name="a" class="box">
             <h3>1</h3>
           </woo-slide-item>
-          <woo-slide-item class="box">
+          <woo-slide-item name="b" class="box">
             <h3>2</h3>
           </woo-slide-item>
-          <woo-slide-item class="box">
+          <woo-slide-item name="c" class="box">
             <h3>3</h3>
           </woo-slide-item>
-          <woo-slide-item class="box">
+          <woo-slide-item name="d" class="box">
             <h3>4</h3>
           </woo-slide-item>
         </woo-slide>
@@ -32,10 +33,12 @@ import WooPlugin from "./plugin";
 import WooCollapse from "./Collapse";
 import WooCollapseItem from "./CollapseItem";
 import WooPopover from "./Popover";
+
 import WooSlide from "./Slide";
 import WooSlideItem from "./SlideItem";
-// import WooSlide from "./Slide2";
-// import WooSlideItem from "./SlideItem2";
+
+// import WooSlide from "./Slide_v1";
+// import WooSlideItem from "./SlideItem_v1";
 
 import WooLayout from "./Layout";
 import WooHeader from "./Header";
@@ -66,6 +69,11 @@ export default {
   methods: {},
   data() {
     return {};
+  },
+  methods: {
+    xxx() {
+      this.$refs.slide.setActiveItem("d");
+    },
   },
   mounted() {},
   components: {
@@ -108,10 +116,10 @@ html {
 }
 .woo-slide {
   .box {
-    width: 280px;
+    // width: 280px;
     height: 140px;
     border: 1px solid green;
-    background-color: grey;
+    background-color: #ccc;
     display: flex;
     justify-content: center;
     align-items: center;

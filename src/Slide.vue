@@ -1,22 +1,35 @@
 <template>
   <div
     class="woo-slide"
-    @mouseenter.stop="stopTimer"
-    @mouseleave.stop="startTimer"
+    @mouseenter.stop="handleMouseEnter"
+    @mouseleave.stop="handleMouseLeave"
   >
-    <woo-icon
-      @click.native="setActiveItem(activeIndex - 1)"
-      name="left"
-      class="woo-slide-left-arrow"
-    ></woo-icon>
-    <woo-icon
-      @click.native="setActiveItem(activeIndex + 1)"
-      name="right"
-      class="woo-slide-right-arrow"
-    ></woo-icon>
+    <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-left">
+      <woo-icon
+        @click.native="setActiveItem(activeIndex - 1)"
+        name="left"
+        class="woo-slide-left-arrow"
+      ></woo-icon>
+    </div>
+    <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-right">
+      <woo-icon
+        @click.native="setActiveItem(activeIndex + 1)"
+        name="right"
+        class="woo-slide-right-arrow"
+      ></woo-icon>
+    </div>
     <div class="woo-slide-wrapper" :style="wrapperStyle">
       <slot></slot>
     </div>
+    <ul class="woo-slide-indicator">
+      <li
+        v-for="(i, index) in items"
+        :key="index"
+        class="woo-slide-indicator-item"
+        :class="{ 'active-item': index === activeIndex }"
+        @click.stop="activeIndex = index"
+      ></li>
+    </ul>
   </div>
 </template>
 
@@ -44,6 +57,10 @@ export default {
       type: Number,
       default: 0,
     },
+    autoPlay: {
+      type: Boolean,
+      default: true,
+    },
   },
   components: {
     WooSlideItem,
@@ -52,6 +69,9 @@ export default {
   watch: {
     activeIndex: function(newIndex, oldIndex) {
       this.setItemVisible(newIndex, oldIndex);
+      if (oldIndex > -1) {
+        this.$emit("change", newIndex, oldIndex);
+      }
     },
   },
   methods: {
@@ -60,7 +80,6 @@ export default {
       this.items = this.$children.filter(
         (i) => i.$options.name === "woo-slide-item"
       );
-      console.log(this.items);
     },
     // 获取初始状态的 index
     initActiveIndex() {
@@ -68,6 +87,7 @@ export default {
         this.activeIndex = this.initialIndex;
       }
     },
+    // 轮播
     playSlides() {
       const length = this.items.length;
       this.activeIndex++;
@@ -82,19 +102,38 @@ export default {
       clearInterval(this.timer);
       this.timer = null;
     },
+    handleMouseEnter() {
+      if (this.autoPlay) {
+        this.stopTimer();
+      }
+    },
+    handleMouseLeave() {
+      if (this.autoPlay) {
+        this.startTimer();
+      }
+    },
     // 手动切换 items API
     setActiveItem(index) {
+      // 如果参数 index 是子组件的 name 属性
       if (typeof index === "string") {
+        // 找到对应的组件
         const item = this.items.find((i) => i.name === index);
         if (item) {
+          // 得到组件在 items 数组中的索引
           index = this.items.indexOf(item);
         } else {
           console && console.error(`index "${index}" could not been found`);
         }
       }
+      const length = this.items.length;
       const oldIndex = this.activeIndex;
-      this.activeIndex = index;
-      this.setItemVisible(index, oldIndex);
+      if (index < 0) {
+        this.activeIndex = length - 1;
+      } else if (index >= length) {
+        this.activeIndex = 0;
+      } else {
+        this.activeIndex = index;
+      }
     },
     // 控制 item
     setItemVisible(activeIndex, oldIndex) {
@@ -111,12 +150,19 @@ export default {
   mounted() {
     this.initItems();
     this.initActiveIndex();
-    this.startTimer();
+    if (this.autoPlay) {
+      this.startTimer();
+    }
+  },
+  beforeDestroy() {
+    this.stopTimer();
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "./_var.scss";
+
 .woo-slide {
   position: relative;
   display: block;
@@ -124,17 +170,48 @@ export default {
     overflow-x: hidden;
     position: relative;
   }
-  &-left-arrow {
-    left: 16px;
-  }
-  &-right-arrow {
-    right: 16px;
-  }
-  .woo-icon {
+  &-arrow-wrapper,
+  &-arrow-wrapper {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 999;
+    display: inline-flex;
+    &-left {
+      left: 16px;
+    }
+    &-right {
+      right: 16px;
+    }
+  }
+  &-indicator {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-flex;
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translate(-50%);
+    &-item {
+      width: 10px;
+      height: 10px;
+      margin: 0 4px;
+      background-color: #000;
+      &.active-item {
+        background-color: $slide-item-bg-active;
+      }
+    }
+  }
+  &-arrow-wrapper,
+  &-arrow-wrapper,
+  &-indicator-item {
+    border-radius: 50%;
+    background-color: $button-bg;
+    cursor: pointer;
+    &:hover {
+      box-shadow: $slide-box-shadow;
+    }
   }
 }
 </style>
