@@ -1,7 +1,20 @@
 <template>
-  <div class="woo-slide">
-    {{ activeIndex }}
-    <div class="woo-slide-window" ref="windowRef" :style="slideWindowStyle">
+  <div
+    class="woo-slide"
+    @mouseenter.stop="stopTimer"
+    @mouseleave.stop="startTimer"
+  >
+    <woo-icon
+      @click.native="setActiveItem(activeIndex - 1)"
+      name="left"
+      class="woo-slide-left-arrow"
+    ></woo-icon>
+    <woo-icon
+      @click.native="setActiveItem(activeIndex + 1)"
+      name="right"
+      class="woo-slide-right-arrow"
+    ></woo-icon>
+    <div class="woo-slide-wrapper" :style="wrapperStyle">
       <slot></slot>
     </div>
   </div>
@@ -9,89 +22,119 @@
 
 <script>
 import WooSlideItem from "./SlideItem";
-
+import WooIcon from "./Icon";
 export default {
   name: "woo-slide",
   data() {
     return {
-      activeIndex: 0,
       items: [],
+      activeIndex: -1,
+      timer: null,
     };
   },
   props: {
     height: {
       type: String,
     },
+    interval: {
+      type: Number,
+      default: 3000,
+    },
+    initialIndex: {
+      type: Number,
+      default: 0,
+    },
   },
   components: {
     WooSlideItem,
+    WooIcon,
+  },
+  watch: {
+    activeIndex: function(newIndex, oldIndex) {
+      this.setItemVisible(newIndex, oldIndex);
+    },
   },
   methods: {
-    // 初始化 items 数组
+    // 添加子组件到 items 数组
     initItems() {
       this.items = this.$children.filter(
-        (i) => (i.$options.name = "woo-slide-item")
+        (i) => i.$options.name === "woo-slide-item"
       );
+      console.log(this.items);
     },
-    // 给每个 item 添加一个递增的索引 index
-    initItemsIndex() {
-      for (var i = 0; i < this.$children.length; i++) {
-        this.items[i].index = i;
+    // 获取初始状态的 index
+    initActiveIndex() {
+      if (this.initialIndex !== null) {
+        this.activeIndex = this.initialIndex;
       }
     },
-    // 初始化 item 的位置
-    initItemsPosition() {
-      this.items.forEach((item, index) => {
-        item.translateItem(index, this.activeIndex);
-      });
-    },
-    // 开始轮播
-    playSlide() {
+    playSlides() {
+      const length = this.items.length;
       this.activeIndex++;
-      if (this.activeIndex > this.items.length - 1) {
+      if (this.activeIndex > length - 1) {
         this.activeIndex = 0;
       }
     },
-    // 改变 item 的位置
-    setPosition(activeIndex) {
+    startTimer() {
+      this.timer = setInterval(this.playSlides, this.interval);
+    },
+    stopTimer() {
+      clearInterval(this.timer);
+      this.timer = null;
+    },
+    // 手动切换 items API
+    setActiveItem(index) {
+      if (typeof index === "string") {
+        const item = this.items.find((i) => i.name === index);
+        if (item) {
+          index = this.items.indexOf(item);
+        } else {
+          console && console.error(`index "${index}" could not been found`);
+        }
+      }
+      const oldIndex = this.activeIndex;
+      this.activeIndex = index;
+      this.setItemVisible(index, oldIndex);
+    },
+    // 控制 item
+    setItemVisible(activeIndex, oldIndex) {
       this.items.forEach((item, index) => {
-        item.translateItem(index, activeIndex);
+        item.toggle(index, activeIndex, oldIndex);
       });
     },
   },
-  watch: {
-    activeIndex: function(activeIndex, oldIndex) {
-      this.setPosition(activeIndex);
-    },
-  },
   computed: {
-    slideWindowStyle() {
+    wrapperStyle() {
       return { height: this.height };
     },
   },
   mounted() {
     this.initItems();
-    this.initItemsIndex();
-    this.initItemsPosition();
-    setInterval(() => {
-      this.playSlide();
-    }, 1500);
+    this.initActiveIndex();
+    this.startTimer();
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .woo-slide {
-  display: inline-block;
   position: relative;
+  display: block;
   &-wrapper {
-  }
-  &-window {
-    width: 280px;
-    // height: 140px;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
-    // display: inline-flex;
+  }
+  &-left-arrow {
+    left: 16px;
+  }
+  &-right-arrow {
+    right: 16px;
+  }
+  .woo-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
   }
 }
 </style>
