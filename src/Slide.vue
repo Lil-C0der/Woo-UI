@@ -4,24 +4,28 @@
     @mouseenter.stop="handleMouseEnter"
     @mouseleave.stop="handleMouseLeave"
   >
-    <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-left">
-      <woo-icon
-        @click.native="setActiveItem(activeIndex - 1)"
-        name="left"
-        class="woo-slide-left-arrow"
-      ></woo-icon>
-    </div>
-    <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-right">
-      <woo-icon
-        @click.native="setActiveItem(activeIndex + 1)"
-        name="right"
-        class="woo-slide-right-arrow"
-      ></woo-icon>
-    </div>
     <div class="woo-slide-wrapper" :style="wrapperStyle">
+      <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-left">
+        <woo-icon
+          @click.native="setActiveItem(activeIndex - 1)"
+          name="left"
+          class="woo-slide-left-arrow"
+        ></woo-icon>
+      </div>
+      <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-right">
+        <woo-icon
+          @click.native="setActiveItem(activeIndex + 1)"
+          name="right"
+          class="woo-slide-right-arrow"
+        ></woo-icon>
+      </div>
       <slot></slot>
     </div>
-    <ul class="woo-slide-indicator">
+    <ul
+      class="woo-slide-indicator"
+      @mouseenter.stop="overIndicator = true"
+      @mouseleave.stop="overIndicator = false"
+    >
       <li
         v-for="(i, index) in items"
         :key="index"
@@ -43,6 +47,7 @@ export default {
       items: [],
       activeIndex: -1,
       timer: null,
+      overIndicator: false,
     };
   },
   props: {
@@ -96,6 +101,9 @@ export default {
       }
     },
     startTimer() {
+      if (this.timer) {
+        return;
+      }
       this.timer = setInterval(this.playSlides, this.interval);
     },
     stopTimer() {
@@ -108,7 +116,7 @@ export default {
       }
     },
     handleMouseLeave() {
-      if (this.autoPlay) {
+      if (this.autoPlay && !this.timer) {
         this.startTimer();
       }
     },
@@ -138,7 +146,7 @@ export default {
     // 控制 item
     setItemVisible(activeIndex, oldIndex) {
       this.items.forEach((item, index) => {
-        item.toggle(index, activeIndex, oldIndex);
+        item.toggle(index, activeIndex, oldIndex, this.overIndicator);
       });
     },
   },
@@ -164,10 +172,10 @@ export default {
 @import "./_var.scss";
 
 .woo-slide {
-  position: relative;
   display: block;
+  position: relative;
+  overflow-x: hidden;
   &-wrapper {
-    overflow-x: hidden;
     position: relative;
   }
   &-arrow-wrapper,

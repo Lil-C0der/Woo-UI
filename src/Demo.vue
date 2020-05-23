@@ -2,9 +2,9 @@
   <woo-layout>
     <woo-header></woo-header>
     <woo-layout>
-      <woo-content style="height:300px;padding-left:600px">
+      <woo-content style="height:300px;">
         <woo-button @click="xxx">toggle</woo-button>
-        <woo-slide height="140px" ref="slide" :initial-index="2">
+        <woo-slide @change="yyy" height="220px" ref="slide" :initial-index="2">
           <woo-slide-item name="a" class="box">
             <h3>1</h3>
           </woo-slide-item>
@@ -16,6 +16,12 @@
           </woo-slide-item>
           <woo-slide-item name="d" class="box">
             <h3>4</h3>
+          </woo-slide-item>
+          <woo-slide-item name="e" class="box">
+            <h3>5</h3>
+          </woo-slide-item>
+          <woo-slide-item name="f" class="box">
+            <h3>6</h3>
           </woo-slide-item>
         </woo-slide>
       </woo-content>
@@ -74,6 +80,9 @@ export default {
     xxx() {
       this.$refs.slide.setActiveItem("d");
     },
+    yyy(newVal, oldVal) {
+      // console.log(newVal, oldVal);
+    },
   },
   mounted() {},
   components: {
@@ -114,11 +123,11 @@ export default {
 html {
   font-size: $font-size;
 }
+
 .woo-slide {
   .box {
-    // width: 280px;
-    height: 140px;
-    border: 1px solid green;
+    height: 220px;
+    // border: 1px solid green;
     background-color: #ccc;
     display: flex;
     justify-content: center;
