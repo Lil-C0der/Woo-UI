@@ -173,6 +173,14 @@ export default {
         this.activeIndex = index;
       }
     },
+    // 手动播放下一张 API
+    next() {
+      this.setActiveItem(this.activeIndex + 1);
+    },
+    // 手动播放上一张 API
+    prev() {
+      this.setActiveItem(this.activeIndex - 1);
+    },
     // 控制 item
     setItemVisible(activeIndex, oldIndex) {
       this.items.forEach((item, index) => {
