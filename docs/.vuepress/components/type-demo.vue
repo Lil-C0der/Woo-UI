@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Button from "../../../src/Button.vue";
+import Button from "../../../src/Button/Button.vue";
 
 export default {
   components: {

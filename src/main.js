@@ -1,8 +1,8 @@
 import Vue from "vue";
 
-import Button from "./Button.vue";
+import Button from "./Button/Button.vue";
 import Icon from "./Icon.vue";
-import ButtonGroup from "./ButtonGroup.vue";
+import ButtonGroup from "./Button/ButtonGroup.vue";
 import Input from "./Input.vue";
 import Row from "./Row.vue";
 import Col from "./Col.vue";

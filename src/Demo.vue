@@ -32,7 +32,7 @@
 
 <script>
 import WooCascader from "./Cascader";
-import WooButton from "./Button.vue";
+import WooButton from "./Button/Button.vue";
 import WooIcon from "./Icon.vue";
 import WooToast from "./Toast.vue";
 import WooPlugin from "./plugin";
@@ -52,24 +52,6 @@ import WooContent from "./Content";
 import WooFooter from "./Footer";
 import WooSider from "./Sider";
 
-function getChildren(pid = 0) {
-  return new Promise((success, fail) => {
-    setTimeout(() => {
-      let result = db.filter((n) => n.p_id === pid);
-      result = result.length === 0 ? "" : result;
-      if (result) {
-        result.map((n) => {
-          if (db.filter((i) => i.p_id === n.id).length) {
-            n.isLeaf = false;
-          } else {
-            n.isLeaf = true;
-          }
-        });
-      }
-      success(result);
-    }, 1000);
-  });
-}
 
 export default {
   methods: {},

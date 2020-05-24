@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import WooIcon from "./Icon";
+import WooIcon from "../Icon";
 
 export default {
   name: "woo-button",
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "src/var";
 .woo-button {
   vertical-align: middle;
   display: inline-flex;
