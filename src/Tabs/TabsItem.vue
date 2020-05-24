@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "../../styles/var";
 
 .woo-tabs-item {
   padding: 0 2em;

@@ -199,7 +199,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "styles/var";
 
 .woo-popover {
   display: inline-block;

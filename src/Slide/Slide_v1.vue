@@ -31,9 +31,9 @@
 
 <script>
 import WooSlideItem from "./SlideItem";
-import WooIcon from "./Icon";
+import WooIcon from "../Icon";
 
-import { debounce, throttle } from "./utils";
+import { debounce, throttle } from "../utils";
 
 export default {
   name: "woo-slide",

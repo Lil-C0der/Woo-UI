@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import Icon from "./Icon";
+import Icon from "../Icon";
 import CascaderMenu from "./CascaderMenu";
 
 export default {
@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "../../styles/var";
 
 .woo-cascader-menu-wrapper {
   display: flex;

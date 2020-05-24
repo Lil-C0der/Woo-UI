@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/var";
+@import "../../styles/var";
 .woo-button {
   vertical-align: middle;
   display: inline-flex;

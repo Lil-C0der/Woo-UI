@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import WooIcon from "./Icon";
+import WooIcon from "../Icon";
 
 export default {
   name: "woo-sider",
@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "../../styles/var";
 
 .woo-sider {
   transition: all 0.3s;

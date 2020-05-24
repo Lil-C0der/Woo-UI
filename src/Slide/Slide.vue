@@ -42,7 +42,7 @@
 
 <script>
 import WooSlideItem from "./SlideItem";
-import WooIcon from "./Icon";
+import WooIcon from "../Icon";
 export default {
   name: "woo-slide",
   data() {
@@ -207,7 +207,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./_var.scss";
+@import "../../styles/var";
 
 .woo-slide {
   display: block;

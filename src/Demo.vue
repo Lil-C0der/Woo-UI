@@ -31,26 +31,26 @@
 </template>
 
 <script>
-import WooCascader from "./Cascader";
+import WooCascader from "./Cascader/Cascader";
 import WooButton from "./Button/Button.vue";
 import WooIcon from "./Icon.vue";
 import WooToast from "./Toast.vue";
 import WooPlugin from "./plugin";
-import WooCollapse from "./Collapse";
-import WooCollapseItem from "./CollapseItem";
+import WooCollapse from "./Collapse/Collapse";
+import WooCollapseItem from "./Collapse/CollapseItem";
 import WooPopover from "./Popover";
 
-import WooSlide from "./Slide";
-import WooSlideItem from "./SlideItem";
+import WooSlide from "./Slide/Slide";
+import WooSlideItem from "./Slide/SlideItem";
 
 // import WooSlide from "./Slide_v1";
 // import WooSlideItem from "./SlideItem_v1";
 
-import WooLayout from "./Layout";
-import WooHeader from "./Header";
-import WooContent from "./Content";
-import WooFooter from "./Footer";
-import WooSider from "./Sider";
+import WooLayout from "./Layout/Layout";
+import WooHeader from "./Layout/Header";
+import WooContent from "./Layout/Content";
+import WooFooter from "./Layout/Footer";
+import WooSider from "./Layout/Sider";
 
 
 export default {
@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "styles/var";
 * {
   margin: 0;
   padding: 0;

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import WooIcon from "./Icon";
+import WooIcon from "../Icon";
 
 export default {
   name: "woo-collapse-item",
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "../../styles/var";
 
 .woo-collapse-item {
   margin-top: -1px;

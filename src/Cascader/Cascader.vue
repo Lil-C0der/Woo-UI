@@ -24,10 +24,10 @@
 
 <script>
 import WooCascaderMenu from "./CascaderMenu";
-import WooInput from "./Input";
+import WooInput from "../Input";
 
-import clickOutside from "./click-outside.js";
-import { removeListener } from "./click-outside.js";
+import clickOutside from "../click-outside.js";
+import { removeListener } from "../click-outside.js";
 
 export default {
   name: "woo-cascader",
@@ -207,7 +207,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "_var";
+@import "../../styles/var";
 
 .woo-cascader {
   position: relative;
