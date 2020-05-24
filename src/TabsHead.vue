@@ -48,7 +48,7 @@ export default {
       });
     });
   },
-  destroyed() {
+  beforeDestroy() {
     this.eventBus?.$off(["tabChange"]);
   },
 };

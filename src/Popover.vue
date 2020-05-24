@@ -192,7 +192,7 @@ export default {
     }
     this.initListener();
   },
-  destroyed() {
+  beforeDestroy() {
     this.removeListener();
   },
 };
