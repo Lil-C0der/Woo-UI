@@ -1,10 +1,10 @@
 <template>
   <woo-layout>
-    <woo-header></woo-header>
+    <woo-header style="height:500px"></woo-header>
     <woo-layout>
-      <woo-content style="height:300px;">
+      <woo-content style="height:800px;">
         <woo-button @click="xxx">toggle</woo-button>
-        <woo-slide @change="yyy" height="220px" ref="slide" :initial-index="2">
+        <woo-slide @change="yyy" height="220px" ref="slide">
           <woo-slide-item name="a" class="box">
             <h3>1</h3>
           </woo-slide-item>
@@ -26,7 +26,7 @@
         </woo-slide>
       </woo-content>
     </woo-layout>
-    <woo-footer></woo-footer>
+    <woo-footer style="height:500px"></woo-footer>
   </woo-layout>
 </template>
 

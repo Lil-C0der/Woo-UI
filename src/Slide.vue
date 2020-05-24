@@ -3,8 +3,11 @@
     class="woo-slide"
     @mouseenter.stop="handleMouseEnter"
     @mouseleave.stop="handleMouseLeave"
+    @touchstart.stop="handleTouchStart"
+    @touchmove.stop="handleTouchMove"
+    @touchend.stop="handleTouchEnd"
   >
-    <div class="woo-slide-wrapper" :style="wrapperStyle">
+    <div class="woo-slide-wrapper" :style="wrapperStyle" ref="slideWrapperRef">
       <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-left">
         <woo-icon
           @click.native="setActiveItem(activeIndex - 1)"
@@ -46,8 +49,11 @@ export default {
     return {
       items: [],
       activeIndex: -1,
+      width: null,
       timer: null,
       overIndicator: false,
+      startX: null,
+      endX: null,
     };
   },
   props: {
@@ -92,6 +98,9 @@ export default {
         this.activeIndex = this.initialIndex;
       }
     },
+    getWidth() {
+      this.width = this.$refs.slideWrapperRef.getBoundingClientRect().width;
+    },
     // 轮播
     playSlides() {
       const length = this.items.length;
@@ -119,6 +128,27 @@ export default {
       if (this.autoPlay && !this.timer) {
         this.startTimer();
       }
+    },
+    handleTouchStart(e) {
+      this.startX = e.changedTouches[0].pageX;
+      // 清除定时器
+      this.handleMouseEnter();
+    },
+    handleTouchMove(e) {},
+    handleTouchEnd(e) {
+      this.endX = e.changedTouches[0].pageX;
+      const { startX, endX, width } = this;
+      if (Math.abs(endX - startX) > 0.15 * width) {
+        if (endX > startX) {
+          // 右滑 上一张
+          this.setActiveItem(this.activeIndex - 1);
+        } else {
+          // 左滑 下一张
+          this.setActiveItem(this.activeIndex + 1);
+        }
+      }
+      // 添加定时器
+      this.handleMouseLeave();
     },
     // 手动切换 items API
     setActiveItem(index) {
@@ -158,6 +188,7 @@ export default {
   mounted() {
     this.initItems();
     this.initActiveIndex();
+    this.getWidth();
     if (this.autoPlay) {
       this.startTimer();
     }
