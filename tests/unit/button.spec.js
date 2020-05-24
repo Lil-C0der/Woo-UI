@@ -22,14 +22,14 @@ describe("Button 组件", () => {
     });
     const vm = wrapper.vm;
     const svgEl = vm.$el.querySelector(".woo-icon-download");
-    const { visibility } = window.getComputedStyle(svgEl);
+    const { display } = window.getComputedStyle(svgEl);
     const useWrappers = wrapper.findAll("use").wrappers;
     const hrefArr = [];
     useWrappers.forEach((n) => {
       hrefArr.push(n.attributes("href"));
     });
     expect(hrefArr.includes("#woo-icon-download")).to.eq(true);
-    expect(visibility).to.eq("visible");
+    expect(display).to.eq("");
   });
 
   it("可以设置loading", () => {
