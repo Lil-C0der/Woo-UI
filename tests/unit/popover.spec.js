@@ -36,7 +36,7 @@ describe("Popover 组件", () => {
     expect(arrowWrapper.classes()).to.include("arrow-bottom");
   });
 
-  it("可以设置 trigger", () => {
+  it("可以设置 trigger", (done) => {
     const callback1 = sinon.fake();
     const callback2 = sinon.fake();
     const wrapper = mount(Popover, {
@@ -66,6 +66,7 @@ describe("Popover 组件", () => {
       setTimeout(() => {
         expect(callback2).to.have.been.called;
         expect(window.getComputedStyle(contentEl).display).to.eq("none");
+        done();
       }, 800);
     });
   });
