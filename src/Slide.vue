@@ -134,7 +134,6 @@ export default {
       // 清除定时器
       this.handleMouseEnter();
     },
-    handleTouchMove(e) {},
     handleTouchEnd(e) {
       this.endX = e.changedTouches[0].pageX;
       const { startX, endX, width } = this;
