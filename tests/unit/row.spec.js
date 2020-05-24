@@ -1,8 +1,8 @@
 import { expect } from "chai";
 import { mount } from "@vue/test-utils";
 
-import Row from "@/Row";
-import Col from "@/Col";
+import Row from "@/Grid/Row";
+import Col from "@/Grid/Col";
 
 describe("Row组件", () => {
   it("存在", () => {
@@ -26,6 +26,7 @@ describe("Row组件", () => {
     expect(marginRight).to.eq("-10px");
     expect(paddingLeft).to.eq("10px");
     expect(paddingRight).to.eq("10px");
+    wrapper.destroy();
   });
   //  TODO Row 组件 css 还没测
   xit("可以设置 align", () => {

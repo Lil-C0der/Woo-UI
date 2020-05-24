@@ -3,8 +3,8 @@ import { mount } from "@vue/test-utils";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
-import Slide from "@/Slide.vue";
-import SlideItem from "@/SlideItem.vue";
+import Slide from "@/Slide/Slide.vue";
+import SlideItem from "@/Slide/SlideItem.vue";
 
 import Vue from "vue";
 
@@ -40,6 +40,7 @@ describe("Slide 组件", () => {
       const box1El = vm.$el.querySelector(".box1");
       expect(window.getComputedStyle(box1El).display).to.eq("block");
     });
+    wrapper.destroy();
   });
 
   it("可以自动播放", function(done) {
@@ -71,6 +72,7 @@ describe("Slide 组件", () => {
     const vm = wrapper.vm;
     setTimeout(() => {
       expect(callback).to.have.been.calledWith(1, 0);
+      wrapper.destroy();
       done();
     }, 1300);
   });
@@ -103,6 +105,7 @@ describe("Slide 组件", () => {
         expect(window.getComputedStyle(box3El).display).to.eq("block");
         expect(wrappers[2].classes()).contains("active-item");
       });
+      wrapper.destroy();
     });
   });
 
@@ -144,6 +147,7 @@ describe("Slide 组件", () => {
     setTimeout(() => {
       expect(window.getComputedStyle(box2El).display).to.eq("block");
       done();
+      wrapper.destroy();
     }, 1300);
   });
 
@@ -174,6 +178,7 @@ describe("Slide 组件", () => {
     vm.$nextTick().then(() => {
       expect(window.getComputedStyle(box4El).display).to.eq("block");
     });
+    wrapper.destroy();
   });
 
   it("可以设置 autoPlay", function(done) {
@@ -204,6 +209,7 @@ describe("Slide 组件", () => {
     setTimeout(() => {
       expect(window.getComputedStyle(box1El).display).to.eq("block");
       done();
+      wrapper.destroy();
     }, 1300);
   });
 });

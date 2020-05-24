@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { mount } from "@vue/test-utils";
 
-import Col from "@/Col";
+import Col from "@/Grid/Col";
 
 describe("Col组件", () => {
   it("存在", () => {
@@ -16,6 +16,7 @@ describe("Col组件", () => {
     });
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-12")).to.be.true;
+    wrapper.destroy();
   });
 
   it("可以设置 offset", () => {
@@ -27,6 +28,7 @@ describe("Col组件", () => {
     });
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-offset-1")).to.be.true;
+    wrapper.destroy();
   });
 
   it("可以设置 xs", () => {
@@ -39,6 +41,7 @@ describe("Col组件", () => {
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-xs-12")).to.be.true;
     expect(vm.$el.classList.contains("woo-col-xs-offset-12")).to.be.true;
+    wrapper.destroy();
   });
 
   it("可以设置 sm", () => {
@@ -51,6 +54,7 @@ describe("Col组件", () => {
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-sm-12")).to.be.true;
     expect(vm.$el.classList.contains("woo-col-sm-offset-12")).to.be.true;
+    wrapper.destroy();
   });
 
   it("可以设置 md", () => {
@@ -63,6 +67,7 @@ describe("Col组件", () => {
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-md-12")).to.be.true;
     expect(vm.$el.classList.contains("woo-col-md-offset-12")).to.be.true;
+    wrapper.destroy();
   });
 
   it("可以设置 lg", () => {
@@ -75,6 +80,7 @@ describe("Col组件", () => {
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-lg-12")).to.be.true;
     expect(vm.$el.classList.contains("woo-col-lg-offset-12")).to.be.true;
+    wrapper.destroy();
   });
 
   it("可以设置 xl", () => {
@@ -87,6 +93,7 @@ describe("Col组件", () => {
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-xl-12")).to.be.true;
     expect(vm.$el.classList.contains("woo-col-xl-offset-12")).to.be.true;
+    wrapper.destroy();
   });
 
   it("可以设置 xxl", () => {
@@ -99,5 +106,6 @@ describe("Col组件", () => {
     const vm = wrapper.vm;
     expect(vm.$el.classList.contains("woo-col-xxl-12")).to.be.true;
     expect(vm.$el.classList.contains("woo-col-xxl-offset-12")).to.be.true;
+    wrapper.destroy();
   });
 });

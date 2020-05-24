@@ -23,6 +23,7 @@ describe("Input 组件", () => {
       const vm = wrapper.vm;
       const inputEl = vm.$el.querySelector("input");
       expect(inputEl.value).to.eq("testVal");
+      wrapper.destroy();
     });
 
     it("设置 disabled", () => {
@@ -35,6 +36,7 @@ describe("Input 组件", () => {
       const vm = wrapper.vm;
       const inputEl = vm.$el.querySelector("input");
       expect(inputEl.disabled).to.eq(true);
+      wrapper.destroy();
     });
 
     it("设置 error", () => {
@@ -53,6 +55,7 @@ describe("Input 组件", () => {
       });
       expect(hrefArr.includes("#woo-icon-error")).to.eq(true);
       expect(msgEl.innerHTML.trim()).to.eq("ERROR");
+      wrapper.destroy();
     });
   });
 
@@ -70,6 +73,7 @@ describe("Input 组件", () => {
         vm.$on(eventName, callback);
         inputWrapper.trigger(eventName);
         expect(callback).to.have.been.calledWith("test value");
+        wrapper.destroy();
       });
     });
   });

@@ -22,6 +22,7 @@ describe("Popover 组件", () => {
     const vm = wrapper.vm;
     const contentEl = vm.$refs.contentWrapper;
     expect(window.getComputedStyle(contentEl).display).to.eq("block");
+    wrapper.destroy();
   });
 
   it("可以设置 placement", () => {
@@ -34,6 +35,7 @@ describe("Popover 组件", () => {
     const arrowWrapper = wrapper.find(".woo-popover-arrow");
     // classes 方法 docs:https://vue-test-utils.vuejs.org/zh/api/wrapper/#classes
     expect(arrowWrapper.classes()).to.include("arrow-bottom");
+    wrapper.destroy();
   });
 
   it("可以设置 trigger", (done) => {
@@ -66,6 +68,7 @@ describe("Popover 组件", () => {
       setTimeout(() => {
         expect(callback2).to.have.been.called;
         expect(window.getComputedStyle(contentEl).display).to.eq("none");
+        wrapper.destroy();
         done();
       }, 800);
     });

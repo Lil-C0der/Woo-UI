@@ -1,11 +1,11 @@
 import { expect } from "chai";
 import { mount } from "@vue/test-utils";
 
-import Tabs from "@/Tabs.vue";
-import TabsHead from "@/TabsHead.vue";
-import TabsItem from "@/TabsItem.vue";
-import TabsPane from "@/TabsPane.vue";
-import TabsBody from "@/TabsBody.vue";
+import Tabs from "@/Tabs/Tabs.vue";
+import TabsHead from "@/Tabs/TabsHead.vue";
+import TabsItem from "@/Tabs/TabsItem.vue";
+import TabsPane from "@/Tabs/TabsPane.vue";
+import TabsBody from "@/Tabs/TabsBody.vue";
 
 import Vue from "vue";
 
@@ -60,6 +60,7 @@ describe("Tabs组件", () => {
       const tabsItemList = vm.$el.querySelectorAll(".woo-tabs-item");
       expect(tabsItemList[1].classList.contains("item-active")).to.eq(true);
     });
+    wrapper.destroy();
   });
   // TODO isVertical
 });

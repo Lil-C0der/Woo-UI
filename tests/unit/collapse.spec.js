@@ -1,8 +1,8 @@
 import chai, { expect } from "chai";
 import { mount } from "@vue/test-utils";
 
-import Collapse from "@/Collapse";
-import CollapseItem from "@/CollapseItem";
+import Collapse from "@/Collapse/Collapse";
+import CollapseItem from "@/Collapse/CollapseItem";
 
 import Vue from "vue";
 
@@ -33,6 +33,7 @@ describe("Collapse组件", () => {
       vm.$nextTick().then(() => {
         expect(itemWrapper[1].classes()).to.include("active-item");
       });
+      wrapper.destroy();
     });
     it("可以设置 single", () => {
       Vue.component("woo-collapse", Collapse);
@@ -61,6 +62,7 @@ describe("Collapse组件", () => {
         expect(itemWrapper[0].classes()).to.include("active-item");
         expect(itemWrapper[1].classes()).to.not.include("active-item");
       });
+      wrapper.destroy();
     });
   });
 });

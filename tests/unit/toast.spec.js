@@ -23,6 +23,7 @@ describe("Toast组件", () => {
       const vm = wrapper.vm;
       const closeEl = vm.$el.querySelector(".toast-close-button");
       expect(closeEl).to.exist;
+      wrapper.destroy();
     });
 
     it("可以设置 delay 为 0 即不会自动关闭", function(done) {
@@ -38,6 +39,7 @@ describe("Toast组件", () => {
       setTimeout(() => {
         expect(document.body.contains(vm.$el)).to.eq(true);
         done();
+        wrapper.destroy();
         // 不设置 delay 时 3000ms后关闭toast
       }, 3500);
     });
@@ -52,6 +54,7 @@ describe("Toast组件", () => {
       const vm = wrapper.vm;
       vm.$on("beforeDestroyToast", () => {
         expect(document.body.contains(vm.$el)).to.eq(false);
+        wrapper.destroy();
         done();
       });
     });
@@ -67,6 +70,7 @@ describe("Toast组件", () => {
       const toastEl = vm.$el;
       const { top } = window.getComputedStyle(toastEl);
       expect(top).to.eq("32px");
+      wrapper.destroy();
     });
 
     it("可以设置 position", () => {
@@ -78,6 +82,7 @@ describe("Toast组件", () => {
       });
       const vm = wrapper.vm;
       expect(document.querySelector(".bottom-toast")).to.exist;
+      wrapper.destroy();
     });
 
     it("可以设置 closeOption", () => {
@@ -99,6 +104,7 @@ describe("Toast组件", () => {
       expect(spanEl.innerHTML.trim()).to.eq("test Close");
       // 关闭时调用 closeOption 传入的回调函数
       expect(callback).have.been.calledWith(vm);
+      wrapper.destroy();
     });
 
     it("可以设置 dangerouslyUseHTMLString", () => {
@@ -116,6 +122,7 @@ describe("Toast组件", () => {
       const HTMLtextEl = vm.$el.querySelector("#test");
       expect(HTMLtextEl).to.be.exist;
       expect(HTMLtextEl.innerHTML).to.be.eq("test text");
+      wrapper.destroy();
     });
   });
 });

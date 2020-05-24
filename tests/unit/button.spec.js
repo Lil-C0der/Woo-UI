@@ -30,6 +30,7 @@ describe("Button 组件", () => {
     });
     expect(hrefArr.includes("#woo-icon-download")).to.eq(true);
     expect(display).to.eq("");
+    wrapper.destroy();
   });
 
   it("可以设置loading", () => {
@@ -40,6 +41,7 @@ describe("Button 组件", () => {
     });
     const useWrappers = wrapper.find("use");
     expect(useWrappers.attributes("href")).to.eq("#woo-icon-loading");
+    wrapper.destroy();
   });
 
   // TODO Button 组件 css还没测
@@ -57,6 +59,7 @@ describe("Button 组件", () => {
     console.log(window.getComputedStyle(svgEl));
     const { order } = window.getComputedStyle(svgEl[1]);
     expect(order).to.eq("1");
+    wrapper.destroy();
   });
 
   xit("设置iconPosition可以改变order", () => {
@@ -71,6 +74,7 @@ describe("Button 组件", () => {
     const svgEl = vm.$el.querySelector(".woo-icon-download");
     const { order } = window.getComputedStyle(svgEl);
     expect(order).to.eq("2");
+    wrapper.destroy();
   });
 
   it("点击button触发click事件", () => {
@@ -86,5 +90,6 @@ describe("Button 组件", () => {
     vm.$on("click", callback);
     btnWrapper.trigger("click");
     expect(callback).to.have.been.called;
+    wrapper.destroy();
   });
 });

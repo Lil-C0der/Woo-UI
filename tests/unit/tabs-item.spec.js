@@ -1,7 +1,7 @@
 import chai, { expect } from "chai";
 import { mount } from "@vue/test-utils";
 
-import TabsItem from "@/TabsItem.vue";
+import TabsItem from "@/Tabs/TabsItem.vue";
 
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
@@ -21,6 +21,7 @@ describe("tabs-item 组件", () => {
     });
     const vm = wrapper.vm;
     expect(vm.$el.dataset["name"]).to.eq("test-name");
+    wrapper.destroy();
   });
 
   it("可以设置 disabled", () => {
@@ -36,5 +37,6 @@ describe("tabs-item 组件", () => {
     vm.$on("click", callback);
     vm.$el.click();
     expect(callback).to.have.not.been.called;
+    wrapper.destroy();
   });
 });
