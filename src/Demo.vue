@@ -1,33 +1,24 @@
 <template>
-  <woo-layout>
-    <woo-header style="height:500px"></woo-header>
-    <woo-layout>
-      <woo-content style="height:800px;">
-        <woo-button @click="xxx">toggle</woo-button>
-        <woo-slide @change="yyy" height="220px" ref="slide">
-          <woo-slide-item name="a" class="box">
-            <h3>1</h3>
-          </woo-slide-item>
-          <woo-slide-item name="b" class="box">
-            <h3>2</h3>
-          </woo-slide-item>
-          <woo-slide-item name="c" class="box">
-            <h3>3</h3>
-          </woo-slide-item>
-          <woo-slide-item name="d" class="box">
-            <h3>4</h3>
-          </woo-slide-item>
-          <woo-slide-item name="e" class="box">
-            <h3>5</h3>
-          </woo-slide-item>
-          <woo-slide-item name="f" class="box">
-            <h3>6</h3>
-          </woo-slide-item>
-        </woo-slide>
-      </woo-content>
-    </woo-layout>
-    <woo-footer style="height:500px"></woo-footer>
-  </woo-layout>
+  <div>
+    <div>
+      {{ idx }}
+    </div>
+    <woo-menu v-model="idx" @select="xxx">
+      <woo-menu-item index="1">处理中心</woo-menu-item>
+      <woo-sub-menu>
+        <template #title>我的工作台</template>
+        <woo-menu-item index="2-1">选项1</woo-menu-item>
+        <woo-menu-item index="2-2">选项2</woo-menu-item>
+        <woo-menu-item index="2-3">选项3</woo-menu-item>
+        <woo-sub-menu>
+          <template #title>选项4</template>
+          <woo-menu-item index="4-1">选项4-1</woo-menu-item>
+          <woo-menu-item index="4-2">选项4-2</woo-menu-item>
+        </woo-sub-menu>
+      </woo-sub-menu>
+      <woo-menu-item index="3">订单中心</woo-menu-item>
+    </woo-menu>
+  </div>
 </template>
 
 <script>
@@ -42,9 +33,9 @@ import WooPopover from "./Popover";
 
 import WooSlide from "./Slide/Slide";
 import WooSlideItem from "./Slide/SlideItem";
-
-// import WooSlide from "./Slide_v1";
-// import WooSlideItem from "./SlideItem_v1";
+import WooMenu from "./Menu/Menu";
+import WooMenuItem from "./Menu/MenuItem";
+import WooSubMenu from "./Menu/SubMenu";
 
 import WooLayout from "./Layout/Layout";
 import WooHeader from "./Layout/Header";
@@ -52,15 +43,17 @@ import WooContent from "./Layout/Content";
 import WooFooter from "./Layout/Footer";
 import WooSider from "./Layout/Sider";
 
-
 export default {
   methods: {},
   data() {
-    return {};
+    return {
+      // idx: ["3"],
+      idx: ["2-1"],
+    };
   },
   methods: {
-    xxx() {
-      this.$refs.slide.setActiveItem("d");
+    xxx(index) {
+      console.log(index);
     },
     yyy(newVal, oldVal) {
       // console.log(newVal, oldVal);
@@ -75,7 +68,9 @@ export default {
     WooIcon,
     WooSlide,
     WooSlideItem,
-    WooButton,
+    WooMenu,
+    WooMenuItem,
+    WooSubMenu,
 
     WooLayout,
     WooSider,
