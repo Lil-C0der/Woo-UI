@@ -37,7 +37,7 @@ export default {
     slideBarStyle() {
       return {
         width: this.slideBarWidth,
-        transform: ` translateX(${this.slideBarOffsetLeft}px)`,
+        transform: `translateX(${this.slideBarOffsetLeft}px)`,
       };
     },
   },
@@ -68,7 +68,6 @@ export default {
     background-color: $tab-active-color;
     transition: all 0.3s;
     height: 3px;
-    width: 90 px;
     position: absolute;
     bottom: -1px;
   }
