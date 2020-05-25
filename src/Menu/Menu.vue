@@ -76,6 +76,7 @@ export default {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  // color: $font-blue;
   // position: relative;
 }
 </style>

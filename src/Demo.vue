@@ -1,5 +1,18 @@
 <template>
   <div>
+    <woo-tabs>
+      <woo-tabs-head>
+        <woo-tabs-item name="1">1</woo-tabs-item>
+        <woo-tabs-item name="2">2</woo-tabs-item>
+        <woo-tabs-item name="3">3</woo-tabs-item>
+      </woo-tabs-head>
+      <woo-tabs-body>
+        <woo-tabs-pane name="1">A</woo-tabs-pane>
+        <woo-tabs-pane name="2">A</woo-tabs-pane>
+        <woo-tabs-pane name="3">A</woo-tabs-pane>
+      </woo-tabs-body>
+    </woo-tabs>
+
     <div>
       {{ idx }}
     </div>
@@ -12,8 +25,13 @@
         <woo-menu-item index="2-3">选项3</woo-menu-item>
         <woo-sub-menu>
           <template #title>选项4</template>
-          <woo-menu-item index="4-1">选项4-1</woo-menu-item>
-          <woo-menu-item index="4-2">选项4-2</woo-menu-item>
+          <woo-menu-item index="4-1">选项4-1111111</woo-menu-item>
+          <woo-menu-item index="4-2">选项4-2222222</woo-menu-item>
+          <woo-sub-menu>
+            <template #title>选项5</template>
+            <woo-menu-item index="5-1">选项5-1111111</woo-menu-item>
+            <woo-menu-item index="5-2">选项5-2222222</woo-menu-item>
+          </woo-sub-menu>
         </woo-sub-menu>
       </woo-sub-menu>
       <woo-menu-item index="3">订单中心</woo-menu-item>
@@ -42,6 +60,12 @@ import WooHeader from "./Layout/Header";
 import WooContent from "./Layout/Content";
 import WooFooter from "./Layout/Footer";
 import WooSider from "./Layout/Sider";
+
+import WooTabs from "./Tabs/Tabs";
+import WooTabsHead from "./Tabs/TabsHead";
+import WooTabsBody from "./Tabs/TabsBody";
+import WooTabsItem from "./Tabs/TabsItem";
+import WooTabsPane from "./Tabs/TabsPane";
 
 export default {
   methods: {},
@@ -77,6 +101,12 @@ export default {
     WooContent,
     WooFooter,
     WooHeader,
+
+    WooTabs,
+    WooTabsHead,
+    WooTabsBody,
+    WooTabsItem,
+    WooTabsPane,
   },
 };
 </script>

@@ -33,6 +33,7 @@ export default {
     },
   },
   mounted() {
+    // 将所有的 item 添加到 Menu 组件的 items 中
     this.root.initItems(this);
   },
 };
@@ -42,12 +43,17 @@ export default {
 @import "../../styles/_var.scss";
 
 .woo-menu-item {
+  cursor: pointer;
   padding: 0 20px;
   line-height: 48px;
   font-size: 14px;
+  color: $color-grey;
   &.active-menu-item {
     font-weight: 700;
-    color: green;
+    color: $color-black;
+  }
+  &:hover {
+    color: $color-black;
   }
 }
 </style>
