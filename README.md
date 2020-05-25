@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/woo.svg)](https://www.npmjs.com/package/woo-ui)
 
-[![Build Status](https://travis-ci.org/Lil-C0der/Woo.svg?branch=master)](https://travis-ci.org/Lil-C0der/Woo)
+[![Build Status](https://travis-ci.org/Lil-C0der/Woo-UI.svg?branch=master)](https://travis-ci.org/Lil-C0der/Woo)
 
 ## 开发指南
 
