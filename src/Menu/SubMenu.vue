@@ -113,9 +113,11 @@ export default {
   computed: {
     iconName() {
       if (this.$parent.$options.name === "woo-submenu") {
-        return this.isOpen ? "left" : "right";
+        // return this.isOpen ? "left" : "right";
+        return "right";
       } else {
-        return this.isOpen ? "up" : "down";
+        // return this.isOpen ? "up" : "down";
+        return "down";
       }
     },
     hasActiveItem() {
@@ -126,7 +128,10 @@ export default {
       );
     },
     submenuClass() {
-      return { "has-active-item": this.hasActiveItem };
+      return {
+        "has-active-item": this.hasActiveItem,
+        "submenu-opened": this.isOpen,
+      };
     },
   },
   mounted() {
@@ -149,6 +154,7 @@ export default {
   .woo-submenu-title {
     @extend .menu-item-title;
     &-icon {
+      transition: all 0.3s;
       font-size: 0.8em;
       margin-left: 0.5em;
     }
@@ -187,6 +193,13 @@ export default {
           @extend .active-menu-item-bg;
         }
       }
+      &.submenu-opened {
+        .woo-submenu-title {
+          &-icon {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
     }
     // popper 里面被选中的 item
     .active-menu-item {
@@ -197,6 +210,13 @@ export default {
       left: 100%;
       top: 0;
       transform: translateX(5px);
+    }
+  }
+  &.submenu-opened {
+    .woo-submenu-title {
+      &-icon {
+        transform: rotate(180deg);
+      }
     }
   }
 }
