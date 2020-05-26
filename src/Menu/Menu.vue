@@ -1,6 +1,7 @@
 <template>
   <ul class="woo-menu">
     <slot></slot>
+    <!-- <div class="woo-menu-slide-bar"></div> -->
   </ul>
 </template>
 
@@ -70,13 +71,11 @@ export default {
 @import "../../styles/_var.scss";
 
 .woo-menu {
-  border: 1px solid red;
+  border-bottom: 1px solid $border-color;
   list-style: none;
   padding-left: 32px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  // color: $font-blue;
-  // position: relative;
 }
 </style>

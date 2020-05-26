@@ -16,9 +16,11 @@
 import WooIcon from "../Icon";
 export default {
   name: "woo-submenu",
+  inject: ["root"],
+
   data() {
     return {
-      items: [],
+      itemIndexes: [],
       isOpen: false,
     };
   },
@@ -48,6 +50,17 @@ export default {
         return this.isOpen ? "up" : "down";
       }
     },
+    hasActiveItem() {
+      return this.itemIndexes.forEach(
+        (index) => this.root.selectedIndexes.indexOf(index) !== -1
+      );
+    },
+  },
+  mounted() {
+    const items = this.$children.filter(
+      (i) => i.$options.name === "woo-menu-item"
+    );
+    this.itemIndexes = items.map((i) => i.index);
   },
 };
 </script>
@@ -61,7 +74,7 @@ export default {
   .woo-submenu-title {
     padding: 0 20px;
     line-height: 48px;
-    font-size: 14px;
+    font-size: $font-size;
     color: $color-grey;
     &-icon {
       font-size: 0.8em;
@@ -76,12 +89,27 @@ export default {
     margin: 0;
     position: absolute;
     top: 100%;
+    background-color: $layout-bg-color;
     white-space: nowrap;
+    box-shadow: $button-box-shadow;
+    border-radius: $border-radius;
+    z-index: 99;
+    padding: 5px 0;
+    min-width: 136px;
     .woo-menu-item {
       line-height: 30px;
     }
     .woo-submenu-title {
       line-height: 30px;
+      &-icon {
+        position: absolute;
+        right: 0.5em;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .active-menu-item {
+      background-color: lighten($tab-active-color, 20.5%);
     }
     // 第二层的 Popper
     .woo-submenu-popper {

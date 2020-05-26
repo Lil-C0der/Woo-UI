@@ -46,14 +46,30 @@ export default {
   cursor: pointer;
   padding: 0 20px;
   line-height: 48px;
-  font-size: 14px;
+  font-size: $font-size;
   color: $color-grey;
+  position: relative;
   &.active-menu-item {
-    font-weight: 700;
-    color: $color-black;
+    color: $tab-active-color;
   }
   &:hover {
-    color: $color-black;
+    color: $tab-active-color;
+  }
+}
+.woo-menu {
+  > .woo-menu-item {
+    &.active-menu-item {
+      font-weight: 700;
+      &::after {
+        content: "";
+        height: 3px;
+        width: 100%;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        background-color: $tab-active-color;
+      }
+    }
   }
 }
 </style>

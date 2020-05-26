@@ -13,6 +13,11 @@
       </woo-tabs-body>
     </woo-tabs>
 
+    <woo-popover placement="right">
+      <template #content>123456789</template>
+      <woo-button>click</woo-button>
+    </woo-popover>
+
     <div>
       {{ idx }}
     </div>
@@ -36,6 +41,7 @@
       </woo-sub-menu>
       <woo-menu-item index="3">订单中心</woo-menu-item>
     </woo-menu>
+    <p>1234564646512345646465123456464651234564646512345646465</p>
   </div>
 </template>
 
