@@ -98,6 +98,7 @@ export default {
     },
     handleContentMouseenter() {
       clearTimeout(this.timer);
+      this.timer = null;
     },
     // 显示文本框
     showPopover(e) {
@@ -110,6 +111,8 @@ export default {
     // 关闭 popover 文本框
     hidePopover() {
       document.removeEventListener("click", this.hidePopover);
+      clearTimeout(this.timer);
+      this.timer = null;
       this.timer = setTimeout(() => {
         this.visibleCopy = false;
       }, 200);
