@@ -59,3 +59,28 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     transform: rotate(360deg);
   }
 }
+
+// extend
+.menu-item-title {
+  padding: 0 20px;
+  line-height: 48px;
+  font-size: $font-size;
+  color: $color-grey;
+}
+.active-menu-item-title {
+  font-weight: 700;
+  color: $tab-active-color;
+  &::after {
+    content: "";
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    background-color: $tab-active-color;
+  }
+}
+.active-menu-item-bg {
+  color: $tab-active-color;
+  background-color: lighten($tab-active-color, 20.5%);
+}

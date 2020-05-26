@@ -88,10 +88,7 @@ export default {
   position: relative;
   cursor: pointer;
   .woo-submenu-title {
-    padding: 0 20px;
-    line-height: 48px;
-    font-size: $font-size;
-    color: $color-grey;
+    @extend .menu-item-title;
     &-icon {
       font-size: 0.8em;
       margin-left: 0.5em;
@@ -125,15 +122,16 @@ export default {
           transform: translateY(-50%);
         }
       }
+      // popper 里面被选中的 title
       &.has-active-item {
         > .woo-submenu-title {
-          color: $tab-active-color;
-          background-color: lighten($tab-active-color, 20.5%);
+          @extend .active-menu-item-bg;
         }
       }
     }
+    // popper 里面被选中的 item
     .active-menu-item {
-      background-color: lighten($tab-active-color, 20.5%);
+      @extend .active-menu-item-bg;
     }
     // 第二层的 Popper
     .woo-submenu-popper {
@@ -144,18 +142,10 @@ export default {
   }
 }
 .woo-menu {
+  // 外面被选中的 title
   > .has-active-item {
     > .woo-submenu-title {
-      font-weight: 700;
-      &::after {
-        content: "";
-        height: 3px;
-        width: 100%;
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        background-color: $tab-active-color;
-      }
+      @extend .active-menu-item-title;
     }
   }
 }
