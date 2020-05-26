@@ -46,23 +46,37 @@ export default {
       item.$on("itemClick", this.handleMenuItemClick);
       item.isActive = this.selectedIndexes.indexOf(item.index) !== -1;
     },
-    handleMenuItemClick(index) {
+    // 获取 index 的完整路径
+    getIndexPath(vm) {
+      let path = [];
+      const traverse = (vm) => {
+        path.unshift(vm.index);
+        if (vm.$parent.$options.name !== "woo-menu") {
+          traverse(vm.$parent);
+        } else {
+          return path;
+        }
+        return path;
+      };
+      return traverse(vm);
+    },
+    handleMenuItemClick(vm) {
+      const { index } = vm;
+      const path = this.getIndexPath(vm);
+      this.$emit("click", { item: vm, index, path });
       if (this.selectedIndexes.indexOf(index) !== -1) {
         return;
       } else {
-        let copy;
+        let selectedCopy;
         if (this.multiple) {
-          copy = this.selectedIndexes.splice(0);
-          copy.push(index);
+          selectedCopy = this.selectedIndexes.splice(0);
+          selectedCopy.push(index);
         } else {
-          copy = [index];
+          selectedCopy = [index];
         }
-        this.$emit("select", copy);
+        this.$emit("select", selectedCopy);
       }
     },
-  },
-  mounted() {
-    // this.initItems();
   },
 };
 </script>
