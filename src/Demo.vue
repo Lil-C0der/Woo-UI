@@ -23,8 +23,9 @@
     <div>
       {{ idx }}
     </div>
+    <woo-button @click="idx = ['6-1']">toggle</woo-button>
     <woo-menu
-      trigger="click"
+      trigger="hover"
       v-model="idx"
       @select="xxx"
       @click="yyy"
@@ -49,6 +50,11 @@
         </woo-submenu>
       </woo-submenu>
       <woo-menu-item index="3">订单中心</woo-menu-item>
+      <woo-submenu index="5">
+        <template #title>选项6</template>
+        <woo-menu-item index="6-1">选项6-1111111</woo-menu-item>
+        <woo-menu-item index="6-2">选项6-2222222</woo-menu-item>
+      </woo-submenu>
     </woo-menu>
     <p>1234564646512345646465123456464651234564646512345646465</p>
   </div>
@@ -368,14 +374,14 @@ export default {
     yyy(obj) {
       // console.log(obj);
     },
-    zzz(index) {
-      console.log(index);
-    },
     aaa(index) {
       // console.log(index);
     },
+    zzz(path) {
+      // console.log('打开了');
+    },
     ccc() {
-      console.log(456789);
+      console.log("隐藏了");
     },
   },
   mounted() {},

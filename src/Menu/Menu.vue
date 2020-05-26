@@ -1,7 +1,6 @@
 <template>
   <ul class="woo-menu">
     <slot></slot>
-    <!-- <div class="woo-menu-slide-bar"></div> -->
   </ul>
 </template>
 
@@ -11,6 +10,7 @@ export default {
   data() {
     return {
       items: [],
+      submenus: [],
     };
   },
   provide: function() {
@@ -51,6 +51,14 @@ export default {
       item.$on("itemClick", this.handleMenuItemClick);
       item.isActive = this.selectedIndexes.indexOf(item.index) !== -1;
     },
+    initSubmenu(submenu) {
+      this.submenus.push(submenu);
+    },
+    hideAllSubmenu() {
+      this.submenus.forEach((vm) => {
+        vm.isOpen = false;
+      });
+    },
     // 获取 index 的完整路径
     getIndexPath(vm) {
       let path = [];
@@ -69,6 +77,8 @@ export default {
       const { index } = vm;
       const path = this.getIndexPath(vm);
       this.$emit("click", { item: vm, index, path });
+      // 点击 menu-item 之后关闭 submenu
+      this.hideAllSubmenu();
       if (this.selectedIndexes.indexOf(index) !== -1) {
         return;
       } else {

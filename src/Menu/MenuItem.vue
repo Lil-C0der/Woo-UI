@@ -20,10 +20,6 @@ export default {
   },
   methods: {
     handleItemClick(e) {
-      // 如果是 submenu 中的 item 被点击 则阻止冒泡
-      if (this.$parent.$options.name !== "woo-menu") {
-        e.stopPropagation();
-      }
       this.$emit("itemClick", this);
     },
   },

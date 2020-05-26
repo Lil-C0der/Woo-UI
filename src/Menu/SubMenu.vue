@@ -1,12 +1,9 @@
 <template>
-  <li
-    class="woo-submenu"
-    @click.stop="handleClick"
-    :class="submenuClass"
-    v-click-outside="hidePopper"
-  >
+  <li class="woo-submenu" :class="submenuClass">
     <div
       class="woo-submenu-title"
+      @click.stop="handleClick"
+      v-click-outside="hidePopper"
       @mouseenter.stop="handleMouseEnter"
       @mouseleave.stop="handleMouseLeave"
     >
@@ -63,29 +60,28 @@ export default {
         } else this.showPopper();
       }
     },
+    // 鼠标移进 title, 延迟 300ms 显示 Popper
     handleMouseEnter() {
       if (this.root.trigger === "hover") {
         // 清空隐藏 Popper 的定时器
         this.clearTimeout();
-        // 延迟 300ms 显示 Popper
         setTimeout(() => {
           this.showPopper();
         }, 300);
       }
     },
+    // 鼠标移进 title 或 Popper, 延迟 300ms 隐藏 Popper
     handleMouseLeave() {
       if (this.root.trigger === "hover") {
         this.clearTimeout();
-        // 延迟 300ms 隐藏 Popper
         this.timer = setTimeout(() => {
           this.hidePopper();
         }, 300);
       }
     },
-    // 鼠标移进 Popper
+    // 鼠标移进 Popper, 清空隐藏 Popper 的定时器
     handlePopperMouseEnter() {
       if (this.root.trigger === "hover") {
-        // 清空隐藏 Popper 的定时器
         this.clearTimeout();
       }
     },
@@ -108,7 +104,7 @@ export default {
       );
     },
     // 收集子组件中的 Submenu 组件
-    initSubItems() {
+    initSubmenu() {
       this.subItems = this.$children.filter(
         (i) => i.$options.name === "woo-submenu"
       );
@@ -135,7 +131,8 @@ export default {
   },
   mounted() {
     this.initItems();
-    this.initSubItems();
+    this.initSubmenu();
+    this.root.initSubmenu(this);
   },
   beforeDestroy() {
     removeListener();
