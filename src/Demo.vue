@@ -23,22 +23,22 @@
     </div>
     <woo-menu v-model="idx" @select="xxx">
       <woo-menu-item index="1">处理中心</woo-menu-item>
-      <woo-sub-menu>
+      <woo-submenu>
         <template #title>我的工作台</template>
         <woo-menu-item index="2-1">选项1</woo-menu-item>
         <woo-menu-item index="2-2">选项2</woo-menu-item>
         <woo-menu-item index="2-3">选项3</woo-menu-item>
-        <woo-sub-menu>
+        <woo-submenu>
           <template #title>选项4</template>
           <woo-menu-item index="4-1">选项4-1111111</woo-menu-item>
           <woo-menu-item index="4-2">选项4-2222222</woo-menu-item>
-          <woo-sub-menu>
+          <woo-submenu>
             <template #title>选项5</template>
             <woo-menu-item index="5-1">选项5-1111111</woo-menu-item>
             <woo-menu-item index="5-2">选项5-2222222</woo-menu-item>
-          </woo-sub-menu>
-        </woo-sub-menu>
-      </woo-sub-menu>
+          </woo-submenu>
+        </woo-submenu>
+      </woo-submenu>
       <woo-menu-item index="3">订单中心</woo-menu-item>
     </woo-menu>
     <p>1234564646512345646465123456464651234564646512345646465</p>
@@ -59,7 +59,7 @@ import WooSlide from "./Slide/Slide";
 import WooSlideItem from "./Slide/SlideItem";
 import WooMenu from "./Menu/Menu";
 import WooMenuItem from "./Menu/MenuItem";
-import WooSubMenu from "./Menu/SubMenu";
+import WooSubmenu from "./Menu/Submenu";
 
 import WooLayout from "./Layout/Layout";
 import WooHeader from "./Layout/Header";
@@ -100,7 +100,7 @@ export default {
     WooSlideItem,
     WooMenu,
     WooMenuItem,
-    WooSubMenu,
+    WooSubmenu,
 
     WooLayout,
     WooSider,

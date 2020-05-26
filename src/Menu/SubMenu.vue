@@ -1,5 +1,5 @@
 <template>
-  <li class="woo-submenu" @click.stop="handleClick">
+  <li class="woo-submenu" @click.stop="handleClick" :class="submenuClass">
     <!-- @mouseenter.stop="handleMouseEnter"
     @mouseleave.stop="handleMouseLeave" -->
     <div class="woo-submenu-title">
@@ -20,7 +20,8 @@ export default {
 
   data() {
     return {
-      itemIndexes: [],
+      items: [],
+      subItems: [],
       isOpen: false,
     };
   },
@@ -41,6 +42,18 @@ export default {
     handleMouseLeave() {
       this.isOpen = false;
     },
+    // 收集子组件中的 MenuItem 组件
+    initItems() {
+      this.items = this.$children.filter(
+        (i) => i.$options.name === "woo-menu-item"
+      );
+    },
+    // 收集子组件中的 Submenu 组件
+    initSubItems() {
+      this.subItems = this.$children.filter(
+        (i) => i.$options.name === "woo-submenu"
+      );
+    },
   },
   computed: {
     iconName() {
@@ -51,16 +64,19 @@ export default {
       }
     },
     hasActiveItem() {
-      return this.itemIndexes.forEach(
-        (index) => this.root.selectedIndexes.indexOf(index) !== -1
+      // 有被选中的 MenuItem 组件 或者有被选中的 Submenu 组件
+      return (
+        this.items.some((item) => item.isActive === true) ||
+        this.subItems.some((subItem) => subItem.hasActiveItem === true)
       );
+    },
+    submenuClass() {
+      return { "has-active-item": this.hasActiveItem };
     },
   },
   mounted() {
-    const items = this.$children.filter(
-      (i) => i.$options.name === "woo-menu-item"
-    );
-    this.itemIndexes = items.map((i) => i.index);
+    this.initItems();
+    this.initSubItems();
   },
 };
 </script>
@@ -99,13 +115,21 @@ export default {
     .woo-menu-item {
       line-height: 30px;
     }
-    .woo-submenu-title {
-      line-height: 30px;
-      &-icon {
-        position: absolute;
-        right: 0.5em;
-        top: 50%;
-        transform: translateY(-50%);
+    .woo-submenu {
+      .woo-submenu-title {
+        line-height: 30px;
+        &-icon {
+          position: absolute;
+          right: 0.5em;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+      &.has-active-item {
+        > .woo-submenu-title {
+          color: $tab-active-color;
+          background-color: lighten($tab-active-color, 20.5%);
+        }
       }
     }
     .active-menu-item {
@@ -116,6 +140,22 @@ export default {
       left: 100%;
       top: 0;
       transform: translateX(5px);
+    }
+  }
+}
+.woo-menu {
+  > .has-active-item {
+    > .woo-submenu-title {
+      font-weight: 700;
+      &::after {
+        content: "";
+        height: 3px;
+        width: 100%;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        background-color: $tab-active-color;
+      }
     }
   }
 }
