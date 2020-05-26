@@ -1,9 +1,5 @@
 <template>
-  <li
-    class="woo-menu-item"
-    :class="menuItemClass"
-    @click.stop="handleItemClick"
-  >
+  <li class="woo-menu-item" :class="menuItemClass" @click="handleItemClick">
     <slot></slot>
   </li>
 </template>
@@ -23,7 +19,11 @@ export default {
     },
   },
   methods: {
-    handleItemClick() {
+    handleItemClick(e) {
+      // 如果是 submenu 中的 item 被点击 则阻止冒泡
+      if (this.$parent.$options.name !== "woo-menu") {
+        e.stopPropagation();
+      }
       this.$emit("itemClick", this);
     },
   },
