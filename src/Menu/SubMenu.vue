@@ -1,12 +1,24 @@
 <template>
-  <li class="woo-submenu" @click.stop="handleClick" :class="submenuClass">
-    <!-- @mouseenter.stop="handleMouseEnter"
-    @mouseleave.stop="handleMouseLeave" -->
-    <div class="woo-submenu-title">
+  <li
+    class="woo-submenu"
+    @click.stop="handleClick"
+    :class="submenuClass"
+    v-click-outside="hidePopper"
+  >
+    <div
+      class="woo-submenu-title"
+      @mouseenter.stop="handleMouseEnter"
+      @mouseleave.stop="handleMouseLeave"
+    >
       <slot name="title"></slot>
       <woo-icon :name="iconName" class="woo-submenu-title-icon"></woo-icon>
     </div>
-    <ul class="woo-submenu-popper" v-show="isOpen">
+    <ul
+      class="woo-submenu-popper"
+      v-show="isOpen"
+      @mouseenter.stop="handlePopperMouseEnter"
+      @mouseleave.stop="handleMouseLeave"
+    >
       <slot></slot>
     </ul>
   </li>
@@ -14,16 +26,22 @@
 
 <script>
 import WooIcon from "../Icon";
+
+import clickOutside, { removeListener } from "../click-outside.js";
+
 export default {
   name: "woo-submenu",
   inject: ["root"],
-
   data() {
     return {
       items: [],
       subItems: [],
       isOpen: false,
+      timer: null,
     };
+  },
+  directives: {
+    clickOutside,
   },
   props: {
     index: {
@@ -32,14 +50,55 @@ export default {
     },
   },
   components: { WooIcon },
+  watch: {
+    isOpen: function(val) {
+      this.root.handleIsOpenChange(val, this);
+    },
+  },
   methods: {
     handleClick() {
-      this.isOpen = !this.isOpen;
+      if (this.root.trigger === "click") {
+        if (this.isOpen) {
+          this.hidePopper();
+        } else this.showPopper();
+      }
     },
     handleMouseEnter() {
-      this.isOpen = true;
+      if (this.root.trigger === "hover") {
+        // 清空隐藏 Popper 的定时器
+        this.clearTimeout();
+        // 延迟 300ms 显示 Popper
+        setTimeout(() => {
+          this.showPopper();
+        }, 300);
+      }
     },
     handleMouseLeave() {
+      if (this.root.trigger === "hover") {
+        this.clearTimeout();
+        // 延迟 300ms 隐藏 Popper
+        this.timer = setTimeout(() => {
+          this.hidePopper();
+        }, 300);
+      }
+    },
+    // 鼠标移进 Popper
+    handlePopperMouseEnter() {
+      if (this.root.trigger === "hover") {
+        // 清空隐藏 Popper 的定时器
+        this.clearTimeout();
+      }
+    },
+    clearTimeout() {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+    },
+    showPopper() {
+      this.isOpen = true;
+    },
+    hidePopper() {
       this.isOpen = false;
     },
     // 收集子组件中的 MenuItem 组件
@@ -77,6 +136,9 @@ export default {
   mounted() {
     this.initItems();
     this.initSubItems();
+  },
+  beforeDestroy() {
+    removeListener();
   },
 };
 </script>

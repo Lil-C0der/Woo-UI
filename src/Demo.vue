@@ -13,7 +13,7 @@
       </woo-tabs-body>
     </woo-tabs>
 
-    <woo-popover placement="right">
+    <woo-popover trigger="hover" placement="right">
       <template #content>123456789</template>
       <woo-button>click</woo-button>
     </woo-popover>
@@ -23,9 +23,16 @@
     <div>
       {{ idx }}
     </div>
-    <woo-menu v-model="idx" @select="xxx" @click="yyy">
+    <woo-menu
+      trigger="click"
+      v-model="idx"
+      @select="xxx"
+      @click="yyy"
+      @open="zzz"
+      @close="ccc"
+    >
       <woo-menu-item index="1">处理中心</woo-menu-item>
-      <woo-submenu index="工作台">
+      <woo-submenu index="gongzuotai">
         <template #title>我的工作台</template>
         <woo-menu-item index="2-1">选项1</woo-menu-item>
         <woo-menu-item index="2-2">选项2</woo-menu-item>
@@ -356,10 +363,19 @@ export default {
   },
   methods: {
     xxx(index) {
-      // console.log(index);
+      console.log(index);
     },
     yyy(obj) {
-      console.log(obj);
+      // console.log(obj);
+    },
+    zzz(index) {
+      console.log(index);
+    },
+    aaa(index) {
+      // console.log(index);
+    },
+    ccc() {
+      console.log(456789);
     },
   },
   mounted() {},

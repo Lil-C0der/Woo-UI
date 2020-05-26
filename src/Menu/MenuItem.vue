@@ -25,8 +25,6 @@ export default {
   methods: {
     handleItemClick() {
       this.$emit("itemClick", this);
-      if (this.$parent.$options.name === "woo-sub-menu") {
-      }
     },
   },
   computed: {

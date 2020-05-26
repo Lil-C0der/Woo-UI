@@ -31,6 +31,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    trigger: {
+      type: String,
+      default: "click",
+      validator: (val) => ["click", "hover"].indexOf(val) !== -1,
+    },
   },
   watch: {
     selectedIndexes: function(newIndex, oldIndex) {
@@ -77,6 +82,22 @@ export default {
         this.$emit("select", selectedCopy);
       }
     },
+    handleIsOpenChange(val, vm) {
+      const path = this.getIndexPath(vm);
+      if (val) {
+        // submenu 打开的回调 参数为 submenu 的 index path
+        this.$emit("open", path);
+      } else {
+        // submenu 关闭的回调 参数为 submenu 的 index path
+        this.$emit("close", path);
+      }
+    },
+  },
+  beforeDestroy() {
+    // 移除监听
+    this.items.forEach((vm) => {
+      vm.$off("itemClick");
+    });
   },
 };
 </script>

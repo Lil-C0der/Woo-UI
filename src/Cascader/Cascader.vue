@@ -26,8 +26,7 @@
 import WooCascaderMenu from "./CascaderMenu";
 import WooInput from "../Input";
 
-import clickOutside from "../click-outside.js";
-import { removeListener } from "../click-outside.js";
+import clickOutside, { removeListener } from "../click-outside.js";
 
 export default {
   name: "woo-cascader",
