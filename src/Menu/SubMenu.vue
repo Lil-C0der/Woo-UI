@@ -11,7 +11,13 @@
       <slot name="title"></slot>
       <woo-icon :name="iconName" class="woo-submenu-title-arrow"></woo-icon>
     </div>
-    <transition name="fade">
+    <transition
+      :name="animationName"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
       <ul
         class="woo-submenu-list"
         :class="listClass"
@@ -112,6 +118,36 @@ export default {
         (i) => i.$options.name === "woo-submenu"
       );
     },
+    // 动画
+    enter(el, done) {
+      if (!this.root.vertical) return;
+      el.style.height = "auto";
+      const { height } = el.getBoundingClientRect();
+      el.style.height = 0;
+      el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+      setTimeout(() => {
+        done();
+      }, 300);
+    },
+    afterEnter(el) {
+      if (!this.root.vertical) return;
+      el.style.height = "auto";
+    },
+    leave(el, done) {
+      if (!this.root.vertical) return;
+      const { height } = el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+      el.getBoundingClientRect();
+      el.style.height = 0;
+      setTimeout(() => {
+        done();
+      }, 300);
+    },
+    afterLeave(el) {
+      if (!this.root.vertical) return;
+      el.style.height = "auto";
+    },
   },
   computed: {
     iconName() {
@@ -136,6 +172,9 @@ export default {
       return this.root.vertical
         ? "woo-submenu-list-vertical"
         : "woo-submenu-list-popper";
+    },
+    animationName() {
+      return this.root.vertical ? "" : "fade";
     },
   },
   created() {
@@ -165,6 +204,7 @@ export default {
 
   // list
   .woo-submenu-list {
+    transition: all 0.3s;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -189,6 +229,7 @@ export default {
 
     // 垂直 menu 时 list 的样式
     &.woo-submenu-list-vertical {
+      overflow: hidden;
       @extend .submenu-list-vertical;
       .woo-submenu-title {
         padding-left: 40px;
