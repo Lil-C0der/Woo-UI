@@ -43,6 +43,10 @@ export default {
 @import "../../styles/_var.scss";
 
 .woo-menu-item {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   transition: all 0.3s;
   @extend .menu-item-title;
   cursor: pointer;

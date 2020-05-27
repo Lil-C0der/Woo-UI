@@ -11,23 +11,38 @@
       <slot name="title"></slot>
       <woo-icon :name="iconName" class="woo-submenu-title-arrow"></woo-icon>
     </div>
-    <transition
-      :name="animationName"
-      @enter="enter"
-      @after-enter="afterEnter"
-      @leave="leave"
-      @after-leave="afterLeave"
-    >
-      <ul
-        class="woo-submenu-list"
-        :class="listClass"
-        v-show="isOpen"
-        @mouseenter.stop="handlePopperMouseEnter"
-        @mouseleave.stop="handleMouseLeave"
+    <template v-if="this.root.vertical">
+      <transition
+        @enter="enter"
+        @after-enter="afterEnter"
+        @leave="leave"
+        @after-leave="afterLeave"
       >
-        <slot></slot>
-      </ul>
-    </transition>
+        <ul
+          class="woo-submenu-list"
+          :class="listClass"
+          v-show="isOpen"
+          @mouseenter.stop="handlePopperMouseEnter"
+          @mouseleave.stop="handleMouseLeave"
+        >
+          <slot></slot>
+        </ul>
+      </transition>
+    </template>
+
+    <template v-else>
+      <transition name="fade">
+        <ul
+          class="woo-submenu-list"
+          :class="listClass"
+          v-show="isOpen"
+          @mouseenter.stop="handlePopperMouseEnter"
+          @mouseleave.stop="handleMouseLeave"
+        >
+          <slot></slot>
+        </ul>
+      </transition>
+    </template>
   </li>
 </template>
 
@@ -120,7 +135,6 @@ export default {
     },
     // 动画
     enter(el, done) {
-      if (!this.root.vertical) return;
       el.style.height = "auto";
       const { height } = el.getBoundingClientRect();
       el.style.height = 0;
@@ -131,11 +145,9 @@ export default {
       }, 300);
     },
     afterEnter(el) {
-      if (!this.root.vertical) return;
       el.style.height = "auto";
     },
     leave(el, done) {
-      if (!this.root.vertical) return;
       const { height } = el.getBoundingClientRect();
       el.style.height = `${height}px`;
       el.getBoundingClientRect();
@@ -145,7 +157,6 @@ export default {
       }, 300);
     },
     afterLeave(el) {
-      if (!this.root.vertical) return;
       el.style.height = "auto";
     },
   },

@@ -32,7 +32,9 @@
       @open="zzz"
       @close="ccc"
     >
-      <woo-menu-item index="1">处理中心</woo-menu-item>
+      <woo-menu-item index="1">
+        <a href="http://www.bing.com" target="_blank">处理中心</a>
+      </woo-menu-item>
       <woo-submenu index="gongzuotai">
         <template #title>我的工作台</template>
         <woo-menu-item index="2-1">选项1</woo-menu-item>
