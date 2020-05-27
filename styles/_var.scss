@@ -66,6 +66,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   line-height: 48px;
   font-size: $font-size;
   color: $color-grey;
+  position: relative;
 }
 .active-menu-item-title {
   font-weight: 700;
@@ -80,6 +81,22 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     background-color: $tab-active-color;
   }
 }
+
+// submenu icon 的样式
+.submenu-title-arrow {
+  transition: all 0.3s;
+  font-size: 0.8em;
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.active-menu-item-title-vertical {
+  font-weight: 700;
+  color: $tab-active-color;
+}
+
 .active-menu-item-bg {
   color: $tab-active-color;
   background-color: lighten($tab-active-color, 20.5%);

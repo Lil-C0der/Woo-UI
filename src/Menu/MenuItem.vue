@@ -50,15 +50,23 @@ export default {
     color: $tab-active-color;
   }
 }
-// 顶部被选中的 item 的样式
-.woo-menu {
+// 水平menu, 顶部被选中 item 的样式
+.woo-menu:not(.woo-menu-vertical) {
   > .woo-menu-item {
     &.active-menu-item {
       @extend .active-menu-item-title;
     }
   }
 }
+
+// 垂直 menu
 .woo-menu-vertical {
+  // 被选中的 menu-item
+  > .woo-menu-item {
+    &.active-menu-item {
+      @extend .active-menu-item-title-vertical;
+    }
+  }
   .woo-submenu-list-vertical {
     .woo-menu-item {
       padding-left: 40px;
