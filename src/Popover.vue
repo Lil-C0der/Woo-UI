@@ -190,7 +190,7 @@ export default {
     },
   },
   mounted() {
-    if (this.visibleCopy) {
+    if (this.visible) {
       this.initPopoverPosition();
     }
     this.initListener();

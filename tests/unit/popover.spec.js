@@ -4,9 +4,6 @@ import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
 import Popover from "@/Popover";
-import Button from "@/Button/Button.vue";
-
-import Vue from "vue";
 
 chai.use(sinonChai);
 
@@ -24,8 +21,10 @@ describe("Popover 组件", () => {
     });
     const vm = wrapper.vm;
     const contentEl = vm.$refs.contentWrapper;
-    expect(window.getComputedStyle(contentEl).display).to.eq("block");
-    wrapper.destroy();
+    vm.$nextTick().then(() => {
+      expect(window.getComputedStyle(contentEl).display).to.eq("block");
+      wrapper.destroy();
+    });
   });
 
   it("可以设置 placement", () => {
@@ -33,6 +32,10 @@ describe("Popover 组件", () => {
       attachToDocument: true,
       propsData: {
         placement: "bottom",
+      },
+      slots: {
+        default: "<button>test button</button>",
+        content: "<div>test content</div>",
       },
     });
     const arrowWrapper = wrapper.find(".woo-popover-arrow");
