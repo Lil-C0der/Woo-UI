@@ -26,7 +26,6 @@
     <woo-button @click="idx = '6-1'">toggle</woo-button>
     <woo-menu
       trigger="click"
-      v-model="idx"
       @select="xxx"
       @click="yyy"
       @open="zzz"

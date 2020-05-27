@@ -15,6 +15,7 @@ export default {
     return {
       items: [],
       submenus: [],
+      selectedCopy: this.selectedIndex ?? "",
     };
   },
   provide: function() {
@@ -46,6 +47,9 @@ export default {
   },
   watch: {
     selectedIndex: function(newIndex) {
+      this.selectedCopy = newIndex;
+    },
+    selectedCopy: function(newIndex) {
       this.items.forEach((vm) => {
         vm.isActive = newIndex === vm.index;
       });
@@ -91,8 +95,8 @@ export default {
       if (this.selectedIndex === index) {
         return;
       } else {
-        let selectedCopy = index;
-        this.$emit("select", selectedCopy);
+        this.selectedCopy = index;
+        this.$emit("select", this.selectedCopy);
       }
     },
     handleIsOpenChange(val, vm) {
