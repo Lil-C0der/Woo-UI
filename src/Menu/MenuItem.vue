@@ -2,6 +2,7 @@
   <li
     class="woo-menu-item"
     :class="menuItemClass"
+    :data-index="index"
     @click.stop="handleItemClick"
   >
     <slot></slot>

@@ -2,6 +2,7 @@
   <li
     class="woo-submenu"
     :class="submenuClass"
+    :data-index="index"
     @click.stop="handleClick"
     v-click-outside="hidePopper"
     @mouseenter.stop="handleMouseEnter"

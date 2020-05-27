@@ -13,9 +13,10 @@
       </woo-tabs-body>
     </woo-tabs>
 
-    <woo-popover trigger="hover" placement="right">
+    <woo-popover :visible="true" trigger="click" placement="right">
       <template #content>123456789</template>
-      <woo-button>click</woo-button>
+      <!-- <woo-button>click</woo-button> -->
+      <button>click</button>
     </woo-popover>
 
     <woo-cascader :source="source" v-model="selected"> </woo-cascader>
@@ -401,7 +402,7 @@ export default {
   },
   methods: {
     xxx(index) {
-      console.log(index);
+      console.log("select: " + index);
     },
     yyy(obj) {
       console.log(obj);
