@@ -179,14 +179,6 @@ export default {
     // 水平 menu 时 list 的样式
     &.woo-submenu-list-popper {
       @extend .submenu-list-popper;
-      .woo-submenu {
-        // popper 里面被选中的 title
-        &.has-active-item {
-          > .woo-submenu-title {
-            @extend .active-menu-item-bg;
-          }
-        }
-      }
       // 内层的 Popper
       .woo-submenu-list-popper {
         left: 100%;
@@ -198,14 +190,10 @@ export default {
     // 垂直 menu 时 list 的样式
     &.woo-submenu-list-vertical {
       @extend .submenu-list-vertical;
-    }
-
-    .woo-menu-item {
-      line-height: 30px;
-    }
-    // list 里面被选中的 item
-    .active-menu-item {
-      @extend .active-menu-item-bg;
+      .woo-submenu-title {
+        padding-left: 40px;
+        line-height: 40px;
+      }
     }
   }
 
@@ -227,15 +215,19 @@ export default {
       @extend .active-menu-item-title;
     }
   }
+  .woo-submenu-list-popper {
+    > .has-active-item {
+      @extend .active-menu-item-bg;
+    }
+  }
 }
 
 // 垂直 menu
 .woo-menu-vertical {
-  // 外层被选中的 title
+  // 被选中的 title
   > .has-active-item {
     > .woo-submenu-title {
-      font-weight: 700;
-      color: $tab-active-color;
+      @extend .active-menu-item-title-vertical;
     }
   }
 }

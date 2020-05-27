@@ -31,6 +31,39 @@
       @click="yyy"
       @open="zzz"
       @close="ccc"
+    >
+      <woo-menu-item index="1">处理中心</woo-menu-item>
+      <woo-submenu index="gongzuotai">
+        <template #title>我的工作台</template>
+        <woo-menu-item index="2-1">选项1</woo-menu-item>
+        <woo-menu-item index="2-2">选项2</woo-menu-item>
+        <woo-menu-item index="2-3">选项3</woo-menu-item>
+        <woo-submenu index="4">
+          <template #title>选项4</template>
+          <woo-menu-item index="4-1">选项4-1111111</woo-menu-item>
+          <woo-menu-item index="4-2">选项4-2222222</woo-menu-item>
+          <woo-submenu index="5">
+            <template #title>选项5</template>
+            <woo-menu-item index="5-1">选项5-1111111</woo-menu-item>
+            <woo-menu-item index="5-2">选项5-2222222</woo-menu-item>
+          </woo-submenu>
+        </woo-submenu>
+      </woo-submenu>
+      <woo-menu-item index="3">订单中心</woo-menu-item>
+      <woo-submenu index="5">
+        <template #title>选项6</template>
+        <woo-menu-item index="6-1">选项6-1111111</woo-menu-item>
+        <woo-menu-item index="6-2">选项6-2222222</woo-menu-item>
+      </woo-submenu>
+    </woo-menu>
+
+    <woo-menu
+      trigger="click"
+      v-model="idx"
+      @select="xxx"
+      @click="yyy"
+      @open="zzz"
+      @close="ccc"
       vertical
     >
       <woo-menu-item index="1">处理中心</woo-menu-item>

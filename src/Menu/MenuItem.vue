@@ -43,6 +43,7 @@ export default {
 @import "../../styles/_var.scss";
 
 .woo-menu-item {
+  transition: all 0.3s;
   @extend .menu-item-title;
   cursor: pointer;
   position: relative;
@@ -57,6 +58,11 @@ export default {
       @extend .active-menu-item-title;
     }
   }
+  .woo-submenu-list-popper {
+    .woo-menu-item {
+      line-height: 30px;
+    }
+  }
 }
 
 // 垂直 menu
@@ -68,14 +74,22 @@ export default {
     }
   }
   .woo-submenu-list-vertical {
-    .woo-menu-item {
+    > .woo-menu-item {
       padding-left: 40px;
+    }
+    .woo-menu-item {
+      line-height: 40px;
     }
     .woo-submenu {
       .woo-menu-item {
         padding-left: 60px;
       }
     }
+  }
+}
+.woo-submenu-list {
+  .active-menu-item {
+    @extend .active-menu-item-bg;
   }
 }
 </style>

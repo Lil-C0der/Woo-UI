@@ -48,6 +48,7 @@ export default {
       type: String,
       default: "200px",
     },
+    // TODO collapse
   },
   watch: {
     selectedIndexes: function(newIndex, oldIndex) {
@@ -119,7 +120,7 @@ export default {
   },
   computed: {
     menuStyle() {
-      return this.vertical ? { width: this.width } : "";
+      return this.vertical ? { width: this.width, minHeight: "400px" } : "";
     },
   },
   beforeDestroy() {
@@ -135,11 +136,12 @@ export default {
 @import "../../styles/_var.scss";
 
 .woo-menu {
+  transition: all 0.3s;
   border-bottom: 1px solid $border-color;
   list-style: none;
   padding-left: 32px;
   display: inline-flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   &.woo-menu-vertical {
     flex-direction: column;
