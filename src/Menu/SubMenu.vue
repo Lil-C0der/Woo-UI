@@ -112,10 +112,8 @@ export default {
   computed: {
     iconName() {
       if (this.$parent.$options.name === "woo-submenu") {
-        // return this.isOpen ? "left" : "right";
         return "right";
       } else {
-        // return this.isOpen ? "up" : "down";
         return "down";
       }
     },
@@ -191,8 +189,8 @@ export default {
         }
       }
       &.submenu-opened {
-        .woo-submenu-title {
-          &-icon {
+        > .woo-submenu-title {
+          .woo-submenu-title-icon {
             transform: translateY(-50%) rotate(180deg);
           }
         }
