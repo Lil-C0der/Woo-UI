@@ -1,17 +1,19 @@
 <template>
-  <li class="woo-submenu" :class="submenuClass">
-    <div
-      class="woo-submenu-title"
-      @click.stop="handleClick"
-      v-click-outside="hidePopper"
-      @mouseenter.stop="handleMouseEnter"
-      @mouseleave.stop="handleMouseLeave"
-    >
+  <li
+    class="woo-submenu"
+    :class="submenuClass"
+    @click.stop="handleClick"
+    v-click-outside="hidePopper"
+    @mouseenter.stop="handleMouseEnter"
+    @mouseleave.stop="handleMouseLeave"
+  >
+    <div class="woo-submenu-title">
       <slot name="title"></slot>
       <woo-icon :name="iconName" class="woo-submenu-title-icon"></woo-icon>
     </div>
     <ul
-      class="woo-submenu-popper"
+      class="woo-submenu-list"
+      :class="listClass"
       v-show="isOpen"
       @mouseenter.stop="handlePopperMouseEnter"
       @mouseleave.stop="handleMouseLeave"
@@ -111,7 +113,8 @@ export default {
   },
   computed: {
     iconName() {
-      if (this.$parent.$options.name === "woo-submenu") {
+      // 内层的 submenu 同时是水平 menu 时, 显示向右箭头
+      if (this.$parent.$options.name === "woo-submenu" && !this.root.vertical) {
         return "right";
       } else {
         return "down";
@@ -126,6 +129,11 @@ export default {
         "has-active-item": this.hasActiveItem,
         "submenu-opened": this.isOpen,
       };
+    },
+    listClass() {
+      return this.root.vertical
+        ? "woo-submenu-list-vertical"
+        : "woo-submenu-list-popper";
     },
   },
   created() {
@@ -154,54 +162,79 @@ export default {
       margin-left: 0.5em;
     }
   }
-  .woo-submenu-popper {
-    transform: translateY(5px);
-    border: 1px solid $border-color;
+
+  .woo-submenu-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    position: absolute;
-    top: 100%;
-    background-color: $layout-bg-color;
-    white-space: nowrap;
-    box-shadow: $button-box-shadow;
-    border-radius: $border-radius;
-    z-index: 99;
-    padding: 5px 0;
-    min-width: 136px;
-    .woo-menu-item {
-      line-height: 30px;
-    }
-    .woo-submenu {
-      .woo-submenu-title {
-        line-height: 30px;
-        &-icon {
-          position: absolute;
-          right: 0.5em;
-          top: 50%;
-          transform: translateY(-50%);
+    &.woo-submenu-list-popper {
+      @extend .submenu-list-popper;
+      .woo-submenu {
+        .woo-submenu-title {
+          line-height: 30px;
+          position: relative;
+          &-icon {
+            position: absolute;
+            right: 0.5em;
+            top: 50%;
+            transform: translateY(-50%);
+          }
         }
-      }
-      // popper 里面被选中的 title
-      &.has-active-item {
-        > .woo-submenu-title {
-          @extend .active-menu-item-bg;
+        // popper 里面被选中的 title
+        &.has-active-item {
+          > .woo-submenu-title {
+            @extend .active-menu-item-bg;
+          }
         }
-      }
-      &.submenu-opened {
-        > .woo-submenu-title {
-          .woo-submenu-title-icon {
-            transform: translateY(-50%) rotate(180deg);
+        &.submenu-opened {
+          > .woo-submenu-title {
+            .woo-submenu-title-icon {
+              transform: translateY(-50%) rotate(180deg);
+            }
           }
         }
       }
     }
+
+    &.woo-submenu-list-vertical {
+      @extend .submenu-list-vertical;
+      .woo-submenu {
+        .woo-submenu-title {
+          line-height: 30px;
+          position: relative;
+          padding-left: 40px;
+          &-icon {
+            position: absolute;
+            right: 0.5em;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+        // popper 里面被选中的 title
+        &.has-active-item {
+          > .woo-submenu-title {
+            @extend .active-menu-item-bg;
+          }
+        }
+        &.submenu-opened {
+          > .woo-submenu-title {
+            .woo-submenu-title-icon {
+              transform: translateY(-50%) rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+    .woo-menu-item {
+      line-height: 30px;
+    }
+
     // popper 里面被选中的 item
     .active-menu-item {
       @extend .active-menu-item-bg;
     }
     // 第二层的 Popper
-    .woo-submenu-popper {
+    .woo-submenu-list-popper {
       left: 100%;
       top: 0;
       transform: translateX(5px);

@@ -1,5 +1,9 @@
 <template>
-  <li class="woo-menu-item" :class="menuItemClass" @click="handleItemClick">
+  <li
+    class="woo-menu-item"
+    :class="menuItemClass"
+    @click.stop="handleItemClick"
+  >
     <slot></slot>
   </li>
 </template>
@@ -51,6 +55,18 @@ export default {
   > .woo-menu-item {
     &.active-menu-item {
       @extend .active-menu-item-title;
+    }
+  }
+}
+.woo-menu-vertical {
+  .woo-submenu-list-vertical {
+    .woo-menu-item {
+      padding-left: 40px;
+    }
+    .woo-submenu {
+      .woo-menu-item {
+        padding-left: 60px;
+      }
     }
   }
 }

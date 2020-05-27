@@ -25,12 +25,13 @@
     </div>
     <woo-button @click="idx = ['6-1']">toggle</woo-button>
     <woo-menu
-      trigger="hover"
+      trigger="click"
       v-model="idx"
       @select="xxx"
       @click="yyy"
       @open="zzz"
       @close="ccc"
+      vertical
     >
       <woo-menu-item index="1">处理中心</woo-menu-item>
       <woo-submenu index="gongzuotai">

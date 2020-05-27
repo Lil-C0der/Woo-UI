@@ -84,3 +84,21 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   color: $tab-active-color;
   background-color: lighten($tab-active-color, 20.5%);
 }
+// menu 水平时的 list 样式
+.submenu-list-popper {
+  transform: translateY(5px);
+  border: 1px solid $border-color;
+  position: absolute;
+  top: 100%;
+  background-color: $layout-bg-color;
+  white-space: nowrap;
+  box-shadow: $button-box-shadow;
+  border-radius: $border-radius;
+  z-index: 99;
+  padding: 5px 0;
+  min-width: 136px;
+}
+// menu 垂直时的 list 样式
+.submenu-list-vertical {
+  position: relative;
+}

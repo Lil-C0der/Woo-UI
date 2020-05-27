@@ -1,5 +1,9 @@
 <template>
-  <ul class="woo-menu">
+  <ul
+    class="woo-menu"
+    :class="{ 'woo-menu-vertical': vertical }"
+    :style="menuStyle"
+  >
     <slot></slot>
   </ul>
 </template>
@@ -35,6 +39,14 @@ export default {
       type: String,
       default: "click",
       validator: (val) => ["click", "hover"].indexOf(val) !== -1,
+    },
+    vertical: {
+      type: Boolean,
+      default: false,
+    },
+    width: {
+      type: String,
+      default: "200px",
     },
   },
   watch: {
@@ -77,8 +89,10 @@ export default {
       const { index } = vm;
       const path = this.getIndexPath(vm);
       this.$emit("click", { item: vm, index, path });
-      // 点击 menu-item 之后关闭 submenu
-      this.hideAllSubmenu();
+      // 水平状态下, 点击 menu-item 之后关闭 submenu
+      if (!this.vertical) {
+        this.hideAllSubmenu();
+      }
       if (this.selectedIndexes.indexOf(index) !== -1) {
         return;
       } else {
@@ -103,6 +117,11 @@ export default {
       }
     },
   },
+  computed: {
+    menuStyle() {
+      return this.vertical ? { width: this.width } : "";
+    },
+  },
   beforeDestroy() {
     // 移除监听
     this.items.forEach((vm) => {
@@ -122,5 +141,17 @@ export default {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  &.woo-menu-vertical {
+    flex-direction: column;
+    border-right: 1px solid $border-color;
+    border-bottom: none;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 0;
+    .woo-menu-item,
+    .woo-submenu {
+      width: 100%;
+    }
+  }
 }
 </style>
