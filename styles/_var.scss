@@ -60,6 +60,16 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   }
 }
 
+// transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 // extend
 .menu-item-title {
   padding: 0 20px;

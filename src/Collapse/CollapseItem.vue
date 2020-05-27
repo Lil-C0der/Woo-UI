@@ -8,9 +8,11 @@
       ></woo-icon>
       {{ title }}
     </div>
-    <div class="woo-collapse-item-content" v-show="isOpen">
-      <slot></slot>
-    </div>
+    <transition name="fade">
+      <div class="woo-collapse-item-content" v-show="isOpen">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 

@@ -11,15 +11,17 @@
       <slot name="title"></slot>
       <woo-icon :name="iconName" class="woo-submenu-title-arrow"></woo-icon>
     </div>
-    <ul
-      class="woo-submenu-list"
-      :class="listClass"
-      v-show="isOpen"
-      @mouseenter.stop="handlePopperMouseEnter"
-      @mouseleave.stop="handleMouseLeave"
-    >
-      <slot></slot>
-    </ul>
+    <transition name="fade">
+      <ul
+        class="woo-submenu-list"
+        :class="listClass"
+        v-show="isOpen"
+        @mouseenter.stop="handlePopperMouseEnter"
+        @mouseleave.stop="handleMouseLeave"
+      >
+        <slot></slot>
+      </ul>
+    </transition>
   </li>
 </template>
 
