@@ -4,6 +4,9 @@ import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
 import Popover from "@/Popover";
+import Button from "@/Button/Button.vue";
+
+import Vue from "vue";
 
 chai.use(sinonChai);
 
@@ -71,6 +74,26 @@ describe("Popover 组件", () => {
         wrapper.destroy();
         done();
       }, 800);
+    });
+  });
+
+  it("可以触发 visible-change 事件", () => {
+    const callback = sinon.fake();
+    const wrapper = mount(Popover, {
+      attachToDocument: true,
+      slots: {
+        default: "<button>test button</button>",
+        content: "<div>test content</div>",
+      },
+      listeners: {
+        "visible-change": callback,
+      },
+    });
+    const vm = wrapper.vm;
+    const btnWrapper = wrapper.find(".trigger-wrapper");
+    btnWrapper.trigger("click");
+    vm.$nextTick().then(() => {
+      expect(callback).to.have.been.calledWith(true);
     });
   });
 });
