@@ -23,7 +23,7 @@
     <div>
       {{ idx }}
     </div>
-    <woo-button @click="idx = ['6-1']">toggle</woo-button>
+    <woo-button @click="idx = '6-1'">toggle</woo-button>
     <woo-menu
       trigger="click"
       v-model="idx"
@@ -32,9 +32,7 @@
       @open="zzz"
       @close="ccc"
     >
-      <woo-menu-item index="1">
-        <a href="http://www.bing.com" target="_blank">处理中心</a>
-      </woo-menu-item>
+      <woo-menu-item index="1">处理中心</woo-menu-item>
       <woo-submenu index="gongzuotai">
         <template #title>我的工作台</template>
         <woo-menu-item index="2-1">选项1</woo-menu-item>
@@ -128,7 +126,6 @@ export default {
   methods: {},
   data() {
     return {
-      // idx: ["3"],
       selected: ["zhinan", "shejiyuanze", "yizhi"],
 
       source: [
@@ -400,7 +397,7 @@ export default {
         },
       ],
 
-      idx: ["2-1"],
+      idx: "2-1",
     };
   },
   methods: {
@@ -408,7 +405,7 @@ export default {
       console.log(index);
     },
     yyy(obj) {
-      // console.log(obj);
+      console.log(obj);
     },
     aaa(index) {
       // console.log(index);

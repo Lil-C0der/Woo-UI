@@ -23,17 +23,12 @@ export default {
     };
   },
   model: {
-    prop: "selectedIndexes",
+    prop: "selectedIndex",
     event: "select",
   },
   props: {
-    selectedIndexes: {
-      type: Array,
-      default: () => [],
-    },
-    multiple: {
-      type: Boolean,
-      default: false,
+    selectedIndex: {
+      type: String,
     },
     trigger: {
       type: String,
@@ -48,12 +43,11 @@ export default {
       type: String,
       default: "200px",
     },
-    // TODO collapse
   },
   watch: {
-    selectedIndexes: function(newIndex, oldIndex) {
+    selectedIndex: function(newIndex) {
       this.items.forEach((vm) => {
-        vm.isActive = newIndex.indexOf(vm.index) !== -1;
+        vm.isActive = newIndex === vm.index;
       });
     },
   },
@@ -62,7 +56,7 @@ export default {
     initItems(item) {
       this.items.push(item);
       item.$on("itemClick", this.handleMenuItemClick);
-      item.isActive = this.selectedIndexes.indexOf(item.index) !== -1;
+      item.isActive = this.selectedIndex === item.index;
     },
     initSubmenu(submenu) {
       this.submenus.push(submenu);
@@ -94,16 +88,10 @@ export default {
       if (!this.vertical) {
         this.hideAllSubmenu();
       }
-      if (this.selectedIndexes.indexOf(index) !== -1) {
+      if (this.selectedIndex === index) {
         return;
       } else {
-        let selectedCopy;
-        if (this.multiple) {
-          selectedCopy = this.selectedIndexes.splice(0);
-          selectedCopy.push(index);
-        } else {
-          selectedCopy = [index];
-        }
+        let selectedCopy = index;
         this.$emit("select", selectedCopy);
       }
     },
