@@ -31,10 +31,9 @@ export default {
   inject: ["root"],
   data() {
     return {
-      items: [],
-      subItems: [],
       isOpen: false,
       timer: null,
+      children: [],
     };
   },
   directives: {
@@ -122,10 +121,7 @@ export default {
     },
     hasActiveItem() {
       // 有被选中的 MenuItem 组件 或者有被选中的 Submenu 组件
-      return (
-        this.items.some((item) => item.isActive === true) ||
-        this.subItems.some((subItem) => subItem.hasActiveItem === true)
-      );
+      return this.children.some((vm) => vm.isActive || vm.hasActiveItem);
     },
     submenuClass() {
       return {
@@ -134,9 +130,10 @@ export default {
       };
     },
   },
+  created() {
+    this.children = this.$children;
+  },
   mounted() {
-    this.initItems();
-    this.initSubmenu();
     this.root.initSubmenu(this);
   },
   beforeDestroy() {
