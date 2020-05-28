@@ -77,4 +77,22 @@ describe("Sider 组件", () => {
     expect(iconWrapper.classes()).to.includes("sider-icon-reverse");
     wrapper.destroy();
   });
+
+  it("可以触发 collapse 事件", () => {
+    const callback = sinon.fake();
+    const wrapper = mount(Sider, {
+      attachToDocument: true,
+      propsData: {
+        collapsible: true,
+      },
+      listeners: {
+        collapse: callback,
+      },
+    });
+    const vm = wrapper.vm;
+    const triggerWrapper = wrapper.find(".woo-sider-trigger");
+    triggerWrapper.trigger("click");
+    expect(callback).to.have.been.calledWith(true);
+    wrapper.destroy();
+  });
 });
