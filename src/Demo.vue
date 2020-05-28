@@ -12,12 +12,19 @@
         <woo-tabs-pane name="3">A</woo-tabs-pane>
       </woo-tabs-body>
     </woo-tabs>
-
-    <woo-popover :visible="true" trigger="click" placement="right">
+    <button @click="v = false">123456</button>
+    <woo-popover v-model="v" trigger="click" placement="right">
       <template #content>123456789</template>
-      <!-- <woo-button>click</woo-button> -->
-      <button>click</button>
+      <woo-button>click</woo-button>
+      <!-- <button>click</button> -->
     </woo-popover>
+
+    <woo-collapse :active-name="['key 2']">
+      <!-- <woo-collapse active-name="key 2"> -->
+      <woo-collapse-item name="key 1" title="test">test 1</woo-collapse-item>
+      <woo-collapse-item name="key 2" title="test">test 2</woo-collapse-item>
+      <woo-collapse-item name="key 3" title="test">test 3</woo-collapse-item>
+    </woo-collapse>
 
     <woo-cascader :source="source" v-model="selected"> </woo-cascader>
 
@@ -398,6 +405,7 @@ export default {
       ],
 
       idx: "2-1",
+      v: true,
     };
   },
   methods: {

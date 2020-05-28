@@ -1,5 +1,5 @@
 <template>
-  <div class="woo-collapse-item" :class="collapseItemClass">
+  <div class="woo-collapse-item" :class="collapseItemClass" :data-name="name">
     <div class="woo-collapse-item-header" @click="handleItemClick">
       <woo-icon
         name="right"
