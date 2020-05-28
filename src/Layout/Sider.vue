@@ -1,8 +1,16 @@
 <template>
-  <div class="woo-sider" :style="siderStyle">
+  <div class="woo-sider" :class="siderClass" :style="siderStyle">
     <slot></slot>
-    <div v-if="collapsible" class="sider-trigger" @click="handleTriggerClick">
-      <woo-icon v-if="collapsible" :name="iconName"></woo-icon>
+    <div
+      v-if="collapsible"
+      class="woo-sider-trigger"
+      @click="handleTriggerClick"
+    >
+      <woo-icon
+        v-if="collapsible"
+        :name="iconName"
+        :class="{ 'sider-icon-reverse': reverseArrow }"
+      ></woo-icon>
     </div>
   </div>
 </template>
@@ -25,23 +33,19 @@ export default {
   },
   props: {
     width: {
-      type: [String, Number],
-      default: "200",
+      type: String,
+      default: "200px",
     },
     collapsible: {
       type: Boolean,
       default: false,
     },
     collapsedWidth: {
-      type: [String, Number],
-      default: "80",
+      type: String,
+      default: "80px",
     },
     // 当前收起状态(v-model)
     collapsed: {
-      type: Boolean,
-    },
-    // 是否默认收起
-    defaultCollapsed: {
       type: Boolean,
       default: false,
     },
@@ -63,23 +67,19 @@ export default {
   },
   computed: {
     siderStyle() {
-      return { width: this.currentWidth + "px" };
+      return { width: this.currentWidth };
+    },
+    siderClass() {
+      return {
+        "sider-collapsed": this.collapsedCopy,
+      };
     },
     newWidth() {
       if (this.collapsedCopy) return this.collapsedWidth;
       else return this.width;
     },
     iconName() {
-      const { reverseArrow, collapsedCopy, collapsed } = this;
-      if (!reverseArrow) {
-        if (!collapsedCopy) {
-          return "left";
-        } else return "right";
-      } else {
-        if (!collapsedCopy) {
-          return "right";
-        } else return "left";
-      }
+      return this.collapsedCopy ? "right" : "left";
     },
   },
   watch: {
@@ -87,12 +87,6 @@ export default {
       this.collapsedCopy = val;
       this.currentWidth = this.newWidth;
     },
-  },
-  mounted() {
-    if (this.defaultCollapsed) {
-      this.collapsedCopy = true;
-      this.currentWidth = this.collapsedWidth;
-    }
   },
 };
 </script>
@@ -104,12 +98,15 @@ export default {
   transition: all 0.3s;
   position: relative;
   background: $sider-bg-color;
-  .sider-trigger {
+  .woo-sider-trigger {
     position: absolute;
     bottom: 0;
     right: 50%;
     transform: translateX(50%);
     line-height: 1.5;
+    .sider-icon-reverse {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>

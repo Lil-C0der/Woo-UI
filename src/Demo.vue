@@ -1,118 +1,121 @@
 <template>
-  <div>
-    <woo-tabs>
-      <woo-tabs-head>
-        <woo-tabs-item name="1st">1</woo-tabs-item>
-        <woo-tabs-item name="2nd">2</woo-tabs-item>
-        <woo-tabs-item name="3rd">3</woo-tabs-item>
-      </woo-tabs-head>
-      <woo-tabs-body>
-        <woo-tabs-pane name="1st">A</woo-tabs-pane>
-        <woo-tabs-pane name="2nd">B</woo-tabs-pane>
-        <woo-tabs-pane name="3rd">C</woo-tabs-pane>
-      </woo-tabs-body>
-    </woo-tabs>
-    <button @click="v = false">123456</button>
-    <woo-popover v-model="v" trigger="click" placement="right">
-      <template #content>123456789</template>
-      <woo-button>click</woo-button>
-    </woo-popover>
-
-    <woo-slide :auto-play="false" height="400px" @change="change">
-      <woo-slide-item name="a" class="box">
-        <h3>1</h3>
-      </woo-slide-item>
-      <woo-slide-item name="b" class="box">
-        <h3>2</h3>
-      </woo-slide-item>
-      <woo-slide-item name="c" class="box">
-        <h3>3</h3>
-      </woo-slide-item>
-      <woo-slide-item name="d" class="box">
-        <h3>4</h3>
-      </woo-slide-item>
-    </woo-slide>
-
-    <woo-collapse :active-name="['key 2']">
-      <woo-collapse-item name="key 1" title="test">test 1</woo-collapse-item>
-      <woo-collapse-item name="key 2" title="test">test 2</woo-collapse-item>
-      <woo-collapse-item name="key 3" title="test">test 3</woo-collapse-item>
-    </woo-collapse>
-
-    <woo-cascader :source="source" v-model="selected"> </woo-cascader>
-
-    <div>
-      {{ idx }}
-    </div>
-    <woo-button @click="idx = '6-1'">toggle</woo-button>
-
-    <woo-menu
-      trigger="click"
-      @select="xxx"
-      @click="yyy"
-      @open="zzz"
-      @close="ccc"
-    >
-      <woo-menu-item index="1">处理中心</woo-menu-item>
-      <woo-submenu index="gongzuotai">
-        <template #title>我的工作台</template>
-        <woo-menu-item index="2-1">选项1</woo-menu-item>
-        <woo-menu-item index="2-2">选项2</woo-menu-item>
-        <woo-menu-item index="2-3">选项3</woo-menu-item>
-        <woo-submenu index="4">
-          <template #title>选项4</template>
-          <woo-menu-item index="4-1">选项4-1111111</woo-menu-item>
-          <woo-menu-item index="4-2">选项4-2222222</woo-menu-item>
-          <woo-submenu index="5">
-            <template #title>选项5</template>
-            <woo-menu-item index="5-1">选项5-1111111</woo-menu-item>
-            <woo-menu-item index="5-2">选项5-2222222</woo-menu-item>
+  <woo-layout>
+    <woo-sider width="280px" collapsible>
+      <woo-menu
+        trigger="click"
+        v-model="idx"
+        @select="xxx"
+        @click="yyy"
+        @open="zzz"
+        @close="ccc"
+        vertical
+      >
+        <woo-menu-item index="1">处理中心</woo-menu-item>
+        <woo-submenu index="gongzuotai">
+          <template #title>我的工作台</template>
+          <woo-menu-item index="2-1">选项1</woo-menu-item>
+          <woo-menu-item index="2-2">选项2</woo-menu-item>
+          <woo-menu-item index="2-3">选项3</woo-menu-item>
+          <woo-submenu index="4">
+            <template #title>选项4</template>
+            <woo-menu-item index="4-1">选项4-1111111</woo-menu-item>
+            <woo-menu-item index="4-2">选项4-2222222</woo-menu-item>
+            <woo-submenu index="5">
+              <template #title>选项5</template>
+              <woo-menu-item index="5-1">选项5-1111111</woo-menu-item>
+              <woo-menu-item index="5-2">选项5-2222222</woo-menu-item>
+            </woo-submenu>
           </woo-submenu>
         </woo-submenu>
-      </woo-submenu>
-      <woo-menu-item index="3">订单中心</woo-menu-item>
-      <woo-submenu index="5">
-        <template #title>选项6</template>
-        <woo-menu-item index="6-1">选项6-1111111</woo-menu-item>
-        <woo-menu-item index="6-2">选项6-2222222</woo-menu-item>
-      </woo-submenu>
-    </woo-menu>
+        <woo-menu-item index="3">订单中心</woo-menu-item>
+        <woo-submenu index="5">
+          <template #title>选项6</template>
+          <woo-menu-item index="6-1">选项6-1111111</woo-menu-item>
+          <woo-menu-item index="6-2">选项6-2222222</woo-menu-item>
+        </woo-submenu>
+      </woo-menu>
+    </woo-sider>
 
-    <woo-menu
-      trigger="click"
-      v-model="idx"
-      @select="xxx"
-      @click="yyy"
-      @open="zzz"
-      @close="ccc"
-      vertical
-    >
-      <woo-menu-item index="1">处理中心</woo-menu-item>
-      <woo-submenu index="gongzuotai">
-        <template #title>我的工作台</template>
-        <woo-menu-item index="2-1">选项1</woo-menu-item>
-        <woo-menu-item index="2-2">选项2</woo-menu-item>
-        <woo-menu-item index="2-3">选项3</woo-menu-item>
-        <woo-submenu index="4">
-          <template #title>选项4</template>
-          <woo-menu-item index="4-1">选项4-1111111</woo-menu-item>
-          <woo-menu-item index="4-2">选项4-2222222</woo-menu-item>
-          <woo-submenu index="5">
-            <template #title>选项5</template>
-            <woo-menu-item index="5-1">选项5-1111111</woo-menu-item>
-            <woo-menu-item index="5-2">选项5-2222222</woo-menu-item>
+    <woo-content>
+      <woo-tabs>
+        <woo-tabs-head>
+          <woo-tabs-item name="1st">1</woo-tabs-item>
+          <woo-tabs-item name="2nd">2</woo-tabs-item>
+          <woo-tabs-item name="3rd">3</woo-tabs-item>
+        </woo-tabs-head>
+        <woo-tabs-body>
+          <woo-tabs-pane name="1st">A</woo-tabs-pane>
+          <woo-tabs-pane name="2nd">B</woo-tabs-pane>
+          <woo-tabs-pane name="3rd">C</woo-tabs-pane>
+        </woo-tabs-body>
+      </woo-tabs>
+      <woo-popover v-model="v" trigger="click" placement="right">
+        <template #content>123456789</template>
+        <woo-button>click</woo-button>
+      </woo-popover>
+
+      <woo-slide :auto-play="false" height="200px" @change="change">
+        <woo-slide-item name="a" class="box">
+          <h3>1</h3>
+        </woo-slide-item>
+        <woo-slide-item name="b" class="box">
+          <h3>2</h3>
+        </woo-slide-item>
+        <woo-slide-item name="c" class="box">
+          <h3>3</h3>
+        </woo-slide-item>
+        <woo-slide-item name="d" class="box">
+          <h3>4</h3>
+        </woo-slide-item>
+      </woo-slide>
+
+      <woo-collapse :active-name="['key 2']">
+        <woo-collapse-item name="key 1" title="test">test 1</woo-collapse-item>
+        <woo-collapse-item name="key 2" title="test">test 2</woo-collapse-item>
+        <woo-collapse-item name="key 3" title="test">test 3</woo-collapse-item>
+      </woo-collapse>
+
+      <woo-cascader :source="source" v-model="selected"> </woo-cascader>
+
+      <div>
+        {{ idx }}
+      </div>
+      <woo-button @click="idx = '6-1'">toggle</woo-button>
+
+      <woo-menu
+        trigger="click"
+        @select="xxx"
+        @click="yyy"
+        @open="zzz"
+        @close="ccc"
+      >
+        <woo-menu-item index="1">处理中心</woo-menu-item>
+        <woo-submenu index="gongzuotai">
+          <template #title>我的工作台</template>
+          <woo-menu-item index="2-1">选项1</woo-menu-item>
+          <woo-menu-item index="2-2">选项2</woo-menu-item>
+          <woo-menu-item index="2-3">选项3</woo-menu-item>
+          <woo-submenu index="4">
+            <template #title>选项4</template>
+            <woo-menu-item index="4-1">选项4-1111111</woo-menu-item>
+            <woo-menu-item index="4-2">选项4-2222222</woo-menu-item>
+            <woo-submenu index="5">
+              <template #title>选项5</template>
+              <woo-menu-item index="5-1">选项5-1111111</woo-menu-item>
+              <woo-menu-item index="5-2">选项5-2222222</woo-menu-item>
+            </woo-submenu>
           </woo-submenu>
         </woo-submenu>
-      </woo-submenu>
-      <woo-menu-item index="3">订单中心</woo-menu-item>
-      <woo-submenu index="5">
-        <template #title>选项6</template>
-        <woo-menu-item index="6-1">选项6-1111111</woo-menu-item>
-        <woo-menu-item index="6-2">选项6-2222222</woo-menu-item>
-      </woo-submenu>
-    </woo-menu>
-    <p>1234564646512345646465123456464651234564646512345646465</p>
-  </div>
+        <woo-menu-item index="3">订单中心</woo-menu-item>
+        <woo-submenu index="5">
+          <template #title>选项6</template>
+          <woo-menu-item index="6-1">选项6-1111111</woo-menu-item>
+          <woo-menu-item index="6-2">选项6-2222222</woo-menu-item>
+        </woo-submenu>
+      </woo-menu>
+      <p>1234564646512345646465123456464651234564646512345646465</p>
+    </woo-content>
+  </woo-layout>
 </template>
 
 <script>
@@ -486,13 +489,17 @@ export default {
 #app {
   padding: 20px;
 }
+body {
+  padding: 0;
+  margin: 0;
+}
 html {
   font-size: $font-size;
 }
 
 .woo-slide {
   .box {
-    height: 400px;
+    height: 200px;
     // border: 1px solid green;
     background-color: #ccc;
     display: flex;
