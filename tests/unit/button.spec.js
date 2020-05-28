@@ -29,8 +29,6 @@ describe("Button 组件", () => {
       hrefArr.push(n.attributes("href"));
     });
     expect(hrefArr.includes("#woo-icon-download")).to.eq(true);
-    console.log(display);
-
     expect(display).to.eq("block");
     wrapper.destroy();
   });
