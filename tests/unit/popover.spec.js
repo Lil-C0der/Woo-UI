@@ -74,8 +74,8 @@ describe("Popover 组件", () => {
       setTimeout(() => {
         expect(callback2).to.have.been.called;
         expect(window.getComputedStyle(contentEl).display).to.eq("none");
-        wrapper.destroy();
         done();
+        wrapper.destroy();
       }, 800);
     });
   });
@@ -97,6 +97,7 @@ describe("Popover 组件", () => {
     btnWrapper.trigger("click");
     vm.$nextTick().then(() => {
       expect(callback).to.have.been.calledWith(true);
+      wrapper.destroy();
     });
   });
 });
