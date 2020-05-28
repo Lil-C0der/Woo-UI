@@ -114,36 +114,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes top-slide-in {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-@keyframes bottom-slide-in {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
 @import "styles/var";
+
 .woo-toast {
   font-size: $font-size;
   min-height: $toast-min-height;

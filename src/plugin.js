@@ -19,8 +19,8 @@ export default {
     Vue.prototype.$toast = function(msg, toastOptions) {
       currentToast && currentToast.close();
       currentToast = createToast(Vue, msg, toastOptions, () => {
-        // 正常关闭时置空
-        // currentToast = null;
+        // 关闭时置空
+        currentToast = null;
       });
     };
   },

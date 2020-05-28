@@ -50,6 +50,7 @@ $bg-disabled: #ebebeb;
 $toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 
+// loading 动画
 @keyframes spin {
   0% {
     transform: rotate(0);
@@ -57,6 +58,36 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+// Toast 组件的动画
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes top-slide-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes bottom-slide-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }
 
