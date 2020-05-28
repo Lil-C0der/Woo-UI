@@ -132,9 +132,10 @@ export default {
   border-bottom: 1px solid $border-color;
   list-style: none;
   padding-left: 32px;
-  display: inline-flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
+  background-color: $layout-bg-color;
   &.woo-menu-vertical {
     flex-direction: column;
     border-right: 1px solid $border-color;

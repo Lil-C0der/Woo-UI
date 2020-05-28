@@ -1,6 +1,6 @@
 <template>
   <woo-layout>
-    <woo-sider width="280px" collapsible>
+    <woo-sider reverseArrow width="280px">
       <woo-menu
         trigger="click"
         v-model="idx"
