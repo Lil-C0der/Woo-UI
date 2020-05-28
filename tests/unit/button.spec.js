@@ -13,7 +13,7 @@ describe("Button 组件", () => {
     // 断言 Chai引入
     expect(Button).to.exist;
   });
-  it("可以设置icon-name", () => {
+  it("可以设置 icon-name", () => {
     const wrapper = mount(Button, {
       attachToDocument: true,
       propsData: {
@@ -29,12 +29,15 @@ describe("Button 组件", () => {
       hrefArr.push(n.attributes("href"));
     });
     expect(hrefArr.includes("#woo-icon-download")).to.eq(true);
-    expect(display).to.eq("");
+    console.log(display);
+
+    expect(display).to.eq("block");
     wrapper.destroy();
   });
 
-  it("可以设置loading", () => {
+  it("可以设置 loading", () => {
     const wrapper = mount(Button, {
+      attachToDocument: true,
       propsData: {
         loading: true,
       },
@@ -44,8 +47,7 @@ describe("Button 组件", () => {
     wrapper.destroy();
   });
 
-  // TODO Button 组件 css还没测
-  xit("默认的order为1", () => {
+  it("默认的 order 为1", () => {
     const wrapper = mount(Button, {
       attachToDocument: true,
       propsData: {
@@ -53,16 +55,13 @@ describe("Button 组件", () => {
       },
     });
     const vm = wrapper.vm;
-    console.log(123456);
     const svgEl = vm.$el.querySelector(".woo-icon-download");
-    console.log(svgEl.style);
-    console.log(window.getComputedStyle(svgEl));
-    const { order } = window.getComputedStyle(svgEl[1]);
+    const { order } = getComputedStyle(svgEl);
     expect(order).to.eq("1");
     wrapper.destroy();
   });
 
-  xit("设置iconPosition可以改变order", () => {
+  it("设置 icon-position 可以改变 order", () => {
     const wrapper = mount(Button, {
       attachToDocument: true,
       propsData: {

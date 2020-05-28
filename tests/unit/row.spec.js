@@ -28,18 +28,16 @@ describe("Row组件", () => {
     expect(paddingRight).to.eq("10px");
     wrapper.destroy();
   });
-  //  TODO Row 组件 css 还没测
-  xit("可以设置 align", () => {
+
+  it("可以设置 align", () => {
     const wrapper = mount(Row, {
       attachToDocument: true,
       propsData: {
         align: "right",
       },
     });
-    console.log(456);
-    console.log(window.getComputedStyle(wrapper.vm.$el));
-    console.log(wrapper.vm.$el.outerHTML);
-    // const { justifyContent } = window.getComputedStyle(wrapper.vm.$el);
-    // expect(justifyContent).to.eq("flex-end");
+    const { justifyContent } = window.getComputedStyle(wrapper.vm.$el);
+    expect(justifyContent).to.eq("flex-end");
+    wrapper.destroy();
   });
 });
