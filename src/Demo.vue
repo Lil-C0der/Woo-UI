@@ -2,25 +2,38 @@
   <div>
     <woo-tabs>
       <woo-tabs-head>
-        <woo-tabs-item name="1">1</woo-tabs-item>
-        <woo-tabs-item name="2">2</woo-tabs-item>
-        <woo-tabs-item name="3">3</woo-tabs-item>
+        <woo-tabs-item name="1st">1</woo-tabs-item>
+        <woo-tabs-item name="2nd">2</woo-tabs-item>
+        <woo-tabs-item name="3rd">3</woo-tabs-item>
       </woo-tabs-head>
       <woo-tabs-body>
-        <woo-tabs-pane name="1">A</woo-tabs-pane>
-        <woo-tabs-pane name="2">A</woo-tabs-pane>
-        <woo-tabs-pane name="3">A</woo-tabs-pane>
+        <woo-tabs-pane name="1st">A</woo-tabs-pane>
+        <woo-tabs-pane name="2nd">B</woo-tabs-pane>
+        <woo-tabs-pane name="3rd">C</woo-tabs-pane>
       </woo-tabs-body>
     </woo-tabs>
     <button @click="v = false">123456</button>
     <woo-popover v-model="v" trigger="click" placement="right">
       <template #content>123456789</template>
       <woo-button>click</woo-button>
-      <!-- <button>click</button> -->
     </woo-popover>
 
+    <woo-slide :auto-play="false" height="400px" @change="change">
+      <woo-slide-item name="a" class="box">
+        <h3>1</h3>
+      </woo-slide-item>
+      <woo-slide-item name="b" class="box">
+        <h3>2</h3>
+      </woo-slide-item>
+      <woo-slide-item name="c" class="box">
+        <h3>3</h3>
+      </woo-slide-item>
+      <woo-slide-item name="d" class="box">
+        <h3>4</h3>
+      </woo-slide-item>
+    </woo-slide>
+
     <woo-collapse :active-name="['key 2']">
-      <!-- <woo-collapse active-name="key 2"> -->
       <woo-collapse-item name="key 1" title="test">test 1</woo-collapse-item>
       <woo-collapse-item name="key 2" title="test">test 2</woo-collapse-item>
       <woo-collapse-item name="key 3" title="test">test 3</woo-collapse-item>
@@ -32,6 +45,7 @@
       {{ idx }}
     </div>
     <woo-button @click="idx = '6-1'">toggle</woo-button>
+
     <woo-menu
       trigger="click"
       @select="xxx"
@@ -421,6 +435,9 @@ export default {
     zzz(path) {
       // console.log('打开了');
     },
+    change(a, b) {
+      console.log(a, b);
+    },
     ccc() {
       console.log("隐藏了");
     },
@@ -475,24 +492,12 @@ html {
 
 .woo-slide {
   .box {
-    height: 220px;
+    height: 400px;
     // border: 1px solid green;
     background-color: #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
-    &.0 {
-      transform: translateX(0);
-    }
-    &.w {
-      transform: translateX(280px);
-    }
-    &.2w {
-      transform: translateX(560px);
-    }
-    &.3w {
-      transform: translateX(300%);
-    }
   }
 }
 </style>

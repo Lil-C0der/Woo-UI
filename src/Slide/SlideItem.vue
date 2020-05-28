@@ -1,6 +1,11 @@
 <template>
   <transition :name="animation" mode="in-out">
-    <div class="woo-slide-item" :class="itemClass" v-show="visible">
+    <div
+      class="woo-slide-item"
+      :class="itemClass"
+      :data-name="name"
+      v-show="visible"
+    >
       <slot></slot>
     </div>
   </transition>
@@ -57,7 +62,6 @@ export default {
       }
     },
   },
-  mounted() {},
 };
 </script>
 

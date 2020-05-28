@@ -13,6 +13,7 @@
           @click.native="setActiveItem(activeIndex - 1)"
           name="left"
           class="woo-slide-left-arrow"
+          data-action="prev"
         ></woo-icon>
       </div>
       <div class="woo-slide-arrow-wrapper woo-slide-arrow-wrapper-right">
@@ -20,6 +21,7 @@
           @click.native="setActiveItem(activeIndex + 1)"
           name="right"
           class="woo-slide-right-arrow"
+          data-action="next"
         ></woo-icon>
       </div>
       <slot></slot>
@@ -34,6 +36,7 @@
         :key="index"
         class="woo-slide-indicator-item"
         :class="{ 'active-item': index === activeIndex }"
+        :data-index="index + 1"
         @click.stop="activeIndex = index"
       ></li>
     </ul>
