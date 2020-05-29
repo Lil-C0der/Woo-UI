@@ -81,6 +81,7 @@
         {{ idx }}
       </div>
       <woo-button @click="idx = '6-1'">toggle</woo-button>
+      <woo-button @click="show">show</woo-button>
 
       <woo-menu
         trigger="click"
@@ -119,6 +120,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 import WooCascader from "./Cascader/Cascader";
 import WooButton from "./Button/Button.vue";
 import WooIcon from "./Icon.vue";
@@ -145,6 +148,8 @@ import WooTabsHead from "./Tabs/TabsHead";
 import WooTabsBody from "./Tabs/TabsBody";
 import WooTabsItem from "./Tabs/TabsItem";
 import WooTabsPane from "./Tabs/TabsPane";
+
+Vue.use(WooPlugin);
 
 export default {
   methods: {},
@@ -438,6 +443,18 @@ export default {
     zzz(path) {
       // console.log('打开了');
     },
+    show() {
+      this.$toast("issa toast", {
+        closable: true,
+        // delay: 0,
+        closeOption: {
+          text: "close",
+          callback: () => {
+            console.log("closing");
+          },
+        },
+      });
+    },
     change(a, b) {
       console.log(a, b);
     },
@@ -451,6 +468,7 @@ export default {
     WooCascader,
     WooCollapse,
     WooCollapseItem,
+    WooPopover,
     WooIcon,
     WooSlide,
     WooSlideItem,
