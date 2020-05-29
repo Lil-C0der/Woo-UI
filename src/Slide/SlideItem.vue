@@ -1,5 +1,5 @@
 <template>
-  <transition :name="animation" mode="in-out">
+  <transition :name="animation">
     <div
       class="woo-slide-item"
       :class="itemClass"
@@ -66,25 +66,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.slide-enter-active,
-.slide-leave-active,
-.slide-reverse-enter-active,
-.slide-reverse-leave-active {
-  transition: all 0.4s;
-}
-.slide-enter {
-  transform: translateX(100%);
-}
-.slide-leave-to {
-  transform: translateX(-100%);
-}
-.slide-reverse-enter {
-  transform: translateX(-100%);
-}
-.slide-reverse-leave-to {
-  transform: translateX(100%);
-}
-
 .woo-slide-item {
   width: 100%;
   position: absolute;
