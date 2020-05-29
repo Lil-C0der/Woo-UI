@@ -122,18 +122,6 @@ export default {
     hidePopper() {
       this.isOpen = false;
     },
-    // 收集子组件中的 MenuItem 组件
-    initItems() {
-      this.items = this.$children.filter(
-        (i) => i.$options.name === "woo-menu-item"
-      );
-    },
-    // 收集子组件中的 Submenu 组件
-    initSubmenu() {
-      this.subItems = this.$children.filter(
-        (i) => i.$options.name === "woo-submenu"
-      );
-    },
     // 动画
     enter(el, done) {
       el.style.height = "auto";
