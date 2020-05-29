@@ -1,6 +1,6 @@
 {
   "name": "woo-ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Woo UI",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,7 +9,7 @@
     "karma": "karma start",
     "test:unit-watch": "vue-cli-service test:unit --watch"
   },
-  "main": "dist/index.js",
+  "main": "dist/woo.umd.min.js",
   "dependencies": {
     "core-js": "^3.6.4",
     "vue": "^2.6.11"
