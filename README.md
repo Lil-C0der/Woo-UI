@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/Lil-C0der/Woo-UI.svg?branch=master)](https://travis-ci.org/Lil-C0der/Woo)
 
+[![Coverage Status](https://coveralls.io/repos/github/Lil-C0der/Woo-UI/badge.svg?branch=master)](https://coveralls.io/github/Lil-C0der/Woo-UI?branch=master)
+
 ## 开发指南
 
 1. 添加 CSS 样式

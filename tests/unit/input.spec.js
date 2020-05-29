@@ -39,6 +39,19 @@ describe("Input 组件", () => {
       wrapper.destroy();
     });
 
+    it("设置 readonly", () => {
+      const wrapper = mount(Input, {
+        attachToDocument: true,
+        propsData: {
+          readonly: true,
+        },
+      });
+      const vm = wrapper.vm;
+      const inputEl = vm.$el.querySelector("input");
+      expect(inputEl.readOnly).to.eq(true);
+      wrapper.destroy();
+    });
+
     it("设置 error", () => {
       const wrapper = mount(Input, {
         attachToDocument: true,
@@ -60,21 +73,87 @@ describe("Input 组件", () => {
   });
 
   describe("events", () => {
-    it("支持 change/input/focus/blur 事件", () => {
+    it("支持 change 事件", () => {
+      const callback = sinon.fake();
       const wrapper = mount(Input, {
         attachToDocument: true,
+        listeners: {
+          change: callback,
+        },
       });
       const vm = wrapper.vm;
       const inputWrapper = wrapper.find("input");
+      // 设置事件的目标target docs:https://vue-test-utils.vuejs.org/zh/api/wrapper/#trigger
+      inputWrapper.element.value = "test value";
+      inputWrapper.trigger("change");
+      expect(callback).to.have.been.calledWith("test value");
+      wrapper.destroy();
+    });
+
+    it("支持 input 事件", () => {
       const callback = sinon.fake();
-      ["change", "input", "focus", "blur"].forEach((eventName) => {
-        // 设置事件的目标target docs:https://vue-test-utils.vuejs.org/zh/api/wrapper/#trigger
-        inputWrapper.element.value = "test value";
-        vm.$on(eventName, callback);
-        inputWrapper.trigger(eventName);
-        expect(callback).to.have.been.calledWith("test value");
-        wrapper.destroy();
+      const wrapper = mount(Input, {
+        attachToDocument: true,
+        listeners: {
+          input: callback,
+        },
       });
+      const vm = wrapper.vm;
+      const inputWrapper = wrapper.find("input");
+      inputWrapper.element.value = "test value";
+      inputWrapper.trigger("input");
+      expect(callback).to.have.been.calledWith("test value");
+      wrapper.destroy();
+    });
+
+    it("支持 focus 事件", () => {
+      const callback = sinon.fake();
+      const wrapper = mount(Input, {
+        attachToDocument: true,
+        listeners: {
+          focus: callback,
+        },
+      });
+      const vm = wrapper.vm;
+      const inputWrapper = wrapper.find("input");
+      inputWrapper.element.value = "test value";
+      inputWrapper.trigger("focus");
+      expect(callback).to.have.been.calledWith("test value");
+      wrapper.destroy();
+    });
+
+    it("支持 blur 事件", () => {
+      const callback = sinon.fake();
+      const wrapper = mount(Input, {
+        attachToDocument: true,
+        listeners: {
+          blur: callback,
+        },
+      });
+      const vm = wrapper.vm;
+      const inputWrapper = wrapper.find("input");
+      inputWrapper.element.value = "test value";
+      inputWrapper.trigger("blur");
+      expect(callback).to.have.been.calledWith("test value");
+      wrapper.destroy();
+    });
+
+    it("支持 change 事件", () => {
+      const callback = sinon.fake();
+      const wrapper = mount(Input, {
+        attachToDocument: true,
+        propsData: {
+          clearable: true,
+        },
+        listeners: {
+          clear: callback,
+        },
+      });
+      const vm = wrapper.vm;
+      const clearWrapper = wrapper.find(".woo-icon-clear");
+      clearWrapper.trigger("click");
+      expect(callback).to.have.been.called;
+      wrapper.destroy();
     });
   });
 });

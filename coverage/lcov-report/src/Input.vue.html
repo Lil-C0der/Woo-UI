@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.67% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/12</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">16.67% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>1/6</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">77.78% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>7/9</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">66.67% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>4/6</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>9/9</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -268,7 +268,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -314,17 +314,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -486,18 +486,18 @@ export default {
       this.focused = false;
       this.$emit("blur", e.target.value);
     },
-<span class="fstat-no" title="function not covered" >    cl</span>earInput() {
-<span class="cstat-no" title="statement not covered" >      this.$emit("input", "");</span>
-<span class="cstat-no" title="statement not covered" >      this.$emit("change", "");</span>
-<span class="cstat-no" title="statement not covered" >      this.$emit("clear");</span>
+    clearInput() {
+      this.$emit("input", "");
+      this.$emit("change", "");
+      this.$emit("clear");
     },
   },
   computed: {
     showClear() {
-      return this.clearable &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!this.readonly </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >!this.disabled;</span>
+      return this.clearable &amp;&amp; !this.readonly &amp;&amp; !this.disabled;
     },
-<span class="fstat-no" title="function not covered" >    cl</span>earVisible() {
-<span class="cstat-no" title="statement not covered" >      return this.value &amp;&amp; (this.hovering || this.focused);</span>
+    clearVisible() {
+      return this.value &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >this.hovering </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >this.focused)</span>;
     },
   },
   mounted() {},
@@ -583,7 +583,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri May 29 2020 17:56:12 GMT+0800 (GMT+08:00)
+                at Fri May 29 2020 19:28:10 GMT+0800 (GMT+08:00)
             </div>
         </div>
         <script src="../prettify.js"></script>
