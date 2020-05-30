@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo">
     <woo-button>NORMAL</woo-button>
     <woo-button disabled>DISABLED</woo-button>
     <woo-button type="dashed">DASHED</woo-button>
@@ -11,11 +11,17 @@
 </template>
 
 <script>
-import Button from "../../../src/Button/Button.vue";
+import WooButton from "../../../src/Button/Button.vue";
 
 export default {
   components: {
-    "woo-button": Button,
+    WooButton,
   },
 };
 </script>
+
+<style scoped>
+.demo {
+  padding-top: 10px;
+}
+</style>

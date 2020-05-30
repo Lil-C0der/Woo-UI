@@ -7,12 +7,13 @@ sidebarDepth: 2
 
 ## 基本用法
 
-效果展示
+#### 效果展示
+
 <ClientOnly>
-<type-demo/>
+<button-type-demo/>
 </ClientOnly>
 
-```
+```vue
 <template>
   <div>
     <woo-button>NORMAL</woo-button>
@@ -27,13 +28,13 @@ sidebarDepth: 2
 
 ## 图标按钮
 
-效果展示
+#### 效果展示
 
 <ClientOnly>
-  <icon-demo/>
+  <button-icon-demo/>
 </ClientOnly>
 
-```
+```vue
 <template>
   <div>
     <woo-button icon-name="home">Home</woo-button>
@@ -47,13 +48,13 @@ sidebarDepth: 2
 
 ## 加载状态
 
-效果展示
+#### 效果展示
 
 <ClientOnly>
-  <loading-demo/>
+  <button-loading-demo/>
 </ClientOnly>
 
-```
+```vue
 <template>
   <div>
     <woo-button
@@ -78,13 +79,13 @@ export default {
 
 ## 包含多个按钮的按钮组
 
-效果展示
+#### 效果展示
 
 <ClientOnly>
-  <group-demo/>
+  <button-group-demo/>
 </ClientOnly>
 
-```
+```vue
 <template>
   <div>
     <woo-button-group>
@@ -102,3 +103,17 @@ export default {
   </div>
 </template>
 ```
+
+## API
+
+#### 🌏 Attributes
+
+组件将被渲染为 `button` 标签，因此你可以使用所有的 `button` 原生属性。
+
+|     参数     |       说明       |  类型   |            可选值             | 默认值 |
+| :----------: | :--------------: | :-----: | :---------------------------: | :----: |
+|     type     |    按钮的类型    | String  | primary, dashed, warn, danger |   —    |
+|  icon-name   |   按钮的图标名   | String  |               —               |   —    |
+| icon-postion | 按钮中图标的位置 | String  |          left, right          |  left  |
+|   loading    |  按钮的加载状态  | Boolean |               —               | false  |
+|   disable    |  按钮的禁用状态  | Boolean |               —               | false  |

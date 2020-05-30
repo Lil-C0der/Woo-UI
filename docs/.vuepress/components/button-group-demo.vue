@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo">
     <woo-button-group>
       <woo-button icon-name="left">上一页</woo-button>
       <woo-button icon-name="right" icon-position="right">下一页</woo-button>
@@ -16,15 +16,19 @@
 </template>
 
 <script>
-import Button from "../../../src/Button/Button.vue";
-import ButtonGroup from "../../../src/Button/ButtonGroup.vue";
+import WooButton from "../../../src/Button/Button.vue";
+import WooButtonGroup from "../../../src/Button/ButtonGroup.vue";
 
 export default {
   components: {
-    "woo-button": Button,
-    "woo-button-group": ButtonGroup,
+    WooButton,
+    WooButtonGroup,
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.demo {
+  padding-top: 10px;
+}
+</style>

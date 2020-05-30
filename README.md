@@ -25,7 +25,11 @@
 
 ## 简介
 
-这是我在学习 `Vue.js` 过程中基于 `Vue 2.6` 开发的一套 `UI` 组件库，包含了一些自己常用的组件，PC 端和移动端都可以使用。点 [这里](https://lil-c0der.github.io/Woo-UI/) 预览
+这是我在学习 `Vue.js` 过程中基于 `Vue 2.6` 开发的一套 `UI` 组件库，包含了一些自己常用的组件，PC 端和移动端都可以使用。
+
+使用 Travis CI 持续集成，使用 Karma + Mocha + Chai 编写单元测试，测试覆盖率达到 85%。
+
+官方文档点 [这里](https://lil-c0der.github.io/Woo-UI/) 预览。
 
 其中部分组件的样式结构与 API 的设计借鉴了一些我使用过的成熟 `UI` 框架，例如 `Element` 和 `Ant Design Vue` 等
 
@@ -35,11 +39,11 @@
 
 1. 添加 CSS 样式
 
-   使用之前，请务必确保你的浏览器支持标准盒模型，即 border-box
+   使用之前，请务必确保你的浏览器支持标准盒模型，即 `border-box`
 
-   IE8+浏览器支持
+   IE8+ 浏览器支持
 
-   ```
+   ```css
    *,
    *::before,
    *::after {
@@ -51,21 +55,26 @@
 
    推荐使用 npm 安装
 
-   ```
+   ```sh
    npm install --save woo-ui
    ```
 
 3. 引入 woo-ui
 
-   ```
-   import { Button, Icon } from "woo-ui";
+   ```js
+   import Vue from "vue";
+   import { WooButton, WooIcon } from "woo-ui";
+   import { Plugin } from "woo-ui";
    import "woo-ui/dist/woo.css";
+
+   Vue.use(Plugin);
+
    export default {
-   name: "App",
-   components: {
-   "woo-button": Button,
-   "woo-icon": Icon,
-   },
+     name: "App",
+     components: {
+       WooButton,
+       WooIcon,
+     },
    };
    ```
 
