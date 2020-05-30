@@ -24,11 +24,6 @@ export default {
     activeName: {
       type: String,
     },
-    // TODO 垂直Tabs
-    isVertical: {
-      type: Boolean,
-      default: false,
-    },
   },
   methods: {
     // 根据 name 属性获取对应的 tabsItem 组件
@@ -36,10 +31,10 @@ export default {
       const tabsHead = this.$children.find(
         (vm) => vm.$options.name === "woo-tabs-head"
       );
-      return (
-        tabsHead.$children.find((child) => child.name === name) ??
-        tabsHead.$children[0]
+      const items = tabsHead.$children.filter(
+        (child) => child.$options.name === "woo-tabs-item"
       );
+      return items.find((child) => child.name === name) ?? items[0];
     },
     // 初始化被选中的tabItem
     initTabItem(name) {
@@ -102,7 +97,7 @@ export default {
           this.eventBus.$emit("tabChange", this.activeItemInstance);
         }
         // 双向绑定事件 切换面板的回调函数
-        this.$emit("change", newVal);
+        this.$emit("change", newVal, oldVal);
       },
     },
   },
@@ -112,6 +107,6 @@ export default {
 <style lang="scss" scoped>
 @import "../../styles/var";
 .woo-tabs {
-  color: $font-blue;
+  color: $color-black;
 }
 </style>

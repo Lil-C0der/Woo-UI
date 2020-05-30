@@ -40,7 +40,7 @@ export default {
 .woo-tabs-pane {
   padding: 16px;
   &.pane-active {
-    color: $font-blue;
+    color: $color-black;
   }
 }
 </style>
