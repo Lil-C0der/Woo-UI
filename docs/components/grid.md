@@ -5,7 +5,13 @@ sidebarDepth: 2
 
 # 栅格系统
 
+通过基础的 24 分栏，迅速简便地创建布局。
+
 ## 基本用法
+
+设置 `span` 属性指定占据的列数
+
+#### 效果展示
 
 <ClientOnly>
 <grid-demo/>
@@ -64,6 +70,8 @@ sidebarDepth: 2
 
 ## 混合布局
 
+#### 效果展示
+
 <ClientOnly>
 <grid-demo-mix/>
 </ClientOnly>
@@ -88,9 +96,6 @@ sidebarDepth: 2
 </template>
 
 <style>
-* {
-  box-sizing: border-box;
-}
 .woo-row {
   margin-bottom: 20px;
 }
@@ -109,6 +114,10 @@ sidebarDepth: 2
 ```
 
 ## 分栏偏移
+
+设置 `offset` 属性指定偏移的列数
+
+#### 效果展示
 
 <ClientOnly>
 <grid-demo-offset/>
@@ -138,9 +147,6 @@ sidebarDepth: 2
 </template>
 
 <style>
-* {
-  box-sizing: border-box;
-}
 .demo {
   padding-top: 10px;
 }
@@ -164,6 +170,8 @@ sidebarDepth: 2
 ## 响应式布局
 
 响应式栅格断点参考 [Bootstrap 4.0](https://getbootstrap.com/docs/4.0/layout/grid/)
+
+#### 效果展示
 
 <ClientOnly>
 <grid-demo-responsive/>
@@ -208,9 +216,6 @@ sidebarDepth: 2
 </template>
 
 <style>
-* {
-  box-sizing: border-box;
-}
 .woo-row {
   margin-bottom: 20px;
 }
@@ -231,16 +236,16 @@ sidebarDepth: 2
 </style>
 ```
 
-## API
+## 🌏 API
 
-#### 🌏 Row Attributes
+### Row Attributes
 
-|  参数  |           说明            |        类型         | 可选值 | 默认值 |
-| :----: | :-----------------------: | :-----------------: | :----: | :----: |
-| gutter |         栅格间隔          |   String / Number   |   —    |   0    |
-| align  | flex 布局下的垂直排列方式 | left, right, center |   —    | center |
+|  参数  |           说明            |      类型       |        可选值         | 默认值 |
+| :----: | :-----------------------: | :-------------: | :-------------------: | :----: |
+| gutter |         栅格间隔          | String / Number |           —           |   0    |
+| align  | flex 布局下的垂直排列方式 |     String      | left / right / center | center |
 
-#### 🌏 Col Attributes
+### Col Attributes
 
 |  参数  |             说明             |                类型                 | 可选值 | 默认值 |
 | :----: | :--------------------------: | :---------------------------------: | :----: | :----: |

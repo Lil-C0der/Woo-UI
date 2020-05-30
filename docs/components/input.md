@@ -57,9 +57,6 @@ export default {
 
 <script>
 export default {
-  components: {
-    WooInput,
-  },
   data() {
     return {
       input: "",
@@ -98,13 +95,23 @@ export default {
 </script>
 ```
 
-## API
+## 🌏 API
 
-#### 🌏 Attributes
+### Attributes
 
-|      参数       |    说明    |      类型       | 可选值 | 默认值 |
-| :-------------: | :--------: | :-------------: | :----: | :----: |
-| value / v-model |   绑定值   | String / Number |   —    |   —    |
-|    clearable    | 是否可清空 |     Boolean     |   —    | false  |
-|    disabled     |    禁用    |     boolean     |   —    | false  |
-|      error      |  错误信息  |     String      |   —    |   —    |
+|      参数       |         说明         |      类型       | 可选值 | 默认值 |
+| :-------------: | :------------------: | :-------------: | :----: | :----: |
+| value / v-model | 绑定值，输入框的内容 | String / Number |   —    |   —    |
+|    clearable    |      是否可清空      |     Boolean     |   —    | false  |
+|    disabled     |         禁用         |     boolean     |   —    | false  |
+|      error      |       错误信息       |     String      |   —    |   —    |
+
+### Events
+
+| 事件名称 |                    说明                     | 回调参数 |
+| :------: | :-----------------------------------------: | :------: |
+|  change  |    输入框内容变化时触发，输入时不会触发     |  value   |
+|  input   |              在输入内容时触发               |  value   |
+|  focus   |           在 Input 获得焦点时触发           |  value   |
+|   blur   |           在 Input 失去焦点时触发           |  value   |
+|  clear   | 在点击由 clearable 属性生成的清空按钮时触发 |  value   |
