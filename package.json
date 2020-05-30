@@ -1,6 +1,6 @@
 {
   "name": "woo-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Woo UI",
   "scripts": {
     "docs:dev": "vuepress dev docs",
