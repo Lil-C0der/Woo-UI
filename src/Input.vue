@@ -141,7 +141,7 @@ export default {
     }
     &:focus {
       border-color: $border-color-hover;
-      box-shadow: $input-box-shadow-error;
+      box-shadow: $input-box-shadow;
     }
     &[disabled],
     &[readonly] {
