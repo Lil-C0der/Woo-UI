@@ -12,13 +12,13 @@ export default {
   },
   props: {
     height: {
-      type: [String, Number],
-      default: "64",
+      type: String,
+      default: "64px",
     },
   },
   computed: {
     footerStyle() {
-      return { height: this.height + "px", lineHeight: this.height + "px" };
+      return { height: this.height };
     },
   },
   methods: {},
@@ -28,6 +28,6 @@ export default {
 <style lang="scss" scoped>
 @import "../../styles/var";
 .woo-footer {
-  background-color: $footer-bg-color;
+  padding: 0 20px;
 }
 </style>

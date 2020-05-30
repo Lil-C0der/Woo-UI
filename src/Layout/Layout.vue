@@ -32,7 +32,7 @@ export default {
   flex-direction: column;
   flex: 1;
   font-size: 22px;
-  color: $layout-bg-color;
+  background-color: $layout-bg-color;
   &.horizontal-layout {
     flex-direction: row;
   }

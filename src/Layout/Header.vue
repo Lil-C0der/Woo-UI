@@ -13,13 +13,13 @@ export default {
   components: {},
   props: {
     height: {
-      type: [String, Number],
-      default: "64",
+      type: String,
+      default: "64px",
     },
   },
   computed: {
     headerStyle() {
-      return { height: this.height + "px", lineHeight: this.height + "px" };
+      return { height: this.height };
     },
   },
   methods: {},
@@ -31,7 +31,6 @@ export default {
 
 header {
   width: 100%;
-  background-color: $header-bg-color;
   padding: 0 20px;
 }
 </style>

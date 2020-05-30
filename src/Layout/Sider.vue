@@ -97,7 +97,7 @@ export default {
 .woo-sider {
   transition: all 0.3s;
   position: relative;
-  background: $sider-bg-color;
+  // background: $sider-bg-color;
   .woo-sider-trigger {
     position: absolute;
     bottom: 0;

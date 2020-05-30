@@ -19,8 +19,6 @@ export default {
 @import "../../styles/var";
 .woo-content {
   flex: 1;
-  background-color: $color-white;
-  color: $color-black;
   padding: 20px;
 }
 </style>
