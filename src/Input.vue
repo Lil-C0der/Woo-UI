@@ -141,7 +141,7 @@ export default {
     }
     &:focus {
       border-color: $border-color-hover;
-      box-shadow: $input-box-shadow;
+      box-shadow: $input-box-shadow-error;
     }
     &[disabled],
     &[readonly] {
@@ -164,6 +164,7 @@ export default {
       }
       &:focus {
         border-color: $color-deep-red;
+        box-shadow: $input-box-shadow-error;
       }
     }
     .woo-input-tip {
