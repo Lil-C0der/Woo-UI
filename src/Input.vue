@@ -112,6 +112,7 @@ export default {
   align-items: center;
   flex-shrink: 0;
   font-size: $font-size;
+  vertical-align: middle;
   > .woo-icon-clear {
     position: absolute;
     right: 1em;
