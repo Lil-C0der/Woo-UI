@@ -11,6 +11,7 @@
       @blur="handleBlur"
       @mouseenter="hovering = true"
       @mouseleave="hovering = false"
+      :placeholder="placeholder"
     />
     <template v-if="showClear">
       <woo-icon
@@ -60,6 +61,9 @@ export default {
       default: false,
     },
     error: {
+      type: String,
+    },
+    placeholder: {
       type: String,
     },
   },

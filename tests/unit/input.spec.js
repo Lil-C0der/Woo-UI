@@ -70,6 +70,20 @@ describe("Input 组件", () => {
       expect(msgEl.innerHTML.trim()).to.eq("ERROR");
       wrapper.destroy();
     });
+
+    it("设置 placeholder", () => {
+      const wrapper = mount(Input, {
+        attachToDocument: true,
+
+        propsData: {
+          placeholder: "test placeholder",
+        },
+      });
+      const vm = wrapper.vm;
+      const inputWrapper = wrapper.find("input");
+      expect(inputWrapper.attributes().placeholder).to.eq("test placeholder");
+      wrapper.destroy();
+    });
   });
 
   describe("events", () => {
