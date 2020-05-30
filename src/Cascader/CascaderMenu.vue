@@ -153,6 +153,7 @@ export default {
       align-items: center;
       vertical-align: bottom;
       user-select: none;
+      transition: all 0.3s;
       .cascader-menu-item-text {
         padding: 0 1em 0 0.3em;
         flex: 1;
@@ -166,6 +167,9 @@ export default {
       }
       &:hover {
         background-color: $button-bg-hover;
+      }
+      &:active {
+        background-color: $button-bg-active;
       }
       &.cascader-menu-item-active {
         background-color: $button-bg-active;
