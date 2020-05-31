@@ -96,9 +96,9 @@ export default {
     // 是否为选中项
     selectedItem(item) {
       const { selected, level } = this;
-      if (selected[level] === item.id) {
+      if (selected && selected[level] === item.id) {
         return "selected-item";
-      }
+      } else return false;
     },
   },
   computed: {

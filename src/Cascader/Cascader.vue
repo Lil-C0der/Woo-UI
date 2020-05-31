@@ -82,7 +82,7 @@ export default {
     },
     // 参数为所有选中的对象
     handleItemChange(items) {
-      const str1 = this.selected.toString();
+      const str1 = this.selected?.toString();
       const str2 = items.toString();
       // 只有点击了不同选项才执行之后的操作
       if (str1 !== str2) {
@@ -195,7 +195,7 @@ export default {
     },
   },
   mounted() {
-    if (this.selected.length) {
+    if (this.selected?.length) {
       this.getItems(this.source, this.selected);
     }
   },
