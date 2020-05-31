@@ -1,7 +1,7 @@
 ﻿---
 home: true
 heroImage: https://s1.ax1x.com/2020/05/29/tuoTM9.png
-heroText: Woo - UI
+heroText: Woo-UI
 tagline: 我自己的 UI 框架
 actionText: 快速上手 →
 actionLink: /get-started/

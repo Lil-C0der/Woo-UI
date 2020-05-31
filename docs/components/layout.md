@@ -175,7 +175,7 @@ export default {
 |        width        |                    侧边栏宽度                     | String  |   —    | 200px  |
 |     collapsible     |                    是否可折叠                     | Boolean |   —    | false  |
 | collapsed / v-model |              绑定值，当前的折叠状态               | Object  |   —    |   —    |
-|   collapsed-width   |                 折叠状态下的宽度                  | String  |   —    | 100px  |
+|   collapsed-width   |                 折叠状态下的宽度                  | String  |   —    |  80px  |
 |    reverse-arrow    | 翻转折叠提示箭头的方向，当 Sider 在右边时可以使用 | Boolean |   —    | false  |
 
 ### Sider Events

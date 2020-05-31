@@ -159,9 +159,12 @@ export default {
 
 ### Menu Attributes
 
-|          参数          |                  说明                   |  类型  | 可选值 | 默认值 |
-| :--------------------: | :-------------------------------------: | :----: | :----: | :----: |
-| select-index / v-model | 绑定值，默认选中的菜单项的 `index` 属性 | String |   —    |   —    |
+|          参数          |                  说明                   |  类型   |    可选值     | 默认值 |
+| :--------------------: | :-------------------------------------: | :-----: | :-----------: | :----: |
+| select-index / v-model | 绑定值，默认选中的菜单项的 `index` 属性 | String  |       —       |   —    |
+|        trigger         |                触发方式                 | String  | click / hover | click  |
+|        vertical        |                是否垂直                 | Boolean |       —       | false  |
+|         width          |         垂直状态下导航栏的宽度          | String  |       —       | 200px  |
 
 ### MenuItem Attributes
 
