@@ -67,7 +67,7 @@ export default {
   },
   props: {
     index: {
-      type: String,
+      type: [String, null],
       default: null,
     },
   },

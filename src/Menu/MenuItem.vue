@@ -48,7 +48,6 @@ export default {
     color: inherit;
     text-decoration: none;
   }
-  transition: all 0.3s;
   @extend .menu-item-title;
   cursor: pointer;
   position: relative;
