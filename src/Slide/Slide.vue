@@ -4,7 +4,6 @@
     @mouseenter.stop="handleMouseEnter"
     @mouseleave.stop="handleMouseLeave"
     @touchstart.stop="handleTouchStart"
-    @touchmove.stop="handleTouchMove"
     @touchend.stop="handleTouchEnd"
   >
     <div class="woo-slide-wrapper" :style="wrapperStyle" ref="slideWrapperRef">
