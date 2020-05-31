@@ -36,6 +36,31 @@ describe("Tabs组件", () => {
     }).to.throw();
   });
 
+  it("没有绑定值时默认选中第一个 item ", () => {
+    const wrapper = mount(Tabs, {
+      attachToDocument: true,
+      slots: {
+        default: `
+            <woo-tabs-head>
+              <woo-tabs-item name="1st">1</woo-tabs-item>
+              <woo-tabs-item name="2nd">2</woo-tabs-item>
+              <woo-tabs-item name="3rd">3</woo-tabs-item>
+            </woo-tabs-head>
+            <woo-tabs-body>
+              <woo-tabs-pane name="1st">A</woo-tabs-pane>
+              <woo-tabs-pane name="2nd">B</woo-tabs-pane>
+              <woo-tabs-pane name="3rd">C</woo-tabs-pane>
+            </woo-tabs-body>`,
+      },
+    });
+    const vm = wrapper.vm;
+    const tabsItemWrapper = wrapper.find('[data-name="1st"]', ".woo-tabs-item");
+    vm.$nextTick().then(() => {
+      expect(tabsItemWrapper.classes().includes("item-active")).to.eq(true);
+      wrapper.destroy();
+    });
+  });
+
   it("可以设置 activeName ", () => {
     const wrapper = mount(Tabs, {
       attachToDocument: true,
@@ -125,7 +150,7 @@ describe("Tabs组件", () => {
         tabsItemWrapper.trigger("click");
       })
       .then(() => {
-        expect(callback).to.have.been.calledWith("3rd");
+        expect(callback).to.have.been.calledWith("3rd", "1st");
         wrapper.destroy();
       });
   });
