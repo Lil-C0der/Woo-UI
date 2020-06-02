@@ -27,7 +27,7 @@
 
 这是我在学习 `Vue.js` 过程中基于 `Vue 2.6` 开发的一套 `UI` 组件库，包含了一些自己常用的组件，PC 端和移动端都可以使用。
 
-使用 Travis CI 持续集成，使用 Karma + Mocha + Chai 编写单元测试，测试覆盖率达到 85% 以上。
+使用 Travis CI 持续集成，使用 Mocha + Chai + Karma 编写并完成单元测试，测试覆盖率达到 85% 以上。
 
 官方文档点 [这里](https://lil-c0der.github.io/Woo-UI/) 预览。
 
