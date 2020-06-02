@@ -14,14 +14,15 @@
   <a href="https://www.npmjs.com/package/woo-ui" target="_blank">
     <img src="https://img.shields.io/npm/v/woo-ui" alt="Version">
   </a>
+  <a href="https://app.codacy.com/manual/Lil-C0der/Woo-UI?utm_source=github.com&utm_medium=referral&utm_content=Lil-C0der/Woo-UI&utm_campaign=Badge_Grade_Dashboard" target="_blank">
+    <img src="https://api.codacy.com/project/badge/Grade/0bd27bc2315c4c54952ebda589d9f21b" alt="Codacy">
+  </a>
   <a href="https://www.npmjs.com/package/woo-ui" target="_blank">
     <img src="https://img.shields.io/npm/l/woo-ui" alt="License">
   </a>
 </p>
 
 # Woo-UI
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0bd27bc2315c4c54952ebda589d9f21b)](https://app.codacy.com/manual/Lil-C0der/Woo-UI?utm_source=github.com&utm_medium=referral&utm_content=Lil-C0der/Woo-UI&utm_campaign=Badge_Grade_Dashboard)
 
 我自己的 UI 组件库
 
