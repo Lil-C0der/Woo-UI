@@ -21,6 +21,8 @@
 
 # Woo-UI
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0bd27bc2315c4c54952ebda589d9f21b)](https://app.codacy.com/manual/Lil-C0der/Woo-UI?utm_source=github.com&utm_medium=referral&utm_content=Lil-C0der/Woo-UI&utm_campaign=Badge_Grade_Dashboard)
+
 我自己的 UI 组件库
 
 ## 简介
