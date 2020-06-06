@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Lil-C0der/Woo-UI" target="_blank" rel="noopener noreferrer">
-    <img  src="https://s1.ax1x.com/2020/05/29/tuoTM9.png" alt="Echo Wheel logo">
+    <img  src="https://s1.ax1x.com/2020/05/29/tuoTM9.png" alt="Woo UI logo">
   </a>
 </p>
 
