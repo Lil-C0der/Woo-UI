@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Lil-C0der/Woo-UI" target="_blank" rel="noopener noreferrer">
-    <img  src="https://s1.ax1x.com/2020/05/29/tuoTM9.png" alt="Echo Wheel logo">
+    <img  src="https://s1.ax1x.com/2020/05/29/tuoTM9.png" alt="Woo UI logo">
   </a>
 </p>
 
@@ -13,6 +13,9 @@
  </a>
   <a href="https://www.npmjs.com/package/woo-ui" target="_blank">
     <img src="https://img.shields.io/npm/v/woo-ui" alt="Version">
+  </a>
+  <a href="https://app.codacy.com/manual/Lil-C0der/Woo-UI?utm_source=github.com&utm_medium=referral&utm_content=Lil-C0der/Woo-UI&utm_campaign=Badge_Grade_Dashboard" target="_blank">
+    <img src="https://api.codacy.com/project/badge/Grade/0bd27bc2315c4c54952ebda589d9f21b" alt="Codacy">
   </a>
   <a href="https://www.npmjs.com/package/woo-ui" target="_blank">
     <img src="https://img.shields.io/npm/l/woo-ui" alt="License">
