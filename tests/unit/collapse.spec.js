@@ -34,7 +34,7 @@ describe("Collapse组件", () => {
       });
       const vm = wrapper.vm;
       vm.$nextTick().then(() => {
-        const itemWrapper = wrapper.find('[data-name="key 2"]');
+        const itemWrapper = wrapper.find("[data-name='key 2']");
         expect(itemWrapper.classes()).to.includes("active-item");
         wrapper.destroy();
       });

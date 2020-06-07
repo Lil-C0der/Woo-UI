@@ -105,7 +105,7 @@ describe("Slide 组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const prevWrapper = wrapper.find('[data-action="prev"]');
+    const prevWrapper = wrapper.find("[data-action='prev']");
     vm.$nextTick()
       .then(() => {
         prevWrapper.trigger("click");
@@ -143,7 +143,7 @@ describe("Slide 组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const prevWrapper = wrapper.find('[data-action="next"]');
+    const prevWrapper = wrapper.find("[data-action='next']");
     vm.$nextTick()
       .then(() => {
         prevWrapper.trigger("click");

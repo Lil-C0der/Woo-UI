@@ -134,7 +134,7 @@ describe("Menu 组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const submenuWrapper = wrapper.find('[data-index="2"]');
+    const submenuWrapper = wrapper.find("[data-index='2']");
     submenuWrapper.trigger("click");
     expect(callback).to.have.been.calledWith("2");
     wrapper.destroy();
@@ -159,7 +159,7 @@ describe("Menu 组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const submenuWrapper = wrapper.find('[data-index="3"]');
+    const submenuWrapper = wrapper.find("[data-index='3']");
     submenuWrapper.trigger("click");
     vm.$nextTick().then(() => {
       expect(callback).to.have.been.calledWith(["3"]);
@@ -186,7 +186,7 @@ describe("Menu 组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const submenuWrapper = wrapper.find('[data-index="3"]');
+    const submenuWrapper = wrapper.find("[data-index='3']");
     submenuWrapper.trigger("click");
     vm.$nextTick()
       .then(() => {

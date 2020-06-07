@@ -54,7 +54,7 @@ describe("Tabs组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const tabsItemWrapper = wrapper.find('[data-name="1st"]', ".woo-tabs-item");
+    const tabsItemWrapper = wrapper.find("[data-name='1st']", ".woo-tabs-item");
     vm.$nextTick().then(() => {
       expect(tabsItemWrapper.classes().includes("item-active")).to.eq(true);
       wrapper.destroy();
@@ -82,7 +82,7 @@ describe("Tabs组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const tabsItemWrapper = wrapper.find('[data-name="2nd"]', ".woo-tabs-item");
+    const tabsItemWrapper = wrapper.find("[data-name='2nd']", ".woo-tabs-item");
     vm.$nextTick().then(() => {
       expect(tabsItemWrapper.classes().includes("item-active")).to.eq(true);
       wrapper.destroy();
@@ -111,7 +111,7 @@ describe("Tabs组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const tabsItemWrapper = wrapper.find('[data-name="3rd"]', ".woo-tabs-item");
+    const tabsItemWrapper = wrapper.find("[data-name='3rd']", ".woo-tabs-item");
     vm.$nextTick()
       .then(() => {
         tabsItemWrapper.trigger("click");
@@ -144,7 +144,7 @@ describe("Tabs组件", () => {
       },
     });
     const vm = wrapper.vm;
-    const tabsItemWrapper = wrapper.find('[data-name="3rd"]', ".woo-tabs-item");
+    const tabsItemWrapper = wrapper.find("[data-name='3rd']", ".woo-tabs-item");
     vm.$nextTick()
       .then(() => {
         tabsItemWrapper.trigger("click");

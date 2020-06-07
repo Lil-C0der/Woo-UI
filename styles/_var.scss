@@ -46,7 +46,6 @@ $bg-disabled: #ebebeb;
 
 $toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
-
 // loading 动画
 @keyframes spin {
   0% {
@@ -57,7 +56,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     transform: rotate(360deg);
   }
 }
-
 // Toast 组件的动画
 @keyframes fade-in {
   0% {
@@ -87,7 +85,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     transform: translate(-50%, 0);
   }
 }
-
 // transition
 .fade-enter-active,
 .fade-leave-active {
@@ -97,7 +94,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 .fade-leave-to {
   opacity: 0;
 }
-
 .slide-enter-active,
 .slide-leave-active,
 .slide-reverse-enter-active,
@@ -116,7 +112,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 .slide-reverse-leave-to {
   transform: translateX(100%);
 }
-
 // extend
 .menu-item-title {
   padding: 0 20px;
@@ -138,7 +133,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     background-color: $tab-active-color;
   }
 }
-
 // submenu icon 的样式
 .submenu-title-arrow {
   transition: all 0.3s;
@@ -148,12 +142,10 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   top: 50%;
   transform: translateY(-50%);
 }
-
 .active-menu-item-title-vertical {
   font-weight: 700;
   color: $tab-active-color;
 }
-
 .active-menu-item-bg {
   color: $tab-active-color;
   background-color: lighten($tab-active-color, 20.5%);
