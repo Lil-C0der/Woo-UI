@@ -20,6 +20,7 @@
   <a href="https://www.npmjs.com/package/woo-ui" target="_blank">
     <img src="https://img.shields.io/npm/l/woo-ui" alt="License">
   </a>
+   <img src="https://visitor-badge.glitch.me/badge?page_id=Lil-C0der.Woo-UI" alt="Visitor Badge"/>
 </p>
 
 # Woo-UI
