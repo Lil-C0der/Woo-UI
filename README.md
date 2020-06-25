@@ -109,4 +109,4 @@
 
 [MIT](http://opensource.org/licenses/MIT) License.
 
-Copyright (c) 2020-present, Lil-C0der
+Copyright © 2020-present, Lil-C0der
