@@ -65,6 +65,8 @@
 
 3. 引入 woo-ui
 
+   在 main.js 中写入以下内容，将组件注册为**全局组件**
+
    ```js
    import Vue from "vue";
    import { WooButton, WooIcon } from "woo-ui";
@@ -73,6 +75,13 @@
 
    Vue.use(Plugin);
 
+   Vue.component("WooButton", WooButton);
+   Vue.component("WooInput", WooInput);
+   ```
+
+   或者在 Vue 单文件组件的 script 标签内写入以下内容
+
+   ```js
    export default {
      name: "App",
      components: {
