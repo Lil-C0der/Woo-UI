@@ -33,6 +33,20 @@ describe("Button 组件", () => {
     wrapper.destroy();
   });
 
+  it("可以设置 type", () => {
+    const wrapper = mount(Button, {
+      attachToDocument: true,
+      propsData: {
+        type: "dashed"
+      }
+    });
+    const vm = wrapper.vm;
+    // expect(useWrappers.attributes("href")).to.eq("#woo-icon-loading");
+    expect(vm.$el.classList.contains("woo-button-dashed")).to.be.true;
+
+    wrapper.destroy();
+  });
+
   it("可以设置 loading", () => {
     const wrapper = mount(Button, {
       attachToDocument: true,
