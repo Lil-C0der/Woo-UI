@@ -1,5 +1,5 @@
 ---
-title: "按钮 Button"
+title: '按钮 Button'
 sidebarDepth: 2
 ---
 
@@ -70,9 +70,9 @@ sidebarDepth: 2
 export default {
   data() {
     return {
-      isLoading: false,
+      isLoading: false
     };
-  },
+  }
 };
 </script>
 ```
@@ -116,4 +116,4 @@ export default {
 |  icon-name   |   按钮的图标名   | String  |                —                 |   —    |
 | icon-postion | 按钮中图标的位置 | String  |           left / right           |  left  |
 |   loading    |  按钮的加载状态  | Boolean |                —                 | false  |
-|   disable    |  按钮的禁用状态  | Boolean |                —                 | false  |
+|   disabled   |  按钮的禁用状态  | Boolean |                —                 | false  |
