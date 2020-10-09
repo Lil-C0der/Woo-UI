@@ -140,6 +140,31 @@ describe("Menu 组件", () => {
     wrapper.destroy();
   });
 
+  it("对于已经 select 的 item，点击不会触发 select 事件", () => {
+    const callback = sinon.fake();
+    const wrapper = mount(Menu, {
+      attachToDocument: true,
+      slots: {
+        default: `
+        <woo-menu-item index="1">test 1</woo-menu-item>
+        <woo-menu-item index="2">test 2</woo-menu-item>
+        <woo-submenu index="3">
+          <template #title>test 3</template>
+          <woo-menu-item index="3-1">test 3-1-1111111</woo-menu-item>
+          <woo-menu-item index="3-2">test 3-2</woo-menu-item>
+        </woo-submenu>`,
+      },
+      listeners: {
+        select: callback,
+      },
+    });
+    const submenuWrapper = wrapper.find("[data-index='2']");
+    submenuWrapper.trigger("click");
+    submenuWrapper.trigger("click");
+    expect(callback).callCount(1);
+    wrapper.destroy();
+  });
+
   it("可以触发 open 事件", () => {
     const callback = sinon.fake();
     const wrapper = mount(Menu, {
