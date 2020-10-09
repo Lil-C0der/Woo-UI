@@ -92,7 +92,7 @@ export default {
       if (!this.vertical) {
         this.hideAllSubmenu();
       }
-      if (this.selectedIndex === index) {
+      if (this.selectedCopy === index) {
         return;
       } else {
         this.selectedCopy = index;
