@@ -18,7 +18,7 @@ export default {
       if (elName.toLowerCase() !== "button") {
         console &&
           console?.warn(
-            `woo-button-group's child must be "woo-button", but there's a ${elName}. It may cause CSS promblem`
+            `woo-button-group's child must be "woo-button", but there's a ${elName}. It may cause CSS problem`
           );
       }
     }
